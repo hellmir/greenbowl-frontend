@@ -2,18 +2,26 @@
 
 import NavigationItem from "./Item";
 
-import { NavItem } from "./types/item";
+import { navList } from "@/constants/navigation";
+import useEditIngredients from "@/store/editIngredientsStore";
+import useIngredientConfigState from "@/store/ingredientConfigStore";
+
 import { usePathname } from "next/navigation";
+import { useEffect } from "react";
 
-interface Props {
-  items: NavItem[];
-}
-
-const NavigationItemList = ({ items }: Props) => {
+const NavigationItemList = () => {
   const pathName = usePathname();
+  const { allClear } = useEditIngredients();
+  const { changeConfigState } = useIngredientConfigState();
+
+  useEffect(() => {
+    allClear();
+    changeConfigState("none");
+  }, [pathName, allClear, changeConfigState]);
+
   return (
-    <ul className="flex justify-between w-full">
-      {items.map((item) => (
+    <ul className="grid grid-cols-4 gap-4">
+      {navList.map((item) => (
         <NavigationItem key={item.name} item={item} pathName={pathName} />
       ))}
     </ul>
