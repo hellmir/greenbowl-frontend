@@ -1,7 +1,7 @@
 "use server";
 
 import { revalidateTag } from "next/cache";
-import { CreateIngredient } from "../types/fridge";
+import { CreateIngredient, Ingredient } from "../types/fridge";
 
 const INGREDIENTS_TAG = "ingredients";
 // const INGREDIENT_TAG = "ingredient";
@@ -12,7 +12,7 @@ export const getIngredients = async () => {
     next: { revalidate: 60, tags: [INGREDIENTS_TAG] },
   });
 
-  const data = await res.json();
+  const data: Ingredient[] = await res.json();
   return data;
 };
 
@@ -29,15 +29,16 @@ export const createIngredient = async (ingredient: CreateIngredient) => {
   return data;
 };
 
-export const deleteIngredient = async (id: string) => {
+export const deleteIngredients = async (ids: number[]) => {
   const res = await fetch("http://localhost:3000/api/test/fridge/ingredient", {
     method: "DELETE",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ id }),
+    body: JSON.stringify({ ids }),
   });
 
   revalidateTag(INGREDIENTS_TAG);
 
   const data = await res.json();
+  console.log(data);
   return data;
 };

@@ -1,7 +1,7 @@
-import { deleteIngredient } from "../../actions/ingredient";
+import { deleteIngredients } from "../../actions/ingredient";
 
 const Delete = ({ id }: { id: string }) => {
-  const handleClick = () => deleteIngredient(id);
+  const handleClick = () => deleteIngredients(id);
 
   return <button type="button" onClick={handleClick}></button>;
 };
