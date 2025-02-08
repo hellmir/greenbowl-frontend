@@ -121,7 +121,7 @@ module.exports = {
           warning: "#fcff56",
         },
         border: {
-          border: "#e6e6e6",
+          default: "#e6e6e6",
         },
       },
       default: "16px",
@@ -164,6 +164,7 @@ module.exports = {
       bold: 700,
       medium: 500,
       regular: 400,
+
       fontSize: {
         "heading-5xl": ["40px", { fontWeight: "700", lineHeight: "1.4" }],
         "heading-4xl": ["36px", { fontWeight: "700", lineHeight: "1.4" }],
