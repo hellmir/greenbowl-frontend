@@ -8,7 +8,7 @@ interface Props {
 }
 
 const NavigationItem = ({ item, pathName }: Props) => {
-  const isCurrentPath = pathName === item.href;
+  const isCurrentPath = pathName.includes(item.href);
   const Icon = item.icon;
 
   return (

@@ -14,10 +14,7 @@ const NavigationItemList = () => {
   const { allClear } = useEditIngredients();
   const { changeConfigState } = useIngredientConfigState();
 
-  useEffect(() => {
-    allClear();
-    changeConfigState("none");
-  }, [pathName, allClear, changeConfigState]);
+  useEffect(() => {}, [pathName, allClear, changeConfigState]);
 
   return (
     <ul className="grid grid-cols-4 gap-4">

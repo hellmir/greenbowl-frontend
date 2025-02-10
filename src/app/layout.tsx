@@ -36,11 +36,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${myFont.className} antialiased`}>
+      <body className={`${myFont.className} antialiased overflow-x-hidden`}>
         <div className="flex justify-center items-center h-screen w-screen">
-          <div className="w-full max-w-[599px] h-full  mx-auto relative border-2 border-foundation-primary bg-foundation-quarternary">
+          <div className="w-full max-w-[599px] h-full  mx-auto relative bg-foundation-quarternary">
             <Header />
-            <div className="mt-[54px] pl-4 pr-4">{children}</div>
+            <div className="pl-16 pr-16">{children}</div>
             <Navigation />
           </div>
         </div>

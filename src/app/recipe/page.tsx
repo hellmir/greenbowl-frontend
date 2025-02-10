@@ -1,5 +1,15 @@
+import ConfirmDeleteModal from "@/components/modal/ConfirmModal";
+import ModalBtn from "../myFridge/myIngredient/_source/components/Storage/modal/ModalBtn";
+import MainCharacter from "@/components/character/MainCharacter";
+
 const page = () => {
-  return <div>레시피 추천 페이지</div>;
+  return (
+    <div className=" mt-[100px] min-h-[600px]">
+      <ModalBtn />
+
+      <MainCharacter />
+    </div>
+  );
 };
 
 export default page;
