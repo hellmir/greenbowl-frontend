@@ -121,7 +121,7 @@ module.exports = {
           warning: "#fcff56",
         },
         border: {
-          default: "#e6e6e6",
+          border: "#e6e6e6",
         },
       },
       default: "16px",
