@@ -1,20 +1,24 @@
-import { Tabs, TabsContent } from "@radix-ui/react-tabs";
+"use client";
 
-import { MyIngredient } from "../myIngredient";
+import { Tabs } from "@radix-ui/react-tabs";
+
 import TabsListContainer from "./TabsListContainer";
+import { useHeaderStore } from "@/store/headerStore";
 
 const TabsContainer = () => {
+  const { headerType } = useHeaderStore();
+
   return (
-    <Tabs
-      defaultValue="myIngredient"
-      className="w-full flex flex-col gap-[10px] "
-    >
-      <TabsListContainer />
-      <TabsContent className="h-full" value="myIngredient">
-        <MyIngredient />
-      </TabsContent>
-      <TabsContent value="fridgeTips">냉장고 팁</TabsContent>
-    </Tabs>
+    <>
+      {headerType !== "edit" && (
+        <Tabs
+          defaultValue="myIngredient"
+          className="w-full sticky top-[54px] flex flex-col  z-30 bg-foundation-quarternary"
+        >
+          <TabsListContainer />
+        </Tabs>
+      )}
+    </>
   );
 };
 
