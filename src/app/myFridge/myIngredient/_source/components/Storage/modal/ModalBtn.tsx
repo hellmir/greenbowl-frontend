@@ -1,3 +1,5 @@
+"use client";
+
 import MoreIcon from "@/components/icons/More";
 import {
   Dialog,

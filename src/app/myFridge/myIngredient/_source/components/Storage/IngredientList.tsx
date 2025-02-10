@@ -1,10 +1,9 @@
 import { categories } from "@/constants/categories";
-import { categorized } from "./../../../utils/categorized";
 import Image from "next/image";
 import { Ingredient } from "@/app/myFridge/_source/types/fridge";
 import Card from "./Card";
 import { useMemo } from "react";
-import { ScrollArea } from "@/components/ui/scroll-area";
+import { categorized } from "./../../utils/categorized";
 
 interface Props {
   ingredients: Ingredient[];
@@ -20,13 +19,13 @@ const IngredientList = ({
   const categorizedMap = useMemo(() => categorized(ingredients), [ingredients]);
 
   return (
-    <ScrollArea className="overflow-x-hidden h-5/6 flex flex-col justify-between ">
+    <div className="pb-[120px]">
       {categories.map((category) => (
         <div
           key={category.id}
-          className="mb-20 p-3 bg-foundation-secondary rounded-[12px]"
+          className="mb-20 bg-foundation-secondary rounded-[12px] p-12"
         >
-          <div className="flex items-center text-label-m h-[40px]">
+          <div className="flex items-center text-label-m h-[40px] mb-20">
             <Image
               src={category.image}
               alt="카테고리 이미지"
@@ -49,7 +48,7 @@ const IngredientList = ({
           </div>
         </div>
       ))}
-    </ScrollArea>
+    </div>
   );
 };
 

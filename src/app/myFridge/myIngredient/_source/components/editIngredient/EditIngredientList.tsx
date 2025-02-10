@@ -1,8 +1,7 @@
 "use client";
 
 import useEditIngredients from "@/store/editIngredientsStore";
-import { Ingredient } from "../../types/fridge";
-import { ScrollArea } from "@/components/ui/scroll-area";
+import { Ingredient } from "@/app/myFridge/_source/types/fridge";
 import EditIngredient from "./EditIngredient";
 
 interface Props {
@@ -15,12 +14,13 @@ const EditIngredientList = ({ ingredients }: Props) => {
   const selectedIngredients = ingredients.filter((ingredient) =>
     selectedIdsSet.has(+ingredient.id)
   );
+
   return (
-    <ScrollArea className="overflow-x-hidden h-[90%] ">
+    <div className=" pt-[54px] pb-[160px]">
       {selectedIngredients.map((ingredient) => (
         <EditIngredient key={ingredient.id} ingredient={ingredient} />
       ))}
-    </ScrollArea>
+    </div>
   );
 };
 

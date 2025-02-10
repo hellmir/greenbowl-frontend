@@ -1,8 +1,4 @@
 import { useState } from "react";
-import {
-  Ingredient,
-  StorageCondition as TStorageCondition,
-} from "../../types/fridge";
 
 import Head from "./Category";
 import ExpirationDate from "./ExpirationDate";
@@ -10,6 +6,10 @@ import Quantity from "./Quantity";
 import StorageCondition from "./StorageCondition";
 
 import { categories } from "@/constants/categories";
+import {
+  Ingredient,
+  StorageCondition as TStorageCondition,
+} from "@/app/myFridge/_source/types/fridge";
 
 interface Props {
   ingredient: Ingredient;
@@ -29,7 +29,7 @@ const EditIngredient = ({ ingredient }: Props) => {
         category={categories[newIngredient.category].name}
         name={newIngredient.name}
       />
-      <div className=" mt-20 flex flex-col gap-12 text-label-s text-content-tertiary ">
+      <div className=" mt-20 flex flex-col gap-12 text-label-s text-content-tertiary  ">
         <ExpirationDate expirationDate={newIngredient.expirationDate} />
         <Quantity
           quantity={newIngredient.quantity}

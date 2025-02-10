@@ -1,4 +1,4 @@
-import { Ingredient } from "../../../types/fridge";
+import { Ingredient } from "@/app/myFridge/_source/types/fridge";
 
 interface Props {
   ingredient: Ingredient;
@@ -14,13 +14,13 @@ const getExpirationDateClassName = (expirationDate: number) => {
     return "text-foundation-primary";
   }
   if (expirationDate >= 4) {
-    return "text-orange-500 ";
+    return "text-foundation-accent ";
   }
   if (expirationDate <= 3 && expirationDate >= -2) {
-    return "text-red-600";
+    return "text-foundation-negative";
   }
   {
-    return "text-gray-600";
+    return "text-content-tertiary";
   }
 };
 

@@ -15,8 +15,8 @@ const Quantity = ({ quantity, onChange }: Props) => {
   };
   return (
     <div className="h-40 flex items-center">
-      <p className="w-1/2">수량</p>
-      <div className="flex w-1/2 justify-center">
+      <p className="w-1/2 ">수량</p>
+      <div className="flex w-1/2 justify-center border border-border-border rounded-[8px] h-full items-center">
         <Button
           onClick={handleClickMinusBtn}
           variant={"ghost"}

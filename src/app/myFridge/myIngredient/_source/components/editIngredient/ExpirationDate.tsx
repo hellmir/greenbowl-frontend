@@ -9,9 +9,9 @@ const ExpirationDate = ({ expirationDate }: Props) => {
   const formatExpirationDate = formatDate(new Date(expirationDate));
 
   return (
-    <div className="h-40 flex items-center justify-between ">
+    <div className="h-40 flex items-center justify-between">
       <p className=" w-1/2">유통기한</p>
-      <p className=" w-1/2 flex justify-center text-content-secondary">
+      <p className="h-full w-1/2 flex justify-center items-center text-content-secondary border border-border-border rounded-[8px]">
         {formatExpirationDate} 까지
       </p>
     </div>
