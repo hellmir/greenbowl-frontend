@@ -1,7 +1,5 @@
-import MyFridge from "./_source/components";
-
-const page = async () => {
-  return <MyFridge />;
+const page = () => {
+  return <div className=""></div>;
 };
 
 export default page;
