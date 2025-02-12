@@ -29,7 +29,7 @@ const EditIngredient = ({ ingredient }: Props) => {
         category={categories[newIngredient.category].name}
         name={newIngredient.name}
       />
-      <div className=" mt-20 flex flex-col gap-12 text-label-s text-content-tertiary  ">
+      <div className=" mt-20 flex flex-col gap-12 label-s text-content-tertiary  ">
         <ExpirationDate expirationDate={newIngredient.expirationDate} />
         <Quantity
           quantity={newIngredient.quantity}

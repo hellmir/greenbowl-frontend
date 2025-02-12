@@ -44,7 +44,7 @@ const MyIngredients = ({ ingredients, handleEditOpen }: Props) => {
     <div className=" relative text-content-secondary pb-[50px] mt-[54px] flex-col h-full">
       {config !== "none" && (
         <div className=" bg-foundation-quarternary w-full justify-between py-16 sticky top-[90px]">
-          <div className="flex text-label-s items-center ">
+          <div className="flex label-s items-center ">
             <XIcon stroke="content-tertiary" onClick={handleCloseBtn} />
             <p className="ml-8 text-foundation-primary">
               {draftIngredientsSet.size}
@@ -61,7 +61,7 @@ const MyIngredients = ({ ingredients, handleEditOpen }: Props) => {
       />
 
       {config === "none" && (
-        <Button variant={"bottom"} type="button" className="w-full">
+        <Button variant={"bottom"} type="button">
           레시피 추천받기
         </Button>
       )}

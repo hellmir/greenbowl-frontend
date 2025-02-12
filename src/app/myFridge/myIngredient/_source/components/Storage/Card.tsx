@@ -35,13 +35,11 @@ const Card = ({ ingredient, isSelected, onClick }: Props) => {
       className={` w-full rounded-lg py-[8px] px-3 border  ${isSelected ? "bg-yellowgreen-100 border-foundation-primary" : "bg-foundation-secondary border-border-border"}`}
       onClick={() => onClick(+ingredient.id)}
     >
-      <div className={`${expirationDateClassName} mb-1 text-heading-s`}>
+      <div className={`${expirationDateClassName} mb-1 heading-s`}>
         {`D${expirationDate >= 0 ? "+" : ""}${expirationDate}`}
       </div>
-      <div className=" text-content-secondary text-label-m">
-        {ingredient.name}
-      </div>
-      <div className="flex mt-1 text-content-tertiary text-label-s">
+      <div className=" text-content-secondary label-m">{ingredient.name}</div>
+      <div className="flex mt-1 text-content-tertiary label-s">
         <p>{ingredient.storageCondition}</p>
         <p className="ml-8 mr-8">|</p>
         <p>{ingredient.quantity}개</p>

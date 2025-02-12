@@ -1,4 +1,3 @@
-import ConfirmDeleteModal from "@/components/modal/ConfirmModal";
 import ModalBtn from "../myFridge/myIngredient/_source/components/Storage/modal/ModalBtn";
 import MainCharacter from "@/components/character/MainCharacter";
 

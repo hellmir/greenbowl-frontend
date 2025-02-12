@@ -1,5 +1,5 @@
 const page = () => {
-  return <div>식단 페이지</div>;
+  return <div className=" mt-36">asdfasdf</div>;
 };
 
 export default page;

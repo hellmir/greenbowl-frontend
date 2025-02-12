@@ -15,7 +15,7 @@ const NavigationItem = ({ item, pathName }: Props) => {
     <li className="w-full">
       <Link href={item.href}>
         <div
-          className={`flex flex-col justify-center items-center h-[60px] text-paragraph-xs ${isCurrentPath ? "text-foundation-primary" : "text-content-tertiary"}`}
+          className={`flex flex-col justify-center items-center h-[60px] paragraph-xs ${isCurrentPath ? "text-foundation-primary" : "text-content-tertiary"}`}
         >
           <Icon
             fill={`${isCurrentPath ? "foundation-primary" : "content-quinary"}`}

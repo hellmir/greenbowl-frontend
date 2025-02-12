@@ -7,7 +7,7 @@ interface Props {
 
 const EditButton = ({ onClick }: Props) => {
   const { draftIngredientsSet, commit } = useEditIngredients();
-  console.log(draftIngredientsSet);
+
   const isNotSelected = draftIngredientsSet.size === 0;
 
   const handleClick = () => {
@@ -18,12 +18,7 @@ const EditButton = ({ onClick }: Props) => {
   };
 
   return (
-    <Button
-      variant={"bottom"}
-      onClick={handleClick}
-      type="button"
-      className="w-full"
-    >
+    <Button variant={"bottom"} onClick={handleClick} type="button">
       {isNotSelected ? "수정할 재료를 골라주세요" : "선택한 재료 수정하기"}
     </Button>
   );

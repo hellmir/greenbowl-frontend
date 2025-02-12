@@ -24,7 +24,7 @@ const Quantity = ({ quantity, onChange }: Props) => {
         >
           -
         </Button>
-        <div className="text-label-m grow flex items-center justify-center">
+        <div className="label-m grow flex items-center justify-center">
           {quantity}
         </div>
         <Button

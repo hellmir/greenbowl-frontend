@@ -15,7 +15,7 @@ const Head = ({ category, name }: Props) => {
         height={40}
         width={40}
       />
-      <div className="flex items-center grow justify-start ml-12 mr-12 text-label-m text-content-secondary ">
+      <div className="flex items-center grow justify-start ml-12 mr-12 label-m text-content-secondary ">
         <p className="">{category}</p>
         <div className="h-20 w-20 flex items-center justify-center ml-[4px] mr-[4px]">
           <Image

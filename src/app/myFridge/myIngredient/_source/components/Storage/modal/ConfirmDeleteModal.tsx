@@ -30,7 +30,7 @@ const ConfirmDeleteModal = ({
         </div>
         <div className="bg-white pt-24 pr-16 pl-16 pb-16 rounded-[20px] z-20">
           <AlertDialogHeader className="sm:text-center">
-            <AlertDialogTitle className=" text-heading-l mb-20">
+            <AlertDialogTitle className=" heading-l mb-20">
               선택한 재료를
               <br /> 삭제하시겠어요?
             </AlertDialogTitle>

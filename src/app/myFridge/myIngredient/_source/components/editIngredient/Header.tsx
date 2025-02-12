@@ -13,7 +13,7 @@ const Header = ({ handleEditClose }: Props) => {
         <BackIcon stroke="content-tertiary" onClick={handleEditClose} />
       </div>
 
-      <p className="text-heading-m h-24 flex items-center">수정하기</p>
+      <p className="heading-m h-24 flex items-center">수정하기</p>
     </div>
   );
 };

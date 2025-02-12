@@ -13,13 +13,17 @@ const MainCharacter = () => {
     () => {
       const tl = gsap.timeline();
       tl.fromTo(ref.current, { y: 50 }, { y: 0, duration: 0.3 });
-      tl.to("#picket", {
-        rotation: -30,
-        duration: 0.15,
-        repeat: 5,
-        yoyo: true,
-        transformOrigin: "bottom right",
-      });
+      tl.fromTo(
+        "#picket",
+        {
+          rotation: -30,
+          transformOrigin: "bottom right",
+        },
+        {
+          rotation: 0,
+          duration: 0.3,
+        }
+      );
 
       // gsap.to("#picket", {
       //   rotation: -30,

@@ -1,5 +1,5 @@
 import { categories } from "@/constants/categories";
-import { Ingredient } from "../types/fridge";
+import { Ingredient } from "../../../_source/types/fridge";
 
 export const categorized = (ingredients: Ingredient[]) => {
   const categorizedMap = createCategoryMap();

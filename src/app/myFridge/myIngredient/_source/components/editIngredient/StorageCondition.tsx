@@ -10,7 +10,7 @@ const StorageCondition = ({ storageCondition, onChange }: Props) => {
   return (
     <div className="h-[34px] flex items-center">
       <p className=" w-1/2">보관장소</p>
-      <div className="w-1/2 flex justify-center gap-8 text-label-xs h-full">
+      <div className="w-1/2 flex justify-center gap-8 label-xs h-full">
         <Button
           onClick={() => onChange("냉장")}
           variant={"ghost"}

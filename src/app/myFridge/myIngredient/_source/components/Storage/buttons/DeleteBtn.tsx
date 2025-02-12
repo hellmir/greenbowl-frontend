@@ -26,12 +26,7 @@ const DeleteBtn = () => {
   };
   return (
     <>
-      <Button
-        onClick={handleClick}
-        className="w-full"
-        type="button"
-        variant={"bottom"}
-      >
+      <Button onClick={handleClick} type="button" variant={"bottom"}>
         {isNotSelected ? "삭제할 재료를 골라주세요" : "선택한 재료 삭제하기"}
       </Button>
       <ConfirmDeleteModal

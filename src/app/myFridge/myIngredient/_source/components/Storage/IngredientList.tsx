@@ -25,14 +25,14 @@ const IngredientList = ({
           key={category.id}
           className="mb-20 bg-foundation-secondary rounded-[12px] p-12"
         >
-          <div className="flex items-center text-label-m h-[40px] mb-20">
+          <div className="flex items-center label-m h-[40px] mb-20">
             <Image
               src={category.image}
               alt="카테고리 이미지"
               height={40}
               width={40}
             />
-            <p className=" text-label-m">{`${category.name} (${
+            <p className=" label-m">{`${category.name} (${
               categorizedMap[category.id].ingredients.length
             })`}</p>
           </div>
