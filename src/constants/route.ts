@@ -1,4 +1,4 @@
-export const route = {
+const route = {
   myFridge: {
     root: "/myFridge",
     addIngredient: "/myFridge/addIngredient",
@@ -9,3 +9,5 @@ export const route = {
   recipe: "/recipe",
   save: "/save",
 } as const;
+
+export default route;
