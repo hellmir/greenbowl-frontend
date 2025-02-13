@@ -17,6 +17,13 @@ module.exports = {
       spacing: {
         ...spacing,
       },
+      fontWeight: {
+        medium: 500,
+        bold: 700,
+      },
+      fontFamily: {
+        spoqa: ["var(--font-spoqa)"],
+      },
     },
   },
   safelist: [
@@ -32,7 +39,7 @@ module.exports = {
         ...typography,
       };
 
-      addUtilities(newUtilities, ["responsive", "hover"]);
+      addUtilities(newUtilities, ["responsive", "hover", "apply"]);
     }),
   ],
 };
