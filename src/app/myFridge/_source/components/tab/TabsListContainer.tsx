@@ -2,8 +2,8 @@
 
 import { TabsList, TabsTrigger } from "@radix-ui/react-tabs";
 import { usePathname } from "next/navigation";
-import ModalBtn from "@/app/myFridge/myIngredient/_source/components/Storage/modal/ModalBtn";
-import { route } from "@/constants/route";
+import SelectConfigTypeModal from "@/app/myFridge/myIngredient/_source/components/Storage/modal/SelectConfigTypeModal";
+import route from "@/constants/route";
 import Link from "next/link";
 
 const tabItems = [
@@ -45,7 +45,7 @@ const TabsListContainer = () => {
       </div>
 
       {/* 특정 탭일 때만 Modal 버튼 표시 */}
-      {activeTab === "myIngredient" && <ModalBtn />}
+      {activeTab === "myIngredient" && <SelectConfigTypeModal />}
     </TabsList>
   );
 };

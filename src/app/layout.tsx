@@ -23,6 +23,7 @@ const myFont = localFont({
       style: "normal",
     },
   ],
+  variable: "--font-spoqa",
 });
 
 export const metadata: Metadata = {

@@ -14,8 +14,8 @@ const EditContainer = ({ ingredients, handleEditClose }: Props) => {
   const { setHeaderType } = useHeaderStore();
 
   useEffect(() => {
-    setHeaderType("edit");
-    return () => setHeaderType("main");
+    setHeaderType("none");
+    return () => setHeaderType("show");
   }, [setHeaderType]);
 
   return (
