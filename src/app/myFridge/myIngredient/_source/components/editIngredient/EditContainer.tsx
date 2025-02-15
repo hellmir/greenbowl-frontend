@@ -22,7 +22,7 @@ const EditContainer = ({ ingredients, handleEditClose }: Props) => {
     <div className=" z-30">
       <TertiaryHeader handleEditClose={handleEditClose} />
       <EditIngredientList ingredients={ingredients} />
-      <Button variant={"bottom"} className="w-full mt-16">
+      <Button variant={"bottom"} className="">
         완료
       </Button>
     </div>

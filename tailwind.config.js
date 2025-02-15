@@ -2,7 +2,6 @@
 const plugin = require("tailwindcss/plugin");
 import typography from "./build/typography.js";
 import colors from "./build/colors.js";
-import spacing from "./build/spacing.js";
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -14,9 +13,7 @@ module.exports = {
       colors: {
         ...colors,
       },
-      // spacing: {
-      //   ...spacing,
-      // },
+
       fontFamily: {
         spoqa: ["var(--font-spoqa)"],
       },

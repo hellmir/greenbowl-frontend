@@ -17,7 +17,7 @@ const NavigationItemList = () => {
   useEffect(() => {}, [pathName, allClear, changeConfigState]);
 
   return (
-    <ul className="grid grid-cols-4 gap-4">
+    <ul className="grid grid-cols-4 gap-4 h-full">
       {navList.map((item) => (
         <NavigationItem key={item.name} item={item} pathName={pathName} />
       ))}

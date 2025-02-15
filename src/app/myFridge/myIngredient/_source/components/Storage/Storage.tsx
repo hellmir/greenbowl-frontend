@@ -13,7 +13,7 @@ interface Props {
 
 const Storage = ({ ingredients }: Props) => {
   const [isEdit, setIsEdit] = useState(false);
-  const { allClear } = useEditIngredients();
+  const { clearDraft } = useEditIngredients();
   const { changeConfigState } = useIngredientConfigState();
 
   const handleEditOpen = () => setIsEdit(true);
@@ -21,10 +21,11 @@ const Storage = ({ ingredients }: Props) => {
 
   useEffect(() => {
     return () => {
-      allClear();
-      changeConfigState("none");
+      clearDraft();
+
+      changeConfigState("recipe");
     };
-  }, [allClear, changeConfigState]);
+  }, [clearDraft, changeConfigState]);
   return (
     <div className="min-h-full">
       {isEdit ? (

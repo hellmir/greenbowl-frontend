@@ -1,14 +1,7 @@
-import ModalBtn from "../myFridge/myIngredient/_source/components/Storage/modal/ModalBtn";
-import MainCharacter from "@/components/character/MainCharacter";
+import RecommendContainer from "./_source/components/recommend";
 
 const page = () => {
-  return (
-    <div className=" mt-[100px] min-h-[600px]">
-      <ModalBtn />
-
-      <MainCharacter />
-    </div>
-  );
+  return <RecommendContainer />;
 };
 
 export default page;

@@ -28,11 +28,11 @@ const SelectConfigTypeModal = () => {
       <DialogTrigger>
         <MoreIcon fill="content-tertiary" />
       </DialogTrigger>
-      <DialogContent className=" bg-inherit border-none rounded-md mx-auto top-3/4 h-0 max-w-[599px] w-screen pr-4 pl-4">
+      <DialogContent className=" bg-inherit border-none rounded-md mx-auto top-3/4 h-0 max-w-[37.5rem] w-screen pr-4 pl-4">
         <DialogTitle className=" hidden"></DialogTitle>
-        <DialogClose onClick={() => handleClick("none")}>
+        <DialogClose onClick={() => handleClick("recipe")}>
           <Link href={route.myFridge.addIngredient}>
-            <div className="bg-white rounded-lg h-14  border-border-border flex items-center justify-center">
+            <div className="bg-white rounded-lg h-14  border-border-default flex items-center justify-center">
               추가하기
             </div>
           </Link>

@@ -19,13 +19,13 @@ const IngredientList = ({
   const categorizedMap = useMemo(() => categorized(ingredients), [ingredients]);
 
   return (
-    <div className="pb-[120px]">
+    <div className="pb-28">
       {categories.map((category) => (
         <div
           key={category.id}
-          className="mb-20 bg-foundation-secondary rounded-[12px] p-12"
+          className="mb-5 bg-foundation-secondary rounded-[12px] p-3"
         >
-          <div className="flex items-center label-m h-[40px] mb-20">
+          <div className="flex items-center label-m h-10 mb-5">
             <Image
               src={category.image}
               alt="카테고리 이미지"

@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-type ConfigState = "none" | "edit" | "delete";
+type ConfigState = "recipe" | "edit" | "delete";
 
 type State = {
   configState: ConfigState;
@@ -11,7 +11,7 @@ type Actions = {
 };
 
 const useIngredientConfigState = create<State & Actions>((set) => ({
-  configState: "none",
+  configState: "recipe",
   changeConfigState: (s: ConfigState) => set({ configState: s }),
 }));
 

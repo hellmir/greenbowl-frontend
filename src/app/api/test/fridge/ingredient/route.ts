@@ -1,13 +1,13 @@
 import { Ingredient } from "@/app/myFridge/_source/types/fridge";
 import { NextResponse } from "next/server";
-export let mockIngredients: Ingredient[] = [
+let mockIngredients: Ingredient[] = [
   {
     id: "1",
     name: "돼지고기",
     category: 1,
     quantity: 2,
     storageCondition: "냉동",
-    expirationDate: new Date("2025-08-17"),
+    expirationDate: new Date("2025-08-17").toString(),
   },
   {
     id: "5",
@@ -15,7 +15,7 @@ export let mockIngredients: Ingredient[] = [
     category: 1,
     quantity: 4,
     storageCondition: "실온",
-    expirationDate: new Date("2025-03-15"),
+    expirationDate: new Date("2025-03-15").toString(),
   },
   {
     id: "6",
@@ -23,7 +23,7 @@ export let mockIngredients: Ingredient[] = [
     category: 1,
     quantity: 5,
     storageCondition: "냉장",
-    expirationDate: new Date("2025-01-15"),
+    expirationDate: new Date("2025-01-15").toString(),
   },
   {
     id: "7",
@@ -31,7 +31,7 @@ export let mockIngredients: Ingredient[] = [
     category: 1,
     quantity: 1,
     storageCondition: "냉장",
-    expirationDate: new Date("2025-02-09"),
+    expirationDate: new Date("2025-02-09").toString(),
   },
   {
     id: "8",
@@ -39,7 +39,7 @@ export let mockIngredients: Ingredient[] = [
     category: 1,
     quantity: 8,
     storageCondition: "냉동",
-    expirationDate: new Date("2025-02-10"),
+    expirationDate: new Date("2025-02-10").toString(),
   },
   {
     id: "2",
@@ -47,7 +47,7 @@ export let mockIngredients: Ingredient[] = [
     category: 2,
     quantity: 5,
     storageCondition: "냉장",
-    expirationDate: new Date("2025-02-06"),
+    expirationDate: new Date("2025-02-06").toString(),
   },
   {
     id: "3",
@@ -55,7 +55,7 @@ export let mockIngredients: Ingredient[] = [
     category: 5,
     quantity: 8,
     storageCondition: "실온",
-    expirationDate: new Date("2025-02-18"),
+    expirationDate: new Date("2025-02-18").toString(),
   },
   {
     id: "4",
@@ -63,7 +63,7 @@ export let mockIngredients: Ingredient[] = [
     category: 3,
     quantity: 1,
     storageCondition: "냉장",
-    expirationDate: new Date("2025-03-10"),
+    expirationDate: new Date("2025-03-10").toString(),
   },
 ];
 
@@ -71,7 +71,7 @@ export const GET = async () => {
   return NextResponse.json(mockIngredients);
 };
 
-export const UPDATE = async (req: Request) => {
+export const PATCH = async (req: Request) => {
   const putIngredient = await req.json();
 
   mockIngredients = mockIngredients.map((ingredient) =>

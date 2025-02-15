@@ -13,7 +13,7 @@ const TabsContainer = () => {
       {headerType === "show" && (
         <Tabs
           defaultValue="myIngredient"
-          className="w-full sticky top-[54px] flex flex-col  z-20 bg-foundation-quarternary"
+          className="w-full sticky top-[3.375rem] flex flex-col  z-20 bg-foundation-quarternary"
         >
           <TabsListContainer />
         </Tabs>

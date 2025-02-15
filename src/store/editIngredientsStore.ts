@@ -7,6 +7,7 @@ type State = {
 
 type Actions = {
   toggleIngredient: (id: number) => void;
+  uncommitIngredient: (id: number) => void;
   commit: () => void;
   clearDraft: () => void;
   clear: () => void;
@@ -26,7 +27,11 @@ const useEditIngredients = create<State & Actions>((set, get) => ({
       }
       return { draftIngredientsSet: new Set(state.draftIngredientsSet) };
     }),
-
+  uncommitIngredient: (id: number) =>
+    set((state) => {
+      state.ingredientsSet.delete(id);
+      return { ingredientsSet: new Set(state.ingredientsSet) };
+    }),
   commit: () =>
     set((state) => ({ ingredientsSet: new Set(state.draftIngredientsSet) })),
 

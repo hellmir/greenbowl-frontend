@@ -1,5 +1,7 @@
+import OnboardingContainer from "./_source/components/onboarding";
+
 const page = () => {
-  return <div className=" mt-36">asdfasdf</div>;
+  return <OnboardingContainer />;
 };
 
 export default page;

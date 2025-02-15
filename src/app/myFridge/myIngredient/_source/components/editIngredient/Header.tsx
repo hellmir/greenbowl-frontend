@@ -8,7 +8,7 @@ interface Props {
 
 const Header = ({ handleEditClose }: Props) => {
   return (
-    <div className="h-[54px] flex items-center justify-center relative">
+    <div className="h-[3.375rem] flex items-center justify-center relative">
       <div className="h-24 w-24 flex justify-center items-center absolute left-0">
         <BackIcon stroke="content-tertiary" onClick={handleEditClose} />
       </div>

@@ -5,8 +5,12 @@ const route = {
     myIngredient: "/myFridge/myIngredient",
     tip: "/myFridge/tip",
   },
-  diet: "/diet",
-  recipe: "/recipe",
+  diet: {
+    root: "/diet",
+  },
+  recipe: {
+    root: "/recipe",
+  },
   save: "/save",
 } as const;
 

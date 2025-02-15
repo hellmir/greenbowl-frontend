@@ -14,7 +14,7 @@ const SwiperTags = () => {
     >
       {Array.from({ length: 10 }).map((_, idx) => (
         <SwiperSlide key={idx} className="!w-auto">
-          <p className="px-[4px] py-[2px] rounded-[5px]">냉장고 보관</p>
+          <p className="px-1 py-[2px] rounded-[5px]">냉장고 보관</p>
         </SwiperSlide>
       ))}
     </Swiper>

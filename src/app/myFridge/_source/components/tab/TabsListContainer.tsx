@@ -24,7 +24,7 @@ const TabsListContainer = () => {
           <TabsTrigger key={item.key} className="h-full" value={item.key}>
             <Link href={item.route}>
               <div
-                className={`relative flex items-center h-full p-8 justify-center`}
+                className={`relative flex items-center h-full p-2 justify-center`}
               >
                 <p
                   className={

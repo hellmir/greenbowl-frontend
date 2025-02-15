@@ -16,7 +16,7 @@ const EditIngredientList = ({ ingredients }: Props) => {
   );
 
   return (
-    <div className=" pt-[54px] pb-[160px]">
+    <div className="pt-[3.375rem] pb-10 min-h-[85vh]">
       {selectedIngredients.map((ingredient) => (
         <EditIngredient key={ingredient.id} ingredient={ingredient} />
       ))}
