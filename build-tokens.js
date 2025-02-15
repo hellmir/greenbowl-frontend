@@ -3,7 +3,7 @@ import StyleDictionary from "style-dictionary";
 
 register(StyleDictionary);
 
-["colors", "typography", "spacing", "rounded"].forEach((category) => {
+["colors", "typography", "spacing"].forEach((category) => {
   StyleDictionary.registerFormat({
     name: `json/${category}`,
     format: ({ dictionary }) => {
@@ -11,6 +11,7 @@ register(StyleDictionary);
         if (prop.path[0] === category) {
           const isTypography = category === "typography";
           const newName = prop.name.replace(`${category}-`, "");
+
           if (prop.value.fontFamily) {
             prop.value.fontFamily = "var(--spoqa-han-sans-neo)";
           }
@@ -48,10 +49,6 @@ const sdConfig = {
         {
           destination: "spacing.js",
           format: "json/spacing",
-        },
-        {
-          destination: "rounded.js",
-          format: "json/rounded",
         },
       ],
     },

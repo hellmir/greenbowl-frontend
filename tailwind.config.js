@@ -14,13 +14,9 @@ module.exports = {
       colors: {
         ...colors,
       },
-      spacing: {
-        ...spacing,
-      },
-      fontWeight: {
-        medium: 500,
-        bold: 700,
-      },
+      // spacing: {
+      //   ...spacing,
+      // },
       fontFamily: {
         spoqa: ["var(--font-spoqa)"],
       },
@@ -29,7 +25,7 @@ module.exports = {
   safelist: [
     {
       pattern:
-        /^(fill|stroke)-(foundation-primary|content-quinary|content-tertiary)$/,
+        /^(fill|stroke)-(foundation-primary|content-quinary|content-tertiary|foundation-secondary)$/,
     },
   ],
   plugins: [
