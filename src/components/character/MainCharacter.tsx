@@ -24,14 +24,6 @@ const MainCharacter = () => {
           duration: 0.3,
         }
       );
-
-      // gsap.to("#picket", {
-      //   rotation: -30,
-      //   duration: 0.15,
-      //   repeat: 5,
-      //   yoyo: true,
-      //   transformOrigin: "bottom right",
-      // });
     },
     { scope: ref }
   );

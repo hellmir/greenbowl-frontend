@@ -13,7 +13,6 @@ const DeleteBtn = () => {
   const isNotSelected = draftIngredientsSet.size === 0;
 
   const handleClick = () => {
-    if (isNotSelected) return;
     setIsOpen(true);
   };
 
@@ -26,7 +25,12 @@ const DeleteBtn = () => {
   };
   return (
     <>
-      <Button onClick={handleClick} type="button" variant={"bottom"}>
+      <Button
+        disabled={isNotSelected}
+        onClick={handleClick}
+        type="button"
+        variant={"bottom"}
+      >
         {isNotSelected ? "삭제할 재료를 골라주세요" : "선택한 재료 삭제하기"}
       </Button>
       <ConfirmDeleteModal

@@ -4,7 +4,7 @@ import useEditIngredients from "@/store/editIngredientsStore";
 import Link from "next/link";
 
 const RecipeRecommendBtn = () => {
-  const { clearDraft, commit } = useEditIngredients();
+  const { clearDraft, commit, draftIngredientsSet } = useEditIngredients();
 
   const handleClick = () => {
     commit();
@@ -12,8 +12,15 @@ const RecipeRecommendBtn = () => {
   };
   return (
     <Link href={route.recipe.root}>
-      <Button onClick={handleClick} variant={"bottom"} type="button">
-        선택한 재료로 레시피 추천받기
+      <Button
+        disabled={draftIngredientsSet.size === 0}
+        onClick={handleClick}
+        variant={"bottom"}
+        type="button"
+      >
+        {draftIngredientsSet.size === 0
+          ? "재료를 선택해 주세요"
+          : "선택한 재료로 레시피 추천받기"}
       </Button>
     </Link>
   );

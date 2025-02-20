@@ -28,7 +28,7 @@ const ConfirmDeleteModal = ({
         <div className="w-full flex items-center justify-center z-10">
           <MainCharacter />
         </div>
-        <div className="bg-white pt-24 pr-4 pl-4 pb-4 rounded-[20px] z-20">
+        <div className="bg-white pt-6 pr-4 pl-4 pb-4 rounded-[20px] z-20">
           <AlertDialogHeader className="sm:text-center">
             <AlertDialogTitle className=" heading-l mb-5">
               선택한 재료를

@@ -7,6 +7,7 @@ const route = {
   },
   diet: {
     root: "/diet",
+    test: "/diet/test",
   },
   recipe: {
     root: "/recipe",

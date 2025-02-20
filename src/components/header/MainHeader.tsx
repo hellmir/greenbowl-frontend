@@ -16,12 +16,12 @@ interface Props {
 const noneHeaderRoutes: string[] = [
   route.myFridge.addIngredient,
   route.diet.root,
+  route.diet.test,
 ];
 
 const MainHeader = ({ initialHeaderType }: Props) => {
   const { headerType, setHeaderType } = useHeaderStore();
   const path = usePathname() as string;
-  console.log(path);
   const isNoneHeader = noneHeaderRoutes.includes(path);
 
   useEffect(() => {
