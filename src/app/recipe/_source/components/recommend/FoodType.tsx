@@ -1,7 +1,7 @@
 "use client";
 
 const foodTypes = ["한식", "중식", "일식", "양식"] as const;
-export type FoodTypes = (typeof foodTypes)[number];
+export type FoodTypes = (typeof foodTypes)[number] | "all";
 
 interface Props {
   handleClickItem: (type: FoodTypes) => void;

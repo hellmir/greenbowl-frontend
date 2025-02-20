@@ -1,37 +1,46 @@
-import { Ingredient } from "@/app/myFridge/_source/types/fridge";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import "swiper/css";
 import XIcon from "@/components/icons/XIcon";
-import useEditIngredients from "@/store/editIngredientsStore";
+
+import { SetStateAction, useEffect, useRef } from "react";
+import { Swiper as TSwiper } from "swiper/types";
 
 interface Props {
-  ingredients: Ingredient[];
+  ingredients: { name: string }[];
+  setSelectedIngredients: React.Dispatch<SetStateAction<{ name: string }[]>>;
 }
 
-const Ingredients = ({ ingredients }: Props) => {
-  const { uncommitIngredient } = useEditIngredients();
+const Ingredients = ({ ingredients, setSelectedIngredients }: Props) => {
+  const swiperRef = useRef<TSwiper>(null);
 
+  useEffect(() => {
+    swiperRef.current?.slideTo(ingredients.length);
+  }, [ingredients]);
   return (
-    <div className=" relative">
+    <div className="relative max-w-[50%]">
       <Swiper
         className="w-full"
         freeMode={true}
         slidesPerView="auto"
-        slidesPerGroup={1}
         spaceBetween={16}
-        slidesOffsetAfter={40}
+        slidesOffsetAfter={2}
+        onSwiper={(s) => (swiperRef.current = s)}
       >
-        {ingredients.map((ingredient) => (
-          <SwiperSlide key={ingredient.id} className="!w-auto">
+        {ingredients.map((ingredient, idx) => (
+          <SwiperSlide key={idx} className="!w-auto">
             <div
               aria-label={ingredient.name}
-              className=" relative bg-scale-yellowgreen-100 py-3 px-5 border border-foundation-primary text-foundation-primary rounded-lg"
+              className="flex items-center justify-between relative bg-scale-yellowgreen-100 w-auto  py-[0.3rem] px-[0.3rem]   border border-foundation-primary text-foundation-primary rounded-lg"
             >
               <div>{ingredient.name}</div>
-              <div className=" absolute right-1 top-1">
+              <div className="ml-1">
                 <XIcon
-                  onClick={() => uncommitIngredient(+ingredient.id)}
+                  onClick={() =>
+                    setSelectedIngredients((prev) =>
+                      prev.filter((item) => item.name !== ingredient.name)
+                    )
+                  }
                   width={12}
                   height={12}
                   stroke="foundation-primary"
@@ -41,13 +50,6 @@ const Ingredients = ({ ingredients }: Props) => {
           </SwiperSlide>
         ))}
       </Swiper>
-      <div
-        className=" z-20 absolute top-0 w-10 h-full right-0"
-        style={{
-          background:
-            "linear-gradient(to left, #fff 0%, rgba(255,255,255,0) 100%)",
-        }}
-      ></div>
     </div>
   );
 };

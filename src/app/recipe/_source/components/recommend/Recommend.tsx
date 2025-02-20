@@ -14,17 +14,11 @@ interface Props {
 
 const Recommend = ({ ingredients }: Props) => {
   const { ingredientsSet } = useEditIngredients();
-  const [selectedTime, setSelectedTime] = useState<CookTimes>();
-  const [selectedType, setSelectedType] = useState<FoodTypes>();
+  const [selectedTime, setSelectedTime] = useState<CookTimes>("all");
+  const [selectedType, setSelectedType] = useState<FoodTypes>("all");
 
   const message =
-    ingredientsSet.size === 0
-      ? "냉장고에서 재료를 선택해 주세요"
-      : !selectedTime
-        ? "요리 시간을 선택해 주세요"
-        : !selectedType
-          ? "음식 종류를 선택해 주세요"
-          : "선택 완료";
+    ingredientsSet.size === 0 ? "재료를 선택해 주세요" : "선택 완료";
 
   return (
     <div className=" mt-[3.5rem]">
@@ -35,11 +29,15 @@ const Recommend = ({ ingredients }: Props) => {
         <SelectedIngredients ingredients={ingredients} />
         <CookTime
           selectedTime={selectedTime}
-          handleClickItem={(time: CookTimes) => setSelectedTime(time)}
+          handleClickItem={(time: CookTimes) =>
+            setSelectedTime((prev) => (prev === time ? "all" : time))
+          }
         />
         <FoodType
           selectedType={selectedType}
-          handleClickItem={(type: FoodTypes) => setSelectedType(type)}
+          handleClickItem={(type: FoodTypes) =>
+            setSelectedType((prev) => (prev === type ? "all" : type))
+          }
         />
       </div>
       <Button type="submit" variant={"bottom"}>

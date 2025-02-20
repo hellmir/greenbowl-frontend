@@ -2,7 +2,7 @@
 
 const cookTimes = ["10분 미만", "20분", "30분", "1시간 이상"] as const;
 
-export type CookTimes = (typeof cookTimes)[number];
+export type CookTimes = (typeof cookTimes)[number] | "all";
 
 interface Props {
   handleClickItem: (time: CookTimes) => void;
