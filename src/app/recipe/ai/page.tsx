@@ -3,14 +3,50 @@
 import {useEffect, useState} from "react";
 import {IoIosArrowBack} from "react-icons/io";
 import RecommendedMenu from "@/app/recipe/ai/_source/components/RecommendedMenu";
-import {mockFetchRecipes, RecipeApiResponse} from "../../api/test/ai/recommendedMenus/menus"
+import {RecipeApiResponse} from "@/app/api/test/recipe/ai/gpt/menus"
+import {POST} from "@/app/api/recipe/ai/gpt/menus";
+import {AiRequestPayload} from "@/app/api/recipe/ai/config";
 
 const Page = () => {
     const [recipes, setRecipes] = useState<RecipeApiResponse[]>([]);
 
     useEffect(() => {
+        /*
+        - 기존 mock 요청 -
         mockFetchRecipes().then((data) => setRecipes(data));
+         */
+
+        const AI_MODEL: string = process.env.NEXT_PUBLIC_AI_MENUS_REQUEST_MODEL!;
+        const TEMPLATE: string = process.env.NEXT_PUBLIC_AI_MENUS_REQUEST_TEMPLATE!;
+        const SECRET_KEY: string = process.env.NEXT_PUBLIC_SECRET_KEY!;
+
+        const fetchRecipes = async () => {
+            const payload: AiRequestPayload = {
+                llm_type: AI_MODEL,
+                template: TEMPLATE,
+                secret_key: SECRET_KEY
+            }
+
+            const data = await POST(payload);
+
+            if (Array.isArray(data)) {
+                setRecipes(data);
+            } else {
+                console.error("응답 데이터가 객체가 아닙니다. 객체로 파싱합니다:\n", data);
+                setRecipes(parseToObject(data));
+            }
+        };
+
+        fetchRecipes();
     }, []);
+
+    const parseToObject = (data: string) => {
+        try {
+            return JSON.parse(data);
+        } catch (error) {
+            console.error("JSON 파싱에 실패했습니다: ", error);
+        }
+    }
 
     return (
         <div className="mt-[60px] px-4 pb-16">
@@ -29,7 +65,7 @@ const Page = () => {
                             <p className="text-center text-gray-500">로딩 중...</p>
                         ) : (
                             recipes.map((recipe, index) => (
-                                <RecommendedMenu key={index} recipe={recipe}/>
+                                <RecommendedMenu key={index} index={index} recipe={recipe}/>
                             ))
                         )}
                     </div>
