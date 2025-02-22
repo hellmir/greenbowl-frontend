@@ -9,11 +9,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 
-const noneHeaderRoutes: string[] = [
-  route.myFridge.addIngredient,
-  route.diet.root,
-  route.diet.test,
-];
+const noneHeaderRoutes: string[] = [];
 
 const MainHeader = () => {
   const { headerType, setHeaderType } = useHeaderStore();

@@ -6,12 +6,18 @@ import imagePath from "@/constants/imagePath";
 import Image from "next/image";
 import TextContainer from "./TextContainer";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
+import route from "@/constants/route";
 
 const OnboardingContainer = () => {
   const [stage, setStage] = useState(0);
+  const router = useRouter();
 
   const handleClickBtn = () => {
-    if (stage === 2) return;
+    if (stage === 2) {
+      router.push(route.diet.test);
+      return;
+    }
     setStage((prev) => prev + 1);
   };
   return (
