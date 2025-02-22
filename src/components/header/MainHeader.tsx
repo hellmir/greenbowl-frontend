@@ -7,8 +7,7 @@ import { useHeaderStore } from "@/store/headerStore";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
-
+import { useEffect } from "react";
 
 const noneHeaderRoutes: string[] = [
   route.myFridge.addIngredient,
@@ -21,18 +20,14 @@ const MainHeader = () => {
   const path = usePathname() as string;
   const isNoneHeader = noneHeaderRoutes.includes(path);
 
-
-
-
   useEffect(() => {
     setHeaderType(isNoneHeader ? "none" : "show");
   }, [isNoneHeader, setHeaderType]);
 
-
   return (
     <>
       {headerType === "show" && (
-        <header className="pl-4 pr-4 h-[3.375rem] w-full max-w-[37.5rem] flex items-center justify-between fixed z-30 bg-foundation-quarternary">
+        <header className=" h-[3.375rem] w-full max-w-[37.5rem] flex items-center justify-between fixed z-30 bg-foundation-quarternary">
           <Link href={"/myFridge"}>
             <Image
               className=" hover:cursor-pointer"

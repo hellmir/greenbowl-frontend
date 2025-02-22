@@ -21,7 +21,7 @@ const Recommend = ({ ingredients }: Props) => {
     ingredientsSet.size === 0 ? "재료를 선택해 주세요" : "선택 완료";
 
   return (
-    <div className=" mt-[3.5rem]">
+    <div className="">
       <div className="flex items-center heading-m text-content-secondary h-[2.4rem]">
         맞춤형 레시피 추천
       </div>

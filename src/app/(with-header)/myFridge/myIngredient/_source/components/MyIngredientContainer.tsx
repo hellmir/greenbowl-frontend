@@ -5,7 +5,6 @@ import { getIngredients } from "../../../_source/actions/ingredient";
 
 const MyIngredientContainer = async () => {
   const ingredients = await getIngredients();
-
   return (
     <>
       {ingredients.length === 0 ? (

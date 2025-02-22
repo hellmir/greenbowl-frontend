@@ -1,7 +1,12 @@
-import { NextRequest, NextResponse } from "next/server";
+import { withAuth } from "next-auth/middleware";
 
-export function middleware(req: NextRequest) {
-  const res = NextResponse.next();
+export default withAuth({
+  pages: {
+    signIn: "/login",
+    error: "/error",
+  },
+});
 
-  return res;
-}
+export const config = {
+  matcher: ["/myFridge/:path*"],
+};

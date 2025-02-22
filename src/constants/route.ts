@@ -13,6 +13,6 @@ const route = {
     root: "/recipe",
   },
   save: "/save",
-} as const;
+};
 
 export default route;

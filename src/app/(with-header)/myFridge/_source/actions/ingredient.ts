@@ -8,6 +8,7 @@ const INGREDIENTS_TAG = "ingredients";
 
 export const getIngredients = async () => {
   const res = await fetch("http://localhost:3000/api/test/fridge/ingredient", {
+    headers: { "Content-Type": "application/json" },
     cache: "force-cache",
     next: { revalidate: 60, tags: [INGREDIENTS_TAG] },
   });

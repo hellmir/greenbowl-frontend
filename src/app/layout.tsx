@@ -3,7 +3,6 @@ import localFont from "next/font/local";
 import "./globals.css";
 
 import { Navigation } from "@/components/navigation";
-import { Header } from "@/components/header";
 import AuthSession from "@/providers/AuthSession";
 
 const myFont = localFont({

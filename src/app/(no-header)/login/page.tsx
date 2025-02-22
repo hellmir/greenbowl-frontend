@@ -1,5 +1,5 @@
 "use client";
-import { signIn, useSession } from "next-auth/react";
+import { signIn, signOut, useSession } from "next-auth/react";
 
 const page = () => {
   const a = useSession();
@@ -11,7 +11,14 @@ const page = () => {
           await signIn("kakao");
         }}
       >
-        클릭
+        로그인~
+      </button>
+      <button
+        onClick={async () => {
+          await signOut();
+        }}
+      >
+        로그아웃~
       </button>
     </div>
   );

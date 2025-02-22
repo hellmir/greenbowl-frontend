@@ -8,6 +8,10 @@ const handler = NextAuth({
       clientSecret: process.env.NEXT_PUBLIC_OAUTH_KAKAO_CLIENT_SECRET as string,
     }),
   ],
+  pages: {
+    signIn: "/login",
+    error: "/error",
+  },
 });
 
 export { handler as GET, handler as POST };

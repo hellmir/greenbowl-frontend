@@ -1,3 +1,4 @@
+import route from "@/constants/route";
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
@@ -5,13 +6,13 @@ const nextConfig: NextConfig = {
     return [
       {
         source: "/",
-        destination: "/myFridge",
-        permanent: true,
+        destination: route.recipe.root,
+        permanent: false,
       },
       {
-        source: "/myFridge",
-        destination: "/myFridge/myIngredient",
-        permanent: true,
+        source: route.myFridge.root,
+        destination: route.myFridge.myIngredient,
+        permanent: false,
       },
     ];
   },
