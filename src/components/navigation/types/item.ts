@@ -5,4 +5,5 @@ export interface NavItem {
   name: string;
   icon: FC<FillIconProps>;
   href: string;
+  isLoginRequire: boolean;
 }

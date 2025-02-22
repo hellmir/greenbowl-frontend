@@ -1,7 +1,6 @@
 "use client";
 
 import imagePath from "@/constants/imagePath";
-import route from "@/constants/route";
 import { useHeaderStore } from "@/store/headerStore";
 
 import Image from "next/image";
