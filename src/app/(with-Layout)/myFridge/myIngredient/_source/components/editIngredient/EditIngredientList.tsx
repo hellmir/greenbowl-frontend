@@ -1,7 +1,7 @@
 "use client";
 
 import useEditIngredients from "@/store/editIngredientsStore";
-import { Ingredient } from "@/app/(with-Layout)/myFridge/_source/types/fridge";
+import { Ingredient } from "@/app/(with-layout)/myFridge/_source/types/fridge";
 import EditIngredient from "./EditIngredient";
 
 interface Props {

@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { IoIosArrowBack } from "react-icons/io";
-import RecommendedMenu from "@/app/(with-Layout)/recipe/ai/_source/components/RecommendedMenu";
+import RecommendedMenu from "@/app/(with-layout)/recipe/ai/_source/components/RecommendedMenu";
 
 import {
   mockFetchRecipes,

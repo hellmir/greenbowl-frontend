@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import useEditIngredients from "@/store/editIngredientsStore";
 import ConfirmDeleteModal from "../modal/ConfirmDeleteModal";
 import { useState, useTransition } from "react";
-import { deleteIngredients } from "@/app/(with-Layout)/myFridge/_source/actions/ingredient";
+import { deleteIngredients } from "@/app/(with-layout)/myFridge/_source/actions/ingredient";
 
 const DeleteBtn = () => {
   const { draftIngredientsSet, allClear } = useEditIngredients();

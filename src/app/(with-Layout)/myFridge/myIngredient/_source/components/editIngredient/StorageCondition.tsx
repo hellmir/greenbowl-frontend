@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { StorageCondition as TStorageCondition } from "@/app/(with-Layout)/myFridge/_source/types/fridge";
+import { StorageCondition as TStorageCondition } from "@/app/(with-layout)/myFridge/_source/types/fridge";
 
 interface Props {
   storageCondition: string;

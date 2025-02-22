@@ -1,4 +1,4 @@
-import { getIngredients } from "@/app/(with-Layout)/myFridge/_source/actions/ingredient";
+import { getIngredients } from "@/app/(with-layout)/myFridge/_source/actions/ingredient";
 
 import Recommend from "./Recommend";
 

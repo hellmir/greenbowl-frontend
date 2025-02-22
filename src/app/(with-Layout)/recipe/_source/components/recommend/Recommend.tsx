@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { CookTime, CookTimes } from "./CookTime";
 import { FoodType, FoodTypes } from "./FoodType";
 import SelectedIngredients from "./SelectedIngredients";
-import { Ingredient } from "@/app/(with-Layout)/myFridge/_source/types/fridge";
+import { Ingredient } from "@/app/(with-layout)/myFridge/_source/types/fridge";
 import useEditIngredients from "@/store/editIngredientsStore";
 import { useState } from "react";
 

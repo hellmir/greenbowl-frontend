@@ -9,7 +9,7 @@ import { categories } from "@/constants/categories";
 import {
   Ingredient,
   StorageCondition as TStorageCondition,
-} from "@/app/(with-Layout)/myFridge/_source/types/fridge";
+} from "@/app/(with-layout)/myFridge/_source/types/fridge";
 import CalendarModal from "@/components/modal/CalendarModal";
 
 interface Props {
