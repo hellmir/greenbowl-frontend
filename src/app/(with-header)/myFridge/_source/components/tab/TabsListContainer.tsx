@@ -14,7 +14,6 @@ const tabItems = [
 const TabsListContainer = () => {
   const pathName = usePathname();
 
-  // 현재 경로와 일치하는 탭 찾기
   const activeTab = tabItems.find((tab) => pathName === tab.route)?.key;
 
   return (
@@ -44,7 +43,6 @@ const TabsListContainer = () => {
         ))}
       </div>
 
-      {/* 특정 탭일 때만 Modal 버튼 표시 */}
       {activeTab === "myIngredient" && <SelectConfigTypeModal />}
     </TabsList>
   );
