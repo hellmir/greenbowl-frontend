@@ -1,4 +1,4 @@
-import { Navigation } from "@/components/navigation";
+import { Header } from "@/components/header";
 
 const layout = ({
   children,
@@ -7,8 +7,8 @@ const layout = ({
 }>) => {
   return (
     <>
+      <Header />
       {children}
-      <Navigation />
     </>
   );
 };
