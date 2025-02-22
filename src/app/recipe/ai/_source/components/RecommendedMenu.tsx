@@ -2,7 +2,6 @@ import {MdOutlineAccessTimeFilled} from "react-icons/md";
 import {FaFire} from "react-icons/fa6";
 import {Bookmark} from "lucide-react";
 import {RecipeApiResponse} from "@/app/api/test/recipe/ai/gpt/menus";
-import {useEffect, useState} from "react";
 
 interface Props {
     index: number,
@@ -11,17 +10,8 @@ interface Props {
 
 const RecommendedMenu = ({index, recipe}: Props) => {
     const name: string = recipe.name;
-    const [imageUrl, setImageUrl] = useState<string | undefined>(undefined);
-
-    // TODO: Google Custom Search API를 통한 이미지 검색 기능 구현 및 클라이언트 적용
-    const searchImage = () => {
-        console.log(name);
-        setImageUrl(undefined);
-    }
-
-    useEffect(() => {
-        searchImage();
-    }, []);
+    const imageUrls: [string | undefined]
+        = recipe.imageUrls ? recipe.imageUrls : [process.env.NEXT_PUBLIC_DEFAULT_IMAGE_URL];
 
     return (
         <div
@@ -29,7 +19,7 @@ const RecommendedMenu = ({index, recipe}: Props) => {
             className="flex items-start gap-5 p-3 bg-scale-beige-300 rounded-lg shadow-md h-32"
         >
             <img
-                src={imageUrl}
+                src={imageUrls[0]}
                 alt="레시피 이미지"
                 className="w-40 h-full object-cover rounded-lg"
             />
