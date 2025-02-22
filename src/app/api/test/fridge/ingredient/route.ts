@@ -1,4 +1,4 @@
-import { Ingredient } from "@/app/myFridge/_source/types/fridge";
+import { Ingredient } from "@/app/(with-header)/myFridge/_source/types/fridge";
 import { NextResponse } from "next/server";
 let mockIngredients: Ingredient[] = [
   {
