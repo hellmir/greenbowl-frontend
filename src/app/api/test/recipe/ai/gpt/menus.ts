@@ -2,9 +2,9 @@ export interface RecipeApiResponse {
     name: string;
     cookingTime: number;
     calories: number;
+    imageUrls: [string | undefined];
 
-    // 이미지를 별도 요청에 대한 응답으로 분할, 인분 정보 삭제
-    // imageUrl: string;
+    // 인분 정보 삭제
     // servings: number;
 }
 
@@ -18,6 +18,7 @@ export const mockFetchRecipes = (): Promise<RecipeApiResponse[]> => {
                     name: "김치찌개",
                     cookingTime: 30,
                     calories: 200,
+                    imageUrls: ["img-url"],
                     // servings: 2,
                 },
                 {
@@ -26,6 +27,7 @@ export const mockFetchRecipes = (): Promise<RecipeApiResponse[]> => {
                     name: "된장찌개",
                     cookingTime: 30,
                     calories: 200,
+                    imageUrls: ["img-url"],
                     // servings: 2,
                 },
                 {
@@ -34,6 +36,7 @@ export const mockFetchRecipes = (): Promise<RecipeApiResponse[]> => {
                     name: "마라탕",
                     cookingTime: 30,
                     calories: 300,
+                    imageUrls: ["img-url"],
                     // servings: 1,
                 },
                 {
@@ -42,6 +45,7 @@ export const mockFetchRecipes = (): Promise<RecipeApiResponse[]> => {
                     name: "짜장면",
                     cookingTime: 40,
                     calories: 500,
+                    imageUrls: ["img-url"],
                     // servings: 1,
                 },
                 {
@@ -50,6 +54,7 @@ export const mockFetchRecipes = (): Promise<RecipeApiResponse[]> => {
                     name: "피자",
                     cookingTime: 60,
                     calories: 350,
+                    imageUrls: ["img-url"],
                     // servings: 2,
                 },
             ]);
