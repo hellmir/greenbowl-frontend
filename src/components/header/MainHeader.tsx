@@ -23,7 +23,7 @@ const MainHeader = () => {
   return (
     <>
       {headerType === "show" && (
-        <header className=" h-[3.375rem] w-full max-w-[37.5rem] flex items-center justify-between fixed z-30 bg-foundation-quarternary">
+        <header className="h-[3.375rem] w-full max-w-[35.5rem] flex items-center justify-between fixed z-30 bg-foundation-quarternary">
           <Link href={"/myFridge"}>
             <Image
               className=" hover:cursor-pointer"
