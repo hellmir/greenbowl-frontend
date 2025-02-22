@@ -3,10 +3,11 @@
 import { useEffect, useState } from "react";
 import { IoIosArrowBack } from "react-icons/io";
 import RecommendedMenu from "@/app/(with-header)/recipe/ai/_source/components/RecommendedMenu";
+
 import {
   mockFetchRecipes,
   RecipeApiResponse,
-} from "../../../api/test/ai/recommendedMenus/menus";
+} from "@/app/api/test/recipe/ai/gpt/menus";
 
 const Page = () => {
   const [recipes, setRecipes] = useState<RecipeApiResponse[]>([]);
