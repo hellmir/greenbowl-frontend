@@ -2,7 +2,7 @@
 
 import {useEffect, useState} from "react";
 import {IoIosArrowBack} from "react-icons/io";
-import RecommendedMenu from "@/app/recipe/ai/_source/components/RecommendedMenu";
+import RecommendedMenu from "../../ai/_source/components/RecommendedMenu";
 import {RecipeApiResponse} from "@/app/api/test/recipe/ai/gpt/menus"
 import {POST} from "@/app/api/recipe/ai/gpt/menus";
 import {AiRequestPayload} from "@/app/api/recipe/ai/config";
