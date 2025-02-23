@@ -1,4 +1,3 @@
-import route from "@/constants/route";
 import { TabsList, TabsTrigger } from "@radix-ui/react-tabs";
 import Link from "next/link";
 import React from "react";

@@ -19,6 +19,18 @@ const route = {
   myPage: {
     root: "/myPage",
   },
+  config: {
+    root: "/config",
+  },
+  terms: {
+    root: "/terms",
+  },
+  privacy: {
+    root: "/privacy",
+  },
+  deleteAccount: {
+    root: "/delete-account",
+  },
 };
 
 export default route;
