@@ -1,32 +1,36 @@
 "use client";
 
-import { Ingredient } from "@/app/(with-layout)/(with-header)/myFridge/_source/types/fridge";
-import useEditIngredients from "@/store/editIngredientsStore";
 import Ingredients from "./Ingredients";
-import { useRef, useState } from "react";
+import { Dispatch, SetStateAction, useRef } from "react";
 import { Input } from "@/components/ui/input";
 import ArrowRightIcon from "@/components/icons/ArrowRightIcon";
 import Link from "next/link";
 import route from "@/constants/route";
 
 interface Props {
-  ingredients: Ingredient[];
+  selectedIngredients: {
+    name: string;
+  }[];
+  setSelectedIngredients: Dispatch<
+    SetStateAction<
+      {
+        name: string;
+      }[]
+    >
+  >;
 }
 
-const SelectedIngredients = ({ ingredients }: Props) => {
-  const { ingredientsSet } = useEditIngredients();
-  const [selectedIngredients, setSelectedIngredients] = useState(
-    ingredients
-      .filter((ingredient) => ingredientsSet.has(+ingredient.id))
-      .map((ingredient) => ({ name: ingredient.name }))
-  );
+const SelectedIngredients = ({
+  selectedIngredients,
+  setSelectedIngredients,
+}: Props) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   return (
-    <div className="p-3 ">
+    <div className="py-3 px-4 ">
       <div className="flex items-center justify-between mb-3">
         <div className="label-s  text-content-secondary ">
-          선택한 재료({selectedIngredients.length})
+          내 재료({selectedIngredients.length})
         </div>
         <Link href={route.myFridge.myIngredient}>
           <div className="flex items-center hover:cursor-pointer text-content-tertiary">
@@ -35,7 +39,7 @@ const SelectedIngredients = ({ ingredients }: Props) => {
           </div>
         </Link>
       </div>
-      <div className="flex h-12 p-2 items-center bg-scale-gray-100 border border-border-default">
+      <div className="mb-1 flex h-12 p-2 items-center bg-scale-gray-100 border border-border-default">
         <Ingredients
           ingredients={selectedIngredients}
           setSelectedIngredients={setSelectedIngredients}

@@ -4,11 +4,10 @@ import useEditIngredients from "@/store/editIngredientsStore";
 import Link from "next/link";
 
 const RecipeRecommendBtn = () => {
-  const { clearDraft, commit, draftIngredientsSet } = useEditIngredients();
+  const { commit, draftIngredientsSet } = useEditIngredients();
 
   const handleClick = () => {
     commit();
-    clearDraft();
   };
   return (
     <Link href={route.recipe.root}>

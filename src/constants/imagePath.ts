@@ -11,6 +11,10 @@ const imagePath = {
     src: "/image/dietOnboarding.png",
     alt: "식단 온보딩 이미지",
   },
+  cookingCharacter: {
+    src: "/image/cookingCharacter.png",
+    alt: "요리하는 캐릭터 이미지",
+  },
 };
 
 export default imagePath;

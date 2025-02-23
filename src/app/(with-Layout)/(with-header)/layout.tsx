@@ -8,7 +8,7 @@ const layout = ({
   return (
     <>
       <Header />
-      {children}
+      <div className="mt-[3.275rem]">{children}</div>
     </>
   );
 };

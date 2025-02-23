@@ -1,6 +1,7 @@
 "use client";
 
 import imagePath from "@/constants/imagePath";
+import route from "@/constants/route";
 import { useHeaderStore } from "@/store/headerStore";
 
 import Image from "next/image";
@@ -22,8 +23,8 @@ const MainHeader = () => {
   return (
     <>
       {headerType === "show" && (
-        <header className="h-[3.375rem] w-full max-w-[35.5rem] flex items-center justify-between fixed z-30 bg-foundation-quarternary">
-          <Link href={"/myFridge"}>
+        <header className="h-[3.375rem] top-0 w-full max-w-[35.5rem] flex items-center justify-between fixed z-10 bg-foundation-quarternary">
+          <Link href={route.recipe.root}>
             <Image
               className=" hover:cursor-pointer"
               src={imagePath.logo.src}

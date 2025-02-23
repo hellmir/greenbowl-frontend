@@ -36,7 +36,7 @@ const MyIngredients = ({ ingredients, handleEditOpen }: Props) => {
   };
 
   return (
-    <div className=" relative text-content-secondary pb-[3.125rem] mt-[3.375rem] h-full">
+    <div className=" relative text-content-secondary pb-[3.125rem] h-full">
       {config !== "recipe" && (
         <div className=" bg-foundation-quarternary w-full justify-between py-4 sticky top-[5.6rem]">
           <div className="flex label-s items-center ">
