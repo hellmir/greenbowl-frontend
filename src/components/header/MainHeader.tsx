@@ -8,6 +8,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";
+import MyPageBtn from "./MyPageBtn";
 
 const noneHeaderRoutes: string[] = [];
 
@@ -33,13 +34,7 @@ const MainHeader = () => {
               width={118}
             />
           </Link>
-          <Image
-            className=" hover:cursor-pointer"
-            src={imagePath.profile.src}
-            alt={imagePath.profile.alt}
-            height={32}
-            width={32}
-          />
+          <MyPageBtn />
         </header>
       )}
     </>
