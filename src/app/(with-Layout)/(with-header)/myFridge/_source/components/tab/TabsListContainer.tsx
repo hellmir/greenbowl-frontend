@@ -35,7 +35,7 @@ const TabsListContainer = () => {
                   {item.name}
                 </p>
                 {activeTab === item.key && (
-                  <div className="absolute bottom-0 w-full h-[2px] bg-foundation-primary"></div>
+                  <div className="absolute bottom-0 w-full h-[2px] bg-foundation-primary" />
                 )}
               </div>
             </Link>

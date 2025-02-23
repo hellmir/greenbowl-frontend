@@ -2,17 +2,33 @@ import { NavItem } from "@/components/navigation/types/item";
 
 import RecipeIcon from "@/components/icons/RecipeIcon";
 import FridgeIcon from "@/components/icons/Fridge";
-import BookmarkIcon from "@/components/icons/Bookmark";
 import DietIcon from "@/components/icons/DietIcon";
+import MyPageIcon from "@/components/icons/MyPageIcon";
+import route from "./route";
 
 export const navList: NavItem[] = [
-  { name: "레시피", icon: RecipeIcon, href: "/recipe", isLoginRequire: false },
+  {
+    name: "레시피",
+    icon: RecipeIcon,
+    href: route.recipe.root,
+    isLoginRequire: false,
+  },
   {
     name: "냉장고",
     icon: FridgeIcon,
-    href: "/myFridge",
+    href: route.myFridge.root,
     isLoginRequire: true,
   },
-  { name: "식단", icon: BookmarkIcon, href: "/diet", isLoginRequire: false },
-  { name: "저장", icon: DietIcon, href: "/save", isLoginRequire: false },
+  {
+    name: "식단코치",
+    icon: DietIcon,
+    href: route.diet.root,
+    isLoginRequire: false,
+  },
+  {
+    name: "마이",
+    icon: MyPageIcon,
+    href: route.myPage.root,
+    isLoginRequire: true,
+  },
 ];

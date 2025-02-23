@@ -28,16 +28,16 @@ const NavigationLoginRequireItem = ({ item, pathName }: Props) => {
       return;
     }
 
-    router.push(route.myFridge.root);
+    router.push(item.href);
   };
   const handleOkBtn = () => {
     router.push(route.login.root);
   };
   return (
     <>
-      <li onClick={handleClick} className="w-full">
+      <li onClick={handleClick} className="w-full ">
         <div
-          className={`h-full flex flex-col justify-center items-center  paragraph-xs ${isCurrentPath ? "text-foundation-primary" : "text-content-tertiary"}`}
+          className={`hover:cursor-pointer h-full flex flex-col justify-center items-center  paragraph-xs ${isCurrentPath ? "text-foundation-primary" : "text-content-tertiary"}`}
         >
           <Icon
             fill={`${isCurrentPath ? "foundation-primary" : "content-quinary"}`}
