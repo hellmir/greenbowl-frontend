@@ -12,11 +12,16 @@ import { useRouter } from "next/navigation";
 const MenuItem = ({
   icon: Icon,
   label,
+  handleClick,
 }: {
   icon: React.ElementType;
   label: string;
+  handleClick: () => void;
 }) => (
-  <li className="flex items-center h-12 justify-between">
+  <li
+    onClick={handleClick}
+    className="flex hover:cursor-pointer items-center h-12 justify-between"
+  >
     <button className="flex items-center w-full text-left">
       <Icon fill="content-quarternary" />
       <span className="ml-1">{label}</span>
@@ -36,7 +41,12 @@ const MenuSection = ({
     <h2 className="h-12 flex items-center text-content-secondary">{title}</h2>
     <ul>
       {items.map((item, index) => (
-        <MenuItem key={index} icon={item.icon} label={item.label} />
+        <MenuItem
+          key={index}
+          icon={item.icon}
+          label={item.label}
+          handleClick={item.handleClick}
+        />
       ))}
     </ul>
   </section>

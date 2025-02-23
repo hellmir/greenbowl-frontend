@@ -18,6 +18,7 @@ const route = {
   },
   myPage: {
     root: "/myPage",
+    deleteAccount: "/delete-account",
   },
   config: {
     root: "/config",
@@ -27,9 +28,6 @@ const route = {
   },
   privacy: {
     root: "/privacy",
-  },
-  deleteAccount: {
-    root: "/delete-account",
   },
 };
 
