@@ -13,6 +13,12 @@ const route = {
     root: "/recipe",
   },
   save: "/save",
+  login: {
+    root: "/login",
+  },
+  myPage: {
+    root: "/myPage",
+  },
 };
 
 export default route;

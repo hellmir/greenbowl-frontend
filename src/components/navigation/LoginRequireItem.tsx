@@ -22,8 +22,6 @@ const NavigationLoginRequireItem = ({ item, pathName }: Props) => {
   const isCurrentPath = pathName.includes(item.href);
   const Icon = item.icon;
 
-  console.log(isActive);
-
   const handleClick = () => {
     if (session.status === "unauthenticated") {
       setIsActive(true);
@@ -33,7 +31,7 @@ const NavigationLoginRequireItem = ({ item, pathName }: Props) => {
     router.push(route.myFridge.root);
   };
   const handleOkBtn = () => {
-    router.push("/login");
+    router.push(route.login.root);
   };
   return (
     <>
