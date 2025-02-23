@@ -5,7 +5,8 @@ import {IoIosArrowBack} from "react-icons/io";
 import RecommendedMenu from "@/app/recipe/ai/_source/components/RecommendedMenu";
 import {RecipeApiResponse} from "@/app/api/test/recipe/ai/gpt/menus"
 import {POST} from "@/app/api/recipe/ai/gpt/menus";
-import {AiRequestPayload} from "@/app/api/recipe/ai/config";
+import {AiRequestPayload, Options} from "@/app/api/recipe/ai/config";
+import {porkOptions} from "@/app/api/test/recipe/ai/gpt/options";
 
 const Page = () => {
     const [recipes, setRecipes] = useState<RecipeApiResponse[]>([]);
@@ -18,12 +19,14 @@ const Page = () => {
 
         const AI_MODEL: string = process.env.NEXT_PUBLIC_AI_MENUS_REQUEST_MODEL!;
         const TEMPLATE: string = process.env.NEXT_PUBLIC_AI_MENUS_REQUEST_TEMPLATE!;
+        const selectedOptions: Options = porkOptions;
         const SECRET_KEY: string = process.env.NEXT_PUBLIC_SECRET_KEY!;
 
         const fetchRecipes = async () => {
             const payload: AiRequestPayload = {
                 llm_type: AI_MODEL,
                 template: TEMPLATE,
+                options: selectedOptions,
                 secret_key: SECRET_KEY
             }
 
@@ -57,7 +60,7 @@ const Page = () => {
                         <h2 className="flex-1 text-center text-2xl font-bold">AI 추천 메뉴</h2>
                     </div>
                     <p className="text-start text-gray-800 text-base mb-10 font-semibold text-xl">
-                        식재료 관리가 고민이시라면
+                        원하는 메뉴를 선택해 주세요!
                     </p>
 
                     <div className="mt-4 space-y-4">
