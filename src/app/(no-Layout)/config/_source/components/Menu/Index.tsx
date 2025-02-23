@@ -83,7 +83,7 @@ const SettingsMenu = () => {
           {
             icon: CircleXIcon,
             label: "탈퇴하기",
-            handleClick: () => router.push(route.deleteAccount.root),
+            handleClick: () => router.push(route.myPage.deleteAccount),
           },
         ]}
       />

@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { CookTime, CookTimes } from "./CookTime";
 import { FoodType, FoodTypes } from "./FoodType";
 import SelectedIngredients from "./SelectedIngredients";
-import { Ingredient } from "@/app/(with-layout)/(with-header)/myFridge/_source/types/fridge";
+import { Ingredient } from "@/app/(with-layout)/(with-header)/fridge/_source/types/fridge";
 import useEditIngredients from "@/store/editIngredientsStore";
 import { useEffect, useState } from "react";
 
@@ -13,7 +13,7 @@ interface Props {
 }
 
 const Recommend = ({ ingredients }: Props) => {
-  const {ingredientsSet, allClear } = useEditIngredients();
+  const { ingredientsSet, allClear } = useEditIngredients();
   const [selectedTime, setSelectedTime] = useState<CookTimes>("all");
   const [selectedType, setSelectedType] = useState<FoodTypes>("all");
   const [selectedIngredients, setSelectedIngredients] = useState(
@@ -37,7 +37,10 @@ const Recommend = ({ ingredients }: Props) => {
         </p>
       </div>
       <div className=" flex flex-col gap-5 min-h-[80vh]">
-        <SelectedIngredients selectedIngredients={selectedIngredients} setSelectedIngredients={setSelectedIngredients}/>
+        <SelectedIngredients
+          selectedIngredients={selectedIngredients}
+          setSelectedIngredients={setSelectedIngredients}
+        />
         <CookTime
           selectedTime={selectedTime}
           handleClickItem={(time: CookTimes) =>
@@ -51,7 +54,11 @@ const Recommend = ({ ingredients }: Props) => {
           }
         />
       </div>
-      <Button type="submit" variant={"bottom"} disabled={selectedIngredients.length === 0}>
+      <Button
+        type="submit"
+        variant={"bottom"}
+        disabled={selectedIngredients.length === 0}
+      >
         검색하기
       </Button>
     </div>

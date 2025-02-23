@@ -1,6 +1,6 @@
 "use client";
 
-import { Ingredient } from "@/app/(with-layout)/(with-header)/myFridge/_source/types/fridge";
+import { Ingredient } from "@/app/(with-layout)/(with-header)/fridge/_source/types/fridge";
 import MyIngredients from "./MyIngredients";
 import { useEffect, useState } from "react";
 import EditContainer from "../editIngredient/EditContainer";

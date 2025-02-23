@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import EditIngredientList from "./EditIngredientList";
-import { Ingredient } from "@/app/(with-layout)/(with-header)/myFridge/_source/types/fridge";
+import { Ingredient } from "@/app/(with-layout)/(with-header)/fridge/_source/types/fridge";
 import { useEffect } from "react";
 import { useHeaderStore } from "@/store/headerStore";
 import TertiaryHeader from "@/components/header/TertiaryHeader";

@@ -1,6 +1,6 @@
 import { categories } from "@/constants/categories";
 import Image from "next/image";
-import { Ingredient } from "@/app/(with-layout)/(with-header)/myFridge/_source/types/fridge";
+import { Ingredient } from "@/app/(with-layout)/(with-header)/fridge/_source/types/fridge";
 import Card from "./Card";
 import { useMemo } from "react";
 import { categorized } from "../../utils/categorized";

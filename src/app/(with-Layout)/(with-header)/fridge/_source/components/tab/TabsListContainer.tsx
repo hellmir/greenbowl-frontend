@@ -2,7 +2,7 @@
 
 import { TabsList, TabsTrigger } from "@radix-ui/react-tabs";
 import { usePathname } from "next/navigation";
-import SelectConfigTypeModal from "@/app/(with-layout)/(with-header)/myFridge/myIngredient/_source/components/Storage/modal/SelectConfigTypeModal";
+import SelectConfigTypeModal from "@/app/(with-layout)/(with-header)/fridge/my-ingredient/_source/components/Storage/modal/SelectConfigTypeModal";
 import route from "@/constants/route";
 import Link from "next/link";
 

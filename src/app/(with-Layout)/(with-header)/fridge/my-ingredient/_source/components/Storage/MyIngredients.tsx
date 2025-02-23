@@ -1,7 +1,7 @@
 "use client";
 
 import useEditIngredients from "@/store/editIngredientsStore";
-import { Ingredient } from "@/app/(with-layout)/(with-header)/myFridge/_source/types/fridge";
+import { Ingredient } from "@/app/(with-layout)/(with-header)/fridge/_source/types/fridge";
 import useIngredientConfigState from "@/store/ingredientConfigStore";
 import XIcon from "@/components/icons/XIcon";
 import IngredientList from "./IngredientList";
