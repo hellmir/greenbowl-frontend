@@ -24,7 +24,7 @@ const MainHeader = () => {
   return (
     <>
       {headerType === "show" && (
-        <header className="h-[3.375rem] top-0 w-full max-w-[35.5rem] flex items-center justify-between fixed z-10 bg-foundation-quarternary">
+        <header className="h-[3.375rem] top-0 w-full max-w-[35.5rem] flex items-center justify-between sticky z-10 bg-foundation-quarternary">
           <Link href={route.recipe.root}>
             <Image
               className=" hover:cursor-pointer"

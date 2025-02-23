@@ -3,7 +3,7 @@ import Image from "next/image";
 
 const CategoriesContainer = () => {
   return (
-    <div className="grid grid-cols-4 grid-rows-2 gap-x-4 gap-y-4 w-full gap py-6  sticky top-[3.375rem] bg-foundation-secondary ">
+    <div className="grid grid-cols-4 grid-rows-2 gap-x-4 gap-y-4 w-full gap py-6  sticky top-[3.4rem] bg-foundation-secondary ">
       {categories.map((category) => (
         <div
           key={category.id}

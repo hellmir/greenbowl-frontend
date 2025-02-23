@@ -7,7 +7,7 @@ const AddIngredientContainer = () => {
   return (
     <div>
       <Header />
-      <div className="min-h-screen">
+      <div className="">
         <CategoriesContainer />
         <IngredientsContainer />
       </div>

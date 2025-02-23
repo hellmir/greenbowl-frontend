@@ -1,4 +1,4 @@
-const categoryItems = Array.from({ length: 20 }).map((_, idx) => ({
+const categoryItems = Array.from({ length: 40 }).map((_, idx) => ({
   id: idx,
   name: "사과",
 }));

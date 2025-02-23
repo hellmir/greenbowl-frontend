@@ -12,10 +12,9 @@ const page = async ({ searchParams }: Props) => {
   return (
     <div>
       <MyPageHeader />
-      <div className="mt-[3.275rem]">
-        <UserProfile />
-        <TabsContainer tabName={tabName} />
-      </div>
+
+      <UserProfile />
+      <TabsContainer tabName={tabName} />
     </div>
   );
 };
