@@ -5,8 +5,9 @@ export default withAuth({
     signIn: "/login",
     error: "/error",
   },
+  secret: process.env.NEXTAUTH_SECRET,
 });
 
 export const config = {
-  matcher: ["/myFridge/:path*"],
+  matcher: ["/myFridge/:path*", "/myPage/:path*"],
 };
