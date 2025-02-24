@@ -1,25 +1,36 @@
 import {MdOutlineAccessTimeFilled} from "react-icons/md";
 import {FaFire} from "react-icons/fa6";
 import {Bookmark} from "lucide-react";
-import {RecipeApiResponse} from "@/app/api/test/recipe/ai/gpt/menus";
+import {useRouter} from "next/navigation";
+import {useAiRecipe} from "@/store/aiRecipeStore";
+import {MenuApiResponse} from "@/app/api/recipe/ai/config";
 
 interface Props {
     index: number,
-    recipe: RecipeApiResponse,
+    recipe: MenuApiResponse,
 }
 
 const RecommendedMenu = ({index, recipe}: Props) => {
+    const router = useRouter();
+    const {setSelectedRecipe} = useAiRecipe();
+
     const name: string = recipe.name;
-    const imageUrls: [string | undefined]
-        = recipe.imageUrls ? recipe.imageUrls : [process.env.NEXT_PUBLIC_DEFAULT_IMAGE_URL];
+    const representativeImageUrl
+        = recipe.imageUrls ? recipe.imageUrls[0] : process.env.NEXT_PUBLIC_DEFAULT_IMAGE_URL;
+
+    const handleClick = () => {
+        setSelectedRecipe(recipe);
+        router.push(`/recipe/ai/${encodeURIComponent(name)}`);
+    };
 
     return (
         <div
             key={index}
             className="flex items-start gap-5 p-3 bg-scale-beige-300 rounded-lg shadow-md h-32"
+            onClick={handleClick}
         >
             <img
-                src={imageUrls[0]}
+                src={representativeImageUrl}
                 alt="레시피 이미지"
                 className="w-40 h-full object-cover rounded-lg"
             />

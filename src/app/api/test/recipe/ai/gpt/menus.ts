@@ -1,4 +1,7 @@
-export interface RecipeApiResponse {
+/**
+ 실제 데이터로 대체됨
+ */
+export interface MenuApiResponse {
     name: string;
     cookingTime: number;
     calories: number;
@@ -8,7 +11,10 @@ export interface RecipeApiResponse {
     // servings: number;
 }
 
-export const mockFetchRecipes = (): Promise<RecipeApiResponse[]> => {
+/**
+ 실제 데이터로 대체됨
+ */
+export const mockFetchRecipes = (): Promise<MenuApiResponse[]> => {
     return new Promise((resolve) => {
         setTimeout(() => {
             resolve([
