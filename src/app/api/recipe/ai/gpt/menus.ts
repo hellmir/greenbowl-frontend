@@ -1,7 +1,12 @@
-import {AI_MENUS_REQUEST_API_BASE_URL, AI_MENUS_REQUEST_ENDPOINT, AiRequestPayload} from "@/app/api/recipe/ai/config";
+import {
+    AI_MENUS_REQUEST_API_BASE_URL,
+    AI_MENUS_REQUEST_ENDPOINT,
+    AiDetailedMenusRequestPayload,
+    AiMenusRequestPayload
+} from "@/app/api/recipe/ai/config";
 
 
-export const POST = async (payload: AiRequestPayload) => {
+export const POST = async (payload: AiMenusRequestPayload | AiDetailedMenusRequestPayload) => {
     try {
         const response = await fetch(AI_MENUS_REQUEST_API_BASE_URL + AI_MENUS_REQUEST_ENDPOINT, {
             method: "POST",
