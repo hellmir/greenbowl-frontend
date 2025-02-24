@@ -4,5 +4,12 @@ export const AI_MENUS_REQUEST_ENDPOINT: string = process.env.NEXT_PUBLIC_AI_MENU
 export interface AiRequestPayload {
     llm_type: string;
     template: string;
+    options: Options;
     secret_key: string;
+}
+
+export interface Options {
+    ingredients: string[];
+    cookingTimeLimit: string[];
+    cuisineType: string[];
 }
