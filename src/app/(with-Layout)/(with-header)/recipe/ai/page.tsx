@@ -22,7 +22,7 @@ const Page = () => {
         const TEMPLATE: string = process.env.NEXT_PUBLIC_AI_MENUS_REQUEST_TEMPLATE!;
         const selectedOptions: MenuOptions = porkOptions;
         setAvailableIngredients(availablePorkIngredients);
-        const SECRET_KEY: string = process.env.NEXT_PUBLIC_SECRET_KEY!;
+        const SECRET_KEY: string = process.env.NEXT_PUBLIC_AI_MENUS_SECRET_KEY!;
 
         const fetchMenus = async () => {
             const payload: AiMenusRequestPayload = {
@@ -67,8 +67,8 @@ const Page = () => {
                     </p>
 
                     <div className="mt-4 space-y-4">
+                        {/* TODO: 로딩 페이지 완성 후 대체 */}
                         {recipes.length === 0 ? (
-                            // TODO: 로딩 페이지 완성 후 대체
                             <p className="text-center text-gray-500">로딩 중...</p>
                         ) : (
                             recipes.map((recipe, index) => (

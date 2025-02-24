@@ -6,9 +6,10 @@ import {useEffect, useState} from "react";
 import {MdOutlineAccessTimeFilled} from "react-icons/md";
 import {FaFire} from "react-icons/fa6";
 import {AiDetailedMenusRequestPayload, DetailedMenuOptions, UsedIngredient} from "@/app/api/recipe/ai/config";
-import {POST} from "@/app/api/recipe/ai/gpt/menus";
+import {POST as postMenus} from "@/app/api/recipe/ai/gpt/menus";
 import {Bookmark} from "lucide-react";
 import {GoShareAndroid} from "react-icons/go";
+import RecipeStreaming from "@/app/(with-Layout)/(with-header)/recipe/ai/[name]/_source/components/RecipeStreaming";
 
 const Page = () => {
     const {selectedRecipe, availableIngredients} = useAiRecipe();
@@ -16,43 +17,6 @@ const Page = () => {
     const cookingTime = selectedRecipe?.cookingTime;
     const calories = selectedRecipe?.calories;
     const representativeImageUrl = selectedRecipe?.imageUrls ? selectedRecipe.imageUrls[0] : process.env.NEXT_PUBLIC_DEFAULT_IMAGE_URL
-
-    useEffect(() => {
-        const AI_MODEL: string = process.env.NEXT_PUBLIC_AI_MENUS_REQUEST_MODEL!;
-        const TEMPLATE: string = process.env.NEXT_PUBLIC_AI_DETAILED_MENU_REQUEST_TEMPLATE!;
-        const detailedMenuOptions: DetailedMenuOptions = {
-            name: [recipeName],
-            availableIngredients: availableIngredients,
-            cookingTime: [cookingTime + "분"],
-            calories: [calories + "kcal"],
-        }
-        const SECRET_KEY: string = process.env.NEXT_PUBLIC_SECRET_KEY!;
-
-        const fetchAdditionalInfo = async () => {
-            const payload: AiDetailedMenusRequestPayload = {
-                llm_type: AI_MODEL,
-                template: TEMPLATE,
-                options: detailedMenuOptions,
-                secret_key: SECRET_KEY
-            }
-
-            console.log("레시피 추가 정보 요청 전송")
-            const data = await POST(payload);
-            setOneLineIntroduction(data.oneLineIntroduction);
-            setUsedIngredients(data.usedIngredients);
-            setNutrition((prev) => prev.map((item) => ({
-                ...item,
-                value: item.label === "탄수화물" ? data.carbohydrate :
-                    item.label === "단백질" ? data.protein :
-                        item.label === "지방" ? data.fat :
-                            item.label === "나트륨" ? data.sodium :
-                                item.label === "당류" ? data.sugar :
-                                    item.value
-            })));
-        };
-
-        fetchAdditionalInfo();
-    }, [selectedRecipe, availableIngredients]);
 
     const [oneLineIntroduction, setOneLineIntroduction] = useState<string>()
     const [usedIngredients, setUsedIngredients] = useState<UsedIngredient[]>([]);
@@ -64,7 +28,44 @@ const Page = () => {
         {label: "나트륨", value: undefined},
         {label: "당류", value: undefined},
     ]);
-    const [recipeIntroduction, setRecipeIntroduction] = useState<string[]>([]);
+
+    useEffect(() => {
+            const AI_MODEL: string = process.env.NEXT_PUBLIC_AI_DETAILED_MENU_REQUEST_MODEL!;
+            const TEMPLATE: string = process.env.NEXT_PUBLIC_AI_DETAILED_MENU_REQUEST_TEMPLATE!;
+            const detailedMenuOptions: DetailedMenuOptions = {
+                name: [recipeName],
+                availableIngredients: availableIngredients,
+                cookingTime: [cookingTime + "분"],
+                calories: [calories + "kcal"],
+            }
+            const SECRET_KEY: string = process.env.NEXT_PUBLIC_AI_DETAILED_MENU_SECRET_KEY!;
+
+            const fetchAdditionalInfo = async () => {
+                const payload: AiDetailedMenusRequestPayload = {
+                    llm_type: AI_MODEL,
+                    template: TEMPLATE,
+                    options: detailedMenuOptions,
+                    secret_key: SECRET_KEY
+                }
+
+                console.log("레시피 추가 정보 요청 전송")
+                const data = await postMenus(payload);
+                setOneLineIntroduction(data.oneLineIntroduction);
+                setUsedIngredients(data.usedIngredients);
+                setNutrition((prev) => prev.map((item) => ({
+                    ...item,
+                    value: item.label === "탄수화물" ? data.carbohydrate :
+                        item.label === "단백질" ? data.protein :
+                            item.label === "지방" ? data.fat :
+                                item.label === "나트륨" ? data.sodium :
+                                    item.label === "당류" ? data.sugar :
+                                        item.value
+                })));
+            };
+
+            fetchAdditionalInfo();
+        }, [selectedRecipe, availableIngredients]
+    );
 
     return (
         <div className="mt-[60px] px-4 pb-16">
@@ -137,12 +138,8 @@ const Page = () => {
                         </ul>
                     </div>
 
-                    <div className="mt-8">
-                        <h2 className="text-lg font-bold border-b pb-2">레시피</h2>
-                        <ol className="mt-2 space-y-3">
-                            {recipeIntroduction}
-                        </ol>
-                    </div>
+                    <RecipeStreaming usedIngredients={usedIngredients} recipeName={recipeName} cookingTime={cookingTime}
+                                     calories={calories}/>
 
                     <div className="mt-8">
                         <h2 className="text-lg font-bold border-b pb-2">영양 정보</h2>

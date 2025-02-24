@@ -1,5 +1,6 @@
 export const AI_MENUS_REQUEST_API_BASE_URL: string = process.env.NEXT_PUBLIC_LLM_SERVER_URL!;
 export const AI_MENUS_REQUEST_ENDPOINT: string = process.env.NEXT_PUBLIC_AI_MENUS_REQUEST_ENDPOINT!;
+export const AI_RECIPE_REQUEST_ENDPOINT: string = process.env.NEXT_PUBLIC_AI_RECIPE_REQUEST_ENDPOINT!;
 
 export interface AiMenusRequestPayload {
     llm_type: string;
@@ -40,12 +41,17 @@ export interface MenuApiResponse {
     imageUrls: [string | undefined];
 }
 
-export interface DetailedMenuApiResponse {
-    carbohydrate: number;
-    protein: number;
-    fat: number;
-    sodium: number;
-    sugar: number;
-    usedIngredients: UsedIngredient[];
-    oneLineIntroduction: string;
+export interface AiRecipeRequestPayload {
+    llm_type: string;
+    template: string;
+    options: RecipeOptions;
+    secret_key: string;
+}
+
+export interface RecipeOptions {
+    name: (string | undefined)[];
+    usedIngredientNames: string[];
+    usedIngredientWeights: string[];
+    cookingTime: string[];
+    calories: string[];
 }
