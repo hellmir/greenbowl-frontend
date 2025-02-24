@@ -1,9 +1,9 @@
 const route = {
   myFridge: {
-    root: "/myFridge",
-    addIngredient: "/myFridge/addIngredient",
-    myIngredient: "/myFridge/myIngredient",
-    tip: "/myFridge/tip",
+    root: "/fridge",
+    addIngredient: "/fridge/add-ingredient",
+    myIngredient: "/fridge/my-ingredient",
+    tip: "/fridge/tip",
   },
   diet: {
     root: "/diet",
@@ -13,6 +13,22 @@ const route = {
     root: "/recipe",
   },
   save: "/save",
-} as const;
+  login: {
+    root: "/login",
+  },
+  myPage: {
+    root: "/my-page",
+    deleteAccount: "/my-page/delete-account",
+  },
+  config: {
+    root: "/config",
+  },
+  terms: {
+    root: "/terms",
+  },
+  privacy: {
+    root: "/privacy",
+  },
+};
 
 export default route;

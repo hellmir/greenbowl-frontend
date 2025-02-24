@@ -1,14 +1,13 @@
-import { NextRequest, NextResponse } from "next/server";
-import { handleHeaderMiddleware } from "./middlewares/header";
-import { handleQueryMiddleware } from "./middlewares/changeRouteAddIngredient";
+import { withAuth } from "next-auth/middleware";
 
-export function middleware(req: NextRequest) {
-  const res = NextResponse.next();
+export default withAuth({
+  pages: {
+    signIn: "/login",
+    error: "/error",
+  },
+  secret: process.env.NEXTAUTH_SECRET,
+});
 
-  handleHeaderMiddleware(req, res);
-
-  const queryResponse = handleQueryMiddleware(req);
-  if (queryResponse) return queryResponse;
-
-  return res;
-}
+export const config = {
+  matcher: ["/myFridge/:path*", "/myPage/:path*", "/config/:path*"],
+};

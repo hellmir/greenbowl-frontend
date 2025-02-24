@@ -8,25 +8,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";
+import MyPageBtn from "./MyPageBtn";
 
-interface Props {
-  initialHeaderType: "show" | "none";
-}
+const noneHeaderRoutes: string[] = [];
 
-const noneHeaderRoutes: string[] = [
-  route.myFridge.addIngredient,
-  route.diet.root,
-  route.diet.test,
-];
-
-const MainHeader = ({ initialHeaderType }: Props) => {
+const MainHeader = () => {
   const { headerType, setHeaderType } = useHeaderStore();
   const path = usePathname() as string;
   const isNoneHeader = noneHeaderRoutes.includes(path);
-
-  useEffect(() => {
-    setHeaderType(initialHeaderType);
-  }, [initialHeaderType, setHeaderType]);
 
   useEffect(() => {
     setHeaderType(isNoneHeader ? "none" : "show");
@@ -35,8 +24,8 @@ const MainHeader = ({ initialHeaderType }: Props) => {
   return (
     <>
       {headerType === "show" && (
-        <header className="pl-4 pr-4 h-[3.375rem] w-full max-w-[37.5rem] flex items-center justify-between fixed z-30 bg-foundation-quarternary">
-          <Link href={"/myFridge"}>
+        <header className="h-[3.375rem] top-0 w-full max-w-[35.5rem] flex items-center justify-between sticky z-10 bg-foundation-quarternary">
+          <Link href={route.recipe.root}>
             <Image
               className=" hover:cursor-pointer"
               src={imagePath.logo.src}
@@ -45,13 +34,7 @@ const MainHeader = ({ initialHeaderType }: Props) => {
               width={118}
             />
           </Link>
-          <Image
-            className=" hover:cursor-pointer"
-            src={imagePath.profile.src}
-            alt={imagePath.profile.alt}
-            height={32}
-            width={32}
-          />
+          <MyPageBtn />
         </header>
       )}
     </>

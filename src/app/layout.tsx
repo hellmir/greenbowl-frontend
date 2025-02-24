@@ -2,8 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 
-import { Navigation } from "@/components/navigation";
-import { Header } from "@/components/header";
+import AuthSession from "@/providers/AuthSession";
 
 const myFont = localFont({
   src: [
@@ -40,14 +39,13 @@ export default function RootLayout({
       <body
         className={`${myFont.className} antialiased overflow-x-hidden  relative`}
       >
-        <div className="flex justify-center items-center h-screen w-screen bg-white z-20">
-          <div className="w-full max-w-[37.5rem] h-full mx-auto relative bg-foundation-quarternary text-content-secondary">
-            <Header />
-            <div className="pl-4 pr-4">{children}</div>
-
-            <Navigation />
+        <AuthSession>
+          <div className="flex justify-center items-center h-screen w-screen bg-white z-20">
+            <div className="w-full max-w-[37.5rem] h-full mx-auto relative bg-foundation-quarternary text-content-secondary">
+              <div className="pl-4 pr-4">{children}</div>
+            </div>
           </div>
-        </div>
+        </AuthSession>
       </body>
     </html>
   );

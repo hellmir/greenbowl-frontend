@@ -22,7 +22,7 @@ module.exports = {
   safelist: [
     {
       pattern:
-        /^(fill|stroke)-(foundation-primary|content-quinary|content-tertiary|foundation-secondary)$/,
+        /^(fill|stroke)-(foundation-primary|content-quinary|content-tertiary|foundation-secondary|content-quarternary)$/,
     },
   ],
   plugins: [
