@@ -9,5 +9,5 @@ export default withAuth({
 });
 
 export const config = {
-  matcher: ["/myFridge/:path*", "/myPage/:path*", "/config/:path*"],
+  matcher: ["/fridge/:path*", "/my-page/:path*", "/config/:path*"],
 };
