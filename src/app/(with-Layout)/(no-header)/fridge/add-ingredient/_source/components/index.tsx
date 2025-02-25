@@ -7,7 +7,7 @@ const AddIngredientContainer = () => {
   return (
     <div>
       <Header />
-      <div className="">
+      <div className="relative">
         <CategoriesContainer />
         <IngredientsContainer />
       </div>

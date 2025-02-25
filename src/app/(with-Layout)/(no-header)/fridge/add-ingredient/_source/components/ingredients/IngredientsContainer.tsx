@@ -1,6 +1,6 @@
 import categoryItems from "@/constants/categoryItems";
 
-const IngredientsContainer = () => {
+const IngredientsContainer = async () => {
   return (
     <div className="grid grid-cols-2 gap-4">
       {categoryItems.map((item) => (
