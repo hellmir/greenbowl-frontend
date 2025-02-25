@@ -14,12 +14,14 @@ const LoginPage = async () => {
     redirect(route.recipe.root);
   }
   return (
-    <div className="flex flex-col mt-20 mb-5 justify-start gap-8">
+    <div className="flex flex-col  mb-5 justify-start gap-8 bg-foundation-secondary">
       <LoginHeader />
-      <LoginTitle />
-      <CharacterImg />
-      <SocialLoginButtons />
-      <LoginTerms />
+      <div className="mt-20">
+        <LoginTitle />
+        <CharacterImg />
+        <SocialLoginButtons />
+        <LoginTerms />
+      </div>
     </div>
   );
 };

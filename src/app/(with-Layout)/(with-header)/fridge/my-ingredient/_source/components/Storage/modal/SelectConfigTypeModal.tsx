@@ -28,7 +28,7 @@ const SelectConfigTypeModal = () => {
       <DialogTrigger>
         <MoreIcon fill="content-tertiary" />
       </DialogTrigger>
-      <DialogContent className=" bg-inherit border-none rounded-md mx-auto top-3/4 h-0 max-w-[37.5rem] w-screen pr-4 pl-4">
+      <DialogContent className=" bg-inherit border-none rounded-md mx-auto top-2/3 h-0 max-w-[37.5rem] w-screen pr-4 pl-4">
         <DialogTitle className=" hidden"></DialogTitle>
         <DialogClose onClick={() => handleClick("recipe")}>
           <Link href={route.myFridge.addIngredient}>

@@ -36,7 +36,7 @@ const Recommend = ({ ingredients }: Props) => {
           냉장고 속 지래료를 입력하고 음식 스타일을 설정해 보세요
         </p>
       </div>
-      <div className=" flex flex-col gap-5 min-h-[80vh]">
+      <div className=" flex flex-col gap-5 min-h-[80vh] mb-10">
         <SelectedIngredients
           selectedIngredients={selectedIngredients}
           setSelectedIngredients={setSelectedIngredients}

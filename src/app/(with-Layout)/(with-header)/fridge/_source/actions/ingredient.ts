@@ -40,6 +40,5 @@ export const deleteIngredients = async (ids: number[]) => {
   revalidateTag(INGREDIENTS_TAG);
 
   const data = await res.json();
-  console.log(data);
   return data;
 };

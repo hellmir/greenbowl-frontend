@@ -35,7 +35,7 @@ const NavigationLoginRequiredModal = ({
             <AlertDialogDescription className=" whitespace-pre paragraph-m text-content-tertiary">
               {"더 다양한 서비스 이용을 위해\n 로그인 하시겠어요?"}
             </AlertDialogDescription>
-            <div className="flex w-full justify-between">
+            <div className="">
               <AlertDialogCancel className="bg-content-quinary hover:bg-content-quinary hover:text-content-secondary text-content-secondary w-[76px]">
                 취소
               </AlertDialogCancel>

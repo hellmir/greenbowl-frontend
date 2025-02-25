@@ -12,7 +12,6 @@ const ExerciseCharacter = ({ isPlay }: { isPlay: boolean }) => {
   useGSAP(
     () => {
       const tl = gsap.timeline({ delay: 0.5, paused: true });
-      console.log(isPlay);
       tl.to(
         ["#right-right", "#right-left"],
         {

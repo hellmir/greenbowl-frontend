@@ -18,7 +18,7 @@ const NavigationItemList = () => {
   useEffect(() => {}, [pathName, allClear, changeConfigState]);
 
   return (
-    <ul className="grid grid-cols-4 gap-4 h-full">
+    <ul className="flex gap-4 h-full">
       {navList.map((item) =>
         item.isLoginRequire ? (
           <NavigationLoginRequireItem

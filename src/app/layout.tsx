@@ -40,9 +40,9 @@ export default function RootLayout({
         className={`${myFont.className} antialiased overflow-x-hidden  relative`}
       >
         <AuthSession>
-          <div className="flex justify-center items-center h-screen w-screen bg-white z-20">
-            <div className="w-full max-w-[37.5rem] h-full mx-auto relative bg-foundation-quarternary text-content-secondary">
-              <div className="pl-4 pr-4">{children}</div>
+          <div className="flex justify-center items-center bg-white z-20">
+            <div className="w-full max-w-[37.5rem] h-full mx-auto relative text-content-secondary">
+              <div>{children}</div>
             </div>
           </div>
         </AuthSession>

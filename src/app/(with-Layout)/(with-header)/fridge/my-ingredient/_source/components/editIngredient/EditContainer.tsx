@@ -12,12 +12,12 @@ interface Props {
 
 const EditContainer = ({ ingredients, handleEditClose }: Props) => {
   const { setHeaderType } = useHeaderStore();
-
+  
   useEffect(() => {
     setHeaderType("none");
     return () => setHeaderType("show");
   }, [setHeaderType]);
-
+  
   return (
     <div className=" z-30">
       <TertiaryHeader handleEditClose={handleEditClose} />
