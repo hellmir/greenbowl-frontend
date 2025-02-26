@@ -49,6 +49,10 @@ const SelectedIngredients = ({
           placeholder="재료를 선택해 주세요"
           className=" focus-visible:ring-transparent border-none placeholder:text-content-quarternary text-content-secondary"
           ref={inputRef}
+          onSubmit={(e) => {
+            e.preventDefault();
+          }}
+          
           onChange={(e) => {
             const isSame =
               selectedIngredients.filter(

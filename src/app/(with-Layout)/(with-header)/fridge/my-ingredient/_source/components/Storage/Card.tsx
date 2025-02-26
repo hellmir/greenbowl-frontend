@@ -1,7 +1,8 @@
-import { Ingredient } from "@/app/(with-layout)/(with-header)/fridge/_source/types/fridge";
+import { FridgeIngredient } from "@/app/type/ingredients";
+import storageMethodMap from "@/constants/ingredients/storageMethod";
 
 interface Props {
-  ingredient: Ingredient;
+  ingredient: FridgeIngredient;
   isSelected: boolean;
   onClick: (n: number) => void;
 }
@@ -38,9 +39,11 @@ const Card = ({ ingredient, isSelected, onClick }: Props) => {
       <div className={`${expirationDateClassName} mb-1 heading-s`}>
         {`D${expirationDate >= 0 ? "+" : ""}${expirationDate}`}
       </div>
-      <div className=" text-content-secondary label-m">{ingredient.name}</div>
+      <div className=" text-content-secondary label-m">
+        {ingredient.categoryDetail}
+      </div>
       <div className="flex mt-1 text-content-tertiary label-s">
-        <p>{ingredient.storageCondition}</p>
+        <p>{storageMethodMap[ingredient.storageMethod]}</p>
         <p className="ml-2 mr-2">|</p>
         <p>{ingredient.quantity}개</p>
       </div>

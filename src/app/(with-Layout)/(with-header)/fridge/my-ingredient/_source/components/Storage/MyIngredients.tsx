@@ -1,16 +1,16 @@
 "use client";
 
 import useEditIngredients from "@/store/editIngredientsStore";
-import { Ingredient } from "@/app/(with-layout)/(with-header)/fridge/_source/types/fridge";
 import useIngredientConfigState from "@/store/ingredientConfigStore";
 import XIcon from "@/components/icons/XIcon";
 import IngredientList from "./IngredientList";
 import EditButton from "./buttons/EditButton";
 import DeleteBtn from "./buttons/DeleteBtn";
 import RecipeRecommendBtn from "./buttons/RecipeRecommendBtn";
+import { FridgeIngredient } from "@/app/type/ingredients";
 
 interface Props {
-  ingredients: Ingredient[];
+  ingredients: FridgeIngredient[];
   handleEditOpen: () => void;
 }
 

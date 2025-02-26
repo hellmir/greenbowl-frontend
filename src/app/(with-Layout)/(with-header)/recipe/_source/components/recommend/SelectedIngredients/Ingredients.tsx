@@ -18,7 +18,7 @@ const Ingredients = ({ ingredients, setSelectedIngredients }: Props) => {
     swiperRef.current?.slideTo(ingredients.length);
   }, [ingredients]);
   return (
-    <div className="relative max-w-[50%]">
+    <div className="relative max-w-[70%]">
       <Swiper
         className="w-full"
         freeMode={true}

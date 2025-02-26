@@ -1,11 +1,11 @@
 "use client";
 
 import useEditIngredients from "@/store/editIngredientsStore";
-import { Ingredient } from "@/app/(with-layout)/(with-header)/fridge/_source/types/fridge";
 import EditIngredient from "./EditIngredient";
+import { FridgeIngredient } from "@/app/type/ingredients";
 
 interface Props {
-  ingredients: Ingredient[];
+  ingredients: FridgeIngredient[];
 }
 
 const EditIngredientList = ({ ingredients }: Props) => {

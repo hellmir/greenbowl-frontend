@@ -1,9 +1,8 @@
-import { getIngredients } from "@/app/(with-layout)/(with-header)/fridge/_source/actions/ingredient";
-
 import Recommend from "./Recommend";
+import { getFridgeIngredients } from "@/app/(with-layout)/(with-header)/fridge/my-ingredient/_source/actions/fridgeIngredient";
 
 const RecommendContainer = async () => {
-  const ingredients = await getIngredients();
+  const ingredients = await getFridgeIngredients();
   return (
     <form action="">
       <Recommend ingredients={ingredients} />

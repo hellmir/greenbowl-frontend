@@ -13,6 +13,8 @@ import useIngredientConfigState from "@/store/ingredientConfigStore";
 import { Config } from "../MyIngredients";
 import Link from "next/link";
 import route from "@/constants/route";
+import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
+import { DialogDescription } from "@radix-ui/react-dialog";
 
 const SelectConfigTypeModal = () => {
   const { changeConfigState } = useIngredientConfigState();
@@ -29,7 +31,11 @@ const SelectConfigTypeModal = () => {
         <MoreIcon fill="content-tertiary" />
       </DialogTrigger>
       <DialogContent className=" bg-inherit border-none rounded-md mx-auto top-2/3 h-0 max-w-[37.5rem] w-screen pr-4 pl-4">
-        <DialogTitle className=" hidden"></DialogTitle>
+        <VisuallyHidden>
+          <DialogTitle />
+          <DialogDescription />
+        </VisuallyHidden>
+
         <DialogClose onClick={() => handleClick("recipe")}>
           <Link href={route.myFridge.addIngredient}>
             <div className="bg-white rounded-lg h-14  border-border-default flex items-center justify-center">

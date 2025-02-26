@@ -1,14 +1,14 @@
 "use client";
 
-import { Ingredient } from "@/app/(with-layout)/(with-header)/fridge/_source/types/fridge";
 import MyIngredients from "./MyIngredients";
 import { useEffect, useState } from "react";
 import EditContainer from "../editIngredient/EditContainer";
 import useEditIngredients from "@/store/editIngredientsStore";
 import useIngredientConfigState from "@/store/ingredientConfigStore";
+import { FridgeIngredient } from "@/app/type/ingredients";
 
 interface Props {
-  ingredients: Ingredient[];
+  ingredients: FridgeIngredient[];
 }
 
 const Storage = ({ ingredients }: Props) => {

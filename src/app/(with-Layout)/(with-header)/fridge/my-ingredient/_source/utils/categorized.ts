@@ -1,11 +1,11 @@
 import { categories } from "@/constants/categories";
-import { Ingredient } from "../../../_source/types/fridge";
+import { FridgeIngredient } from "@/app/type/ingredients";
 
-export const categorized = (ingredients: Ingredient[]) => {
+export const categorized = (ingredients: FridgeIngredient[]) => {
   const categorizedMap = createCategoryMap();
 
   ingredients.forEach((ingredient) =>
-    categorizedMap[+ingredient.category].ingredients.push(ingredient)
+    categorizedMap[+ingredient.sequence].ingredients.push(ingredient)
   );
 
   return categorizedMap;
@@ -17,5 +17,5 @@ const createCategoryMap = () =>
       acc[cur.id] = { ingredients: [] };
       return acc;
     },
-    {} as Record<number, { ingredients: Ingredient[] }>
+    {} as Record<number, { ingredients: FridgeIngredient[] }>
   );

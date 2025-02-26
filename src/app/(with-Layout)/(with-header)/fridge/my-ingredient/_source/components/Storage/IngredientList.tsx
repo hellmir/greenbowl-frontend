@@ -1,12 +1,12 @@
 import { categories } from "@/constants/categories";
 import Image from "next/image";
-import { Ingredient } from "@/app/(with-layout)/(with-header)/fridge/_source/types/fridge";
 import Card from "./Card";
 import { useMemo } from "react";
 import { categorized } from "../../utils/categorized";
+import { FridgeIngredient } from "@/app/type/ingredients";
 
 interface Props {
-  ingredients: Ingredient[];
+  ingredients: FridgeIngredient[];
   selectedIngredients: Set<number>;
   handleCardClick: (n: number) => void;
 }

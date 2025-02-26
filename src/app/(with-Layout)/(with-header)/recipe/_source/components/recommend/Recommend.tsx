@@ -4,12 +4,12 @@ import { Button } from "@/components/ui/button";
 import { CookTime, CookTimes } from "./CookTime";
 import { FoodType, FoodTypes } from "./FoodType";
 import SelectedIngredients from "./SelectedIngredients";
-import { Ingredient } from "@/app/(with-layout)/(with-header)/fridge/_source/types/fridge";
 import useEditIngredients from "@/store/editIngredientsStore";
 import { useEffect, useState } from "react";
+import { FridgeIngredient } from "@/app/type/ingredients";
 
 interface Props {
-  ingredients: Ingredient[];
+  ingredients: FridgeIngredient[];
 }
 
 const Recommend = ({ ingredients }: Props) => {
@@ -19,7 +19,7 @@ const Recommend = ({ ingredients }: Props) => {
   const [selectedIngredients, setSelectedIngredients] = useState(
     ingredients
       .filter((ingredient) => ingredientsSet.has(+ingredient.id))
-      .map((ingredient) => ({ name: ingredient.name }))
+      .map((ingredient) => ({ name: ingredient.categoryDetail }))
   );
 
   useEffect(() => {
@@ -33,7 +33,7 @@ const Recommend = ({ ingredients }: Props) => {
           맞춤형 레시피 추천
         </h2>
         <p className="pr-10 label-s text-content-tertiary">
-          냉장고 속 지래료를 입력하고 음식 스타일을 설정해 보세요
+          냉장고 속 재료를 입력하고 음식 스타일을 설정해 보세요
         </p>
       </div>
       <div className=" flex flex-col gap-5 min-h-[80vh] mb-10">

@@ -1,10 +1,10 @@
 import Empty from "./Empty";
 import Storage from "./Storage";
 
-import { getIngredients } from "../../../_source/actions/ingredient";
+import { getFridgeIngredients } from "../actions/fridgeIngredient";
 
 const MyIngredientContainer = async () => {
-  const ingredients = await getIngredients();
+  const ingredients = await getFridgeIngredients();
   return (
     <>
       {ingredients.length === 0 ? (
