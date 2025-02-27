@@ -4,7 +4,7 @@ import {useEffect, useState} from "react";
 import {IoIosArrowBack} from "react-icons/io";
 import {AiMenusRequestPayload, MenuApiResponse, MenuOptions} from "@/app/api/recipe/ai/config"
 import {POST} from "@/app/api/recipe/ai/gpt/menus";
-import {availablePorkIngredients, porkOptions} from "@/app/api/test/recipe/ai/gpt/options";
+import {availablePorkBellyIngredients, porkBellyOptions} from "@/app/api/test/recipe/ai/gpt/options";
 import {useAiRecipe} from "@/store/aiRecipeStore";
 import RecommendedMenu from "@/app/(with-Layout)/(with-header)/recipe/ai/_source/components/RecommendedMenu";
 
@@ -20,8 +20,8 @@ const Page = () => {
 
         const AI_MODEL: string = process.env.NEXT_PUBLIC_AI_MENUS_REQUEST_MODEL!;
         const TEMPLATE: string = process.env.NEXT_PUBLIC_AI_MENUS_REQUEST_TEMPLATE!;
-        const selectedOptions: MenuOptions = porkOptions;
-        setAvailableIngredients(availablePorkIngredients);
+        const selectedOptions: MenuOptions = porkBellyOptions;
+        setAvailableIngredients(availablePorkBellyIngredients);
         const SECRET_KEY: string = process.env.NEXT_PUBLIC_AI_MENUS_SECRET_KEY!;
 
         const fetchMenus = async () => {
@@ -59,7 +59,8 @@ const Page = () => {
             <div className="flex flex-col justify-between h-screen">
                 <div>
                     <div className="flex items-center mb-14">
-                        <IoIosArrowBack className="text-2xl cursor-pointer size-8"/>
+                        <IoIosArrowBack
+                            className="text-2xl cursor-pointer size-8"/>
                         <h2 className="flex-1 text-center text-2xl font-bold">AI 추천 메뉴</h2>
                     </div>
                     <p className="text-start text-gray-800 text-base mb-10 font-semibold text-xl">
@@ -76,11 +77,6 @@ const Page = () => {
                             ))
                         )}
                     </div>
-                </div>
-                <div className="mt-6">
-                    <button className="w-full py-3 bg-green-500 text-white rounded-xl font-medium mb-24">
-                        선택 완료
-                    </button>
                 </div>
             </div>
         </div>
