@@ -32,6 +32,10 @@ const Page = () => {
     ]);
     const [recipeIntroduction, setRecipeIntroduction] = useState<string>("");
 
+    const handleClickArrowBack = () => {
+        window.history.back();
+    };
+
     useEffect(() => {
         if (!recipeName) {
             return;
@@ -117,7 +121,10 @@ const Page = () => {
                 <div className="flex flex-col justify-between h-screen">
                     <div>
                         <div className="grid grid-cols-3 items-center mb-6">
-                            <IoIosArrowBack className="text-2xl cursor-pointer size-8"/>
+                            <IoIosArrowBack
+                                className="text-2xl cursor-pointer size-8"
+                                onClick={handleClickArrowBack}
+                            />
                             <h2 className="text-center text-2xl font-bold">추천 레시피</h2>
                             <div className="flex justify-end gap-2">
                                 <GoShareAndroid className="w-8 h-8 mx-2"/>
@@ -183,7 +190,7 @@ const Page = () => {
 
                         <div className="mt-8">
                             <h2 className="text-lg font-bold border-b pb-2">영양 정보</h2>
-                            <div className="bg-gray-200 rounded-lg grid grid-cols-3 gap-4 mt-4">
+                            <div className="bg-gray-200 rounded-lg grid grid-cols-3 gap-4 mb-24">
                                 {nutrition.map((item, index) => (
                                     <div key={index} className="p-3 text-sm text-gray-400 text-center">
                                         <p className="font-semibold">{item.label}</p>
