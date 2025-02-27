@@ -11,8 +11,8 @@ export interface AiMenusRequestPayload {
 
 export interface MenuOptions {
     ingredients: string[];
-    cookingTimeLimit: string[];
-    cuisineType: string[];
+    cookingTimeLimit: (string | null)[];
+    cuisineType: (string | null)[];
 }
 
 export interface AiDetailedMenusRequestPayload {

@@ -13,54 +13,77 @@ const Page = () => {
     const [recipes, setRecipes] = useState<MenuApiResponse[]>([]);
     const searchParams = useSearchParams();
 
+    const handleClickArrowBack = () => {
+        window.history.back();
+    };
+
     useEffect(() => {
-        /*
-        - 기존 mock 요청 -
-        mockFetchRecipes().then((data) => setRecipes(data));
-        */
+            /*
+            - 기존 mock 요청 -
+            mockFetchRecipes().then((data) => setRecipes(data));
+            */
 
-        const AI_MODEL: string = process.env.NEXT_PUBLIC_AI_MENUS_REQUEST_MODEL!;
-        const TEMPLATE: string = process.env.NEXT_PUBLIC_AI_MENUS_REQUEST_TEMPLATE!;
+            const availableIngredients = searchParams.getAll("ingredients");
+            console.log(availableIngredients, "availableIngredients")
 
-        const availableIngredients = searchParams.getAll("ingredients");
-        
-        /* 기존 파라미터 대체
-        setAvailableIngredients(availablePorkBellyIngredients);
-        */
-        setAvailableIngredients(availableIngredients);
+            /* 기존 파라미터 대체
+            setAvailableIngredients(availablePorkBellyIngredients);
+            */
+            setAvailableIngredients(availableIngredients);
 
-        const cookingTimeLimit = searchParams.get("cookingTime");
-        const cuisine = searchParams.get("cuisine");
+            const cookingTimeLimit = searchParams.get("cookingTime");
+            const cuisine = searchParams.get("cuisine");
 
-        const selectedOptions: MenuOptions = {
-            ingredients: availableIngredients,
-            cookingTimeLimit: [cookingTimeLimit],
-            cuisineType: [cuisine]
-        };
+            const selectedOptions: MenuOptions = {
+                ingredients: availableIngredients,
+                cookingTimeLimit: [cookingTimeLimit],
+                cuisineType: [cuisine]
+            };
 
-        const SECRET_KEY: string = process.env.NEXT_PUBLIC_AI_MENUS_SECRET_KEY!;
+            const cachedData = sessionStorage.getItem("ai_recipes");
+            const cachedParams = sessionStorage.getItem("option_params");
 
-        const fetchMenus = async () => {
-            const payload: AiMenusRequestPayload = {
-                llm_type: AI_MODEL,
-                template: TEMPLATE,
-                options: selectedOptions,
-                secret_key: SECRET_KEY
+            console.log(cachedParams)
+            console.log(JSON.stringify(selectedOptions), "abcd")
+
+            if (cachedData && cachedParams && cachedParams === JSON.stringify(selectedOptions)) {
+                setRecipes(JSON.parse(cachedData));
+
+                return;
             }
 
-            const data = await POST(payload);
-            console.log("받은 데이터: ", data);
+            sessionStorage.setItem("option_params", JSON.stringify(selectedOptions));
 
-            if (Array.isArray(data)) {
-                setRecipes(data);
-            } else {
-                console.error("응답 데이터가 객체가 아닙니다. 객체로 파싱합니다:\n", data);
-                setRecipes(parseToObject(data));
-            }
-        };
+            const AI_MODEL: string = process.env.NEXT_PUBLIC_AI_MENUS_REQUEST_MODEL!;
+            const TEMPLATE: string = process.env.NEXT_PUBLIC_AI_MENUS_REQUEST_TEMPLATE!;
+            const SECRET_KEY: string = process.env.NEXT_PUBLIC_AI_MENUS_SECRET_KEY!;
 
-        fetchMenus();
-    }, []);
+            const fetchMenus = async () => {
+                const payload: AiMenusRequestPayload = {
+                    llm_type: AI_MODEL,
+                    template: TEMPLATE,
+                    options: selectedOptions,
+                    secret_key: SECRET_KEY
+                };
+
+                const data = await POST(payload);
+                console.log("받은 데이터: ", data);
+
+                if (Array.isArray(data)) {
+                    setRecipes(data);
+                    sessionStorage.setItem("ai_recipes", JSON.stringify(data));
+                    console.log(data, "데이터")
+                } else {
+                    console.error("응답 데이터가 객체가 아닙니다. 객체로 파싱합니다:\n", data);
+                    const parsedData = parseToObject(data);
+                    setRecipes(parsedData);
+                    sessionStorage.setItem("ai_recipes", JSON.stringify(parsedData));
+                }
+            };
+
+            fetchMenus();
+        }, [searchParams]
+    );
 
     const parseToObject = (data: string) => {
         try {
@@ -68,7 +91,7 @@ const Page = () => {
         } catch (error) {
             console.error("JSON 파싱에 실패했습니다: ", error);
         }
-    }
+    };
 
     return (
         <div className="mt-[60px] px-4 pb-16">
@@ -76,7 +99,9 @@ const Page = () => {
                 <div>
                     <div className="flex items-center mb-14">
                         <IoIosArrowBack
-                            className="text-2xl cursor-pointer size-8"/>
+                            className="text-2xl cursor-pointer size-8"
+                            onClick={handleClickArrowBack}
+                        />
                         <h2 className="flex-1 text-center text-2xl font-bold">AI 추천 메뉴</h2>
                     </div>
                     <p className="text-start text-gray-800 text-base mb-10 font-semibold text-xl">

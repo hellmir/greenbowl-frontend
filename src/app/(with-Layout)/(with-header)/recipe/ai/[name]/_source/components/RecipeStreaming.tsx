@@ -1,6 +1,6 @@
 "use client";
 
-import {useEffect, useRef, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import {AiRecipeRequestPayload, RecipeOptions, UsedIngredient} from "@/app/api/recipe/ai/config";
 import {POST as postRecipe} from "@/app/api/recipe/ai/gpt/recipe";
 import ReactMarkdown from "react-markdown";
@@ -13,15 +13,23 @@ interface Props {
     recipeName: string | undefined;
     cookingTime: number | undefined;
     calories: number | undefined;
+    recipeIntroduction: string;
+    setRecipeIntroduction: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const RecipeStreaming = ({usedIngredients, recipeName, cookingTime, calories}: Props) => {
-    const [recipeIntroduction, setRecipeIntroduction] = useState<string>("");
+const RecipeStreaming = ({
+                             usedIngredients,
+                             recipeName,
+                             cookingTime,
+                             calories,
+                             recipeIntroduction,
+                             setRecipeIntroduction
+                         }: Props) => {
     const [isStreaming, setIsStreaming] = useState<boolean>(false);
     const abortControllerRef = useRef<AbortController | null>(null);
 
     useEffect(() => {
-            if (usedIngredients.length === 0) {
+            if (!recipeName || usedIngredients.length === 0 || recipeIntroduction) {
                 return;
             }
 
@@ -55,7 +63,7 @@ const RecipeStreaming = ({usedIngredients, recipeName, cookingTime, calories}: P
                 const controller = new AbortController();
                 abortControllerRef.current = controller;
 
-                console.log("레시피 요청 전송")
+                console.log("레시피 스트리밍 요청 전송");
                 postRecipe({
                     setRecipeIntroduction,
                     setIsStreaming,
@@ -76,7 +84,7 @@ const RecipeStreaming = ({usedIngredients, recipeName, cookingTime, calories}: P
                     remarkPlugins={[remarkGfm, remarkBreaks]}
                     rehypePlugins={[rehypeRaw]}
                 >
-                    {recipeIntroduction
+                    {(recipeIntroduction || "")
                         .replace(/\n/g, "\n\n")
                         .trim()}
                 </ReactMarkdown>
