@@ -26,7 +26,7 @@ const RecommendedMenu = ({index, recipe}: Props) => {
     return (
         <div
             key={index}
-            className="flex items-start gap-5 p-3 bg-scale-beige-300 rounded-lg shadow-md h-32"
+            className="flex items-start gap-5 p-3 bg-scale-white rounded-lg shadow-md h-32 mb-8"
             onClick={handleClick}
         >
             <img

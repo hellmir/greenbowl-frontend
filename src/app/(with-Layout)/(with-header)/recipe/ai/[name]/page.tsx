@@ -69,58 +69,63 @@ const Page = () => {
 
     return (
         <div className="mt-[60px] px-4 pb-16">
-            <div className="flex flex-col justify-between h-screen">
-                <div>
-                    <div className="grid grid-cols-3 items-center mb-6">
-                        <IoIosArrowBack className="text-2xl cursor-pointer size-8"/>
-                        <h2 className="text-center text-2xl font-bold">추천 레시피</h2>
-                        <div className="flex justify-end gap-2">
-                            <GoShareAndroid className="w-8 h-8 mx-2"/>
-                            <Bookmark className="w-8 h-8"/>
+            {/* TODO: 로딩 페이지 완성 후 대체 */}
+            {usedIngredients.length == 0 ? (
+                <p className="text-center text-gray-500">로딩 중...</p>
+            ) : (
+                <div className="flex flex-col justify-between h-screen">
+                    <div>
+                        <div className="grid grid-cols-3 items-center mb-6">
+                            <IoIosArrowBack className="text-2xl cursor-pointer size-8"/>
+                            <h2 className="text-center text-2xl font-bold">추천 레시피</h2>
+                            <div className="flex justify-end gap-2">
+                                <GoShareAndroid className="w-8 h-8 mx-2"/>
+                                <Bookmark className="w-8 h-8"/>
+                            </div>
                         </div>
-                    </div>
 
-                    <div className="relative w-full h-100">
-                        <img
-                            src={representativeImageUrl}
-                            alt="메뉴 이미지"
-                            className="w-full h-full object-cover"
-                        />
-                        <img
-                            src="/image/aibanner.png"
-                            alt="배너"
-                            className="inline-block w-full h-13"
-                        />
-                    </div>
-
-                    <h1 className="text-2xl font-bold text-start mt-8">
-                        {recipeName}
-                    </h1>
-
-                    <div className="text-gray-500 mt-3">
-                        {oneLineIntroduction}
-                    </div>
-
-                    <div className="flex justify-start gap-4 text-gray-600 mt-3">
-                        <div className="flex items-center gap-1.5 text-sm font-medium text-gray-600">
-                            <MdOutlineAccessTimeFilled/>
-                            <span className="text-green-600">{selectedRecipe && selectedRecipe.cookingTime}</span> min
+                        <div className="relative w-full h-100">
+                            <img
+                                src={representativeImageUrl}
+                                alt="메뉴 이미지"
+                                className="w-full h-full object-cover"
+                            />
+                            <img
+                                src="/svg/aibanner.svg"
+                                alt="배너"
+                                className="inline-block w-full h-13"
+                            />
                         </div>
-                        <div className="flex items-center gap-1.5 text-sm font-medium text-gray-600">
-                            <FaFire/>
-                            <span className="text-green-600">{selectedRecipe && selectedRecipe.calories}</span> kcal
+
+                        <h1 className="text-2xl font-bold text-start mt-8">
+                            {recipeName}
+                        </h1>
+
+                        <div className="text-gray-500 mt-3">
+                            {oneLineIntroduction}
                         </div>
-                    </div>
 
-                    <p className="text-center text-gray-700 mt-6 font-semibold">
-                    </p>
+                        <div className="flex justify-start gap-4 text-gray-600 mt-3">
+                            <div className="flex items-center gap-1.5 text-sm font-medium text-gray-600">
+                                <MdOutlineAccessTimeFilled/>
+                                <span
+                                    className="text-green-600">{selectedRecipe && selectedRecipe.cookingTime}</span> min
+                            </div>
+                            <div className="flex items-center gap-1.5 text-sm font-medium text-gray-600">
+                                <FaFire/>
+                                <span className="text-green-600">{selectedRecipe && selectedRecipe.calories}</span> kcal
+                            </div>
+                        </div>
 
-                    <div className="mt-8">
-                        <h2 className="text-lg font-bold border-b pb-2">재료</h2>
-                        <ul className="mt-2 space-y-2 flex flex-col">
-                            {usedIngredients.length > 0 ? (
-                                usedIngredients.map((item, index) => (
-                                    <li key={index} className="flex justify-between p-2 border-b-2 border-gray-200">
+                        <p className="text-center text-gray-700 mt-6 font-semibold">
+                        </p>
+
+                        <div className="mt-8">
+                            <h2 className="text-lg font-bold border-b pb-2">재료</h2>
+                            <ul className="mt-2 space-y-2 flex flex-col">
+                                {usedIngredients.length > 0 ? (
+                                    usedIngredients.map((item, index) => (
+                                        <li key={index} className="flex justify-between p-2 border-b-2 border-gray-200">
                                         <span className="flex">
                                                 <img
                                                     src="/image/meat.png"
@@ -129,31 +134,33 @@ const Page = () => {
                                                 />
                                             {item.name}
                                         </span>
-                                        <span>{item.weight}g</span>
-                                    </li>
-                                ))
-                            ) : (
-                                <p className="text-gray-500"></p>
-                            )}
-                        </ul>
-                    </div>
+                                            <span>{item.weight}g</span>
+                                        </li>
+                                    ))
+                                ) : (
+                                    <p className="text-gray-500"></p>
+                                )}
+                            </ul>
+                        </div>
 
-                    <RecipeStreaming usedIngredients={usedIngredients} recipeName={recipeName} cookingTime={cookingTime}
-                                     calories={calories}/>
+                        <RecipeStreaming usedIngredients={usedIngredients} recipeName={recipeName}
+                                         cookingTime={cookingTime}
+                                         calories={calories}/>
 
-                    <div className="mt-8">
-                        <h2 className="text-lg font-bold border-b pb-2">영양 정보</h2>
-                        <div className=" bg-gray-200 rounded-lg grid grid-cols-3 gap-4 mt-4">
-                            {nutrition.map((item, index) => (
-                                <div key={index} className="p-3 text-sm text-gray-400 text-center">
-                                    <p className="font-semibold">{item.label}</p>
-                                    <p className="text-green-600">{item.value}</p>
-                                </div>
-                            ))}
+                        <div className="mt-8">
+                            <h2 className="text-lg font-bold border-b pb-2">영양 정보</h2>
+                            <div className=" bg-gray-200 rounded-lg grid grid-cols-3 gap-4 mt-4">
+                                {nutrition.map((item, index) => (
+                                    <div key={index} className="p-3 text-sm text-gray-400 text-center">
+                                        <p className="font-semibold">{item.label}</p>
+                                        <p className="text-green-600">{item.value}</p>
+                                    </div>
+                                ))}
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            )}
         </div>
     );
 };
