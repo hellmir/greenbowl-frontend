@@ -2,26 +2,42 @@
 
 import {useEffect, useState} from "react";
 import {IoIosArrowBack} from "react-icons/io";
-import {AiMenusRequestPayload, MenuApiResponse, MenuOptions} from "@/app/api/recipe/ai/config"
+import {AiMenusRequestPayload, MenuApiResponse, MenuOptions} from "@/app/api/recipe/ai/config";
 import {POST} from "@/app/api/recipe/ai/gpt/menus";
-import {availablePorkBellyIngredients, porkBellyOptions} from "@/app/api/test/recipe/ai/gpt/options";
 import {useAiRecipe} from "@/store/aiRecipeStore";
 import RecommendedMenu from "@/app/(with-Layout)/(with-header)/recipe/ai/_source/components/RecommendedMenu";
+import {useSearchParams} from "next/navigation";
 
 const Page = () => {
     const {setAvailableIngredients} = useAiRecipe();
     const [recipes, setRecipes] = useState<MenuApiResponse[]>([]);
+    const searchParams = useSearchParams();
 
     useEffect(() => {
         /*
         - 기존 mock 요청 -
         mockFetchRecipes().then((data) => setRecipes(data));
-         */
+        */
 
         const AI_MODEL: string = process.env.NEXT_PUBLIC_AI_MENUS_REQUEST_MODEL!;
         const TEMPLATE: string = process.env.NEXT_PUBLIC_AI_MENUS_REQUEST_TEMPLATE!;
-        const selectedOptions: MenuOptions = porkBellyOptions;
+
+        const availableIngredients = searchParams.getAll("ingredients");
+        
+        /* 기존 파라미터 대체
         setAvailableIngredients(availablePorkBellyIngredients);
+        */
+        setAvailableIngredients(availableIngredients);
+
+        const cookingTimeLimit = searchParams.get("cookingTime");
+        const cuisine = searchParams.get("cuisine");
+
+        const selectedOptions: MenuOptions = {
+            ingredients: availableIngredients,
+            cookingTimeLimit: [cookingTimeLimit],
+            cuisineType: [cuisine]
+        };
+
         const SECRET_KEY: string = process.env.NEXT_PUBLIC_AI_MENUS_SECRET_KEY!;
 
         const fetchMenus = async () => {
