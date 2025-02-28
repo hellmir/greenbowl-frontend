@@ -3,7 +3,7 @@ import {
     AI_MENUS_REQUEST_ENDPOINT,
     AiDetailedMenusRequestPayload,
     AiMenusRequestPayload
-} from "@/app/api/recipe/ai/config";
+} from "@/app/(with-Layout)/(with-header)/recipe/ai/_source/config";
 
 
 export const POST = async (payload: AiMenusRequestPayload | AiDetailedMenusRequestPayload) => {
@@ -23,7 +23,7 @@ export const POST = async (payload: AiMenusRequestPayload | AiDetailedMenusReque
 
         return await response.json();
     } catch (error) {
-        console.error("Error fetching recipes:", error);
+        console.error("Error fetching menus: ", error);
         throw error;
     }
 };
