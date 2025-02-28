@@ -2,25 +2,46 @@ import { Button } from "@/components/ui/button";
 import useEditIngredients from "@/store/editIngredientsStore";
 import ConfirmDeleteModal from "../modal/ConfirmDeleteModal";
 import { useState, useTransition } from "react";
-import { deleteIngredients } from "@/app/(with-layout)/(with-header)/fridge/_source/actions/ingredient";
+import { deleteFridgeIngredients } from "../../../actions/fridgeIngredient";
+
+import useAfterMutationEffects from "@/hooks/useAfterMutationEffects";
+import { useAlertStore } from "@/store/alertStore";
 
 const DeleteBtn = () => {
-  const { draftIngredientsSet, allClear } = useEditIngredients();
+  const { ingredientsMap, clear } = useEditIngredients();
 
   const [isOpen, setIsOpen] = useState(false);
   const [isPending, startTransition] = useTransition();
 
-  const isNotSelected = draftIngredientsSet.size === 0;
+  const afterMutationAction = useAfterMutationEffects(
+    "삭제가 완료되었습니다.",
+    () => {
+      setIsOpen(false);
+      clear();
+    }
+  );
+
+  const play = useAlertStore((state) => state.play);
+
+  const isNotSelected = ingredientsMap.size === 0;
 
   const handleClick = () => {
     setIsOpen(true);
   };
 
   const handleOkBtn = () => {
-    startTransition(() => {
-      deleteIngredients([...draftIngredientsSet]);
-      setIsOpen(false);
-      allClear();
+    startTransition(async () => {
+      try {
+        await deleteFridgeIngredients([
+          ...ingredientsMap
+            .values()
+            .map((ingredient) => ({ id: ingredient.id })),
+        ]);
+        afterMutationAction();
+      } catch (e) {
+        console.log(e);
+        play("삭제에 실패했습니다.");
+      }
     });
   };
   return (

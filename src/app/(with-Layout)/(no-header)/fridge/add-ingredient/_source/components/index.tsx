@@ -1,24 +1,27 @@
-import { getCategoryIngredients } from "../actions/categoryIngredient";
+import { Suspense } from "react";
 import Bottom from "./Bottom";
 import CategoriesContainer from "./category/CategoriesContainer";
 import Header from "./Header";
-import IngredientsContainer from "./ingredients/IngredientsContainer";
+import IngredientsContainer from "./ingredients/index";
+import CategoryIngredientSkeleton from "./ingredients/Skeleton";
+import SideEffect from "./SideEffect";
 
 interface Props {
   categoryId: number;
 }
 
 const AddIngredientContainer = async ({ categoryId }: Props) => {
-  const data = await getCategoryIngredients();
-  console.log(data);
   return (
-    <div>
+    <div className=" ">
       <Header />
-      <div className="relative">
-        <CategoriesContainer categoryId={categoryId} />
-        <IngredientsContainer />
+      <div className=" ">
+        <CategoriesContainer />
+        <Suspense fallback={<CategoryIngredientSkeleton />}>
+          <IngredientsContainer categoryId={categoryId} />
+        </Suspense>
       </div>
       <Bottom />
+      <SideEffect />
     </div>
   );
 };

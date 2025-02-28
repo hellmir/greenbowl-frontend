@@ -13,7 +13,7 @@ const Header = ({ handleClose }: Props) => {
         <BackIcon stroke="content-tertiary" onClick={handleClose} />
       </div>
 
-      <p className="heading-m h-24 flex items-center">수정하기</p>
+      <p className="heading-m h-24 flex items-center">추가하기</p>
     </div>
   );
 };

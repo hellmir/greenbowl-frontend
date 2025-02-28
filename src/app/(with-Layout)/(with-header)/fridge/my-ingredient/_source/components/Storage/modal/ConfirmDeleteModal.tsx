@@ -8,6 +8,9 @@ import {
 } from "@/components/ui/alert-dialog";
 import MainCharacter from "@/components/character/MainCharacter";
 import { Dispatch, SetStateAction } from "react";
+import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
+import { AlertDialogDescription } from "@radix-ui/react-alert-dialog";
+import { Button } from "@/components/ui/button";
 
 interface Props {
   handleOkBtn: () => void;
@@ -29,21 +32,27 @@ const ConfirmDeleteModal = ({
           <MainCharacter />
         </div>
         <div className="bg-white pt-6 pr-4 pl-4 pb-4 rounded-[20px] z-20">
+          <VisuallyHidden>
+            <AlertDialogDescription />
+          </VisuallyHidden>
           <AlertDialogHeader className="sm:text-center">
             <AlertDialogTitle className=" heading-l mb-5">
               선택한 재료를
               <br /> 삭제하시겠어요?
             </AlertDialogTitle>
-            <div className="flex w-full justify-between">
+
+            <div className="">
               <AlertDialogCancel className="bg-content-quinary hover:bg-content-quinary hover:text-content-secondary text-content-secondary w-[76px]">
                 취소
               </AlertDialogCancel>
-              <AlertDialogAction
-                disabled={isPending}
-                onClick={handleOkBtn}
-                className="flex-grow ml-2 "
-              >
-                네, 삭제할게요
+              <AlertDialogAction asChild>
+                <Button
+                  loading={isPending}
+                  onClick={handleOkBtn}
+                  className="flex-grow ml-2"
+                >
+                  네 삭제할게요.
+                </Button>
               </AlertDialogAction>
             </div>
           </AlertDialogHeader>

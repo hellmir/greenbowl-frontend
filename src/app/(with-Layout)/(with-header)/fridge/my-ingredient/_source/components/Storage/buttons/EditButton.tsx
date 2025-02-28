@@ -1,18 +1,20 @@
 import { Button } from "@/components/ui/button";
 import useEditIngredients from "@/store/editIngredientsStore";
+import { useFullscreenModalStore } from "@/store/fullscreenModalStore";
+import EditContainer from "../../editIngredient/EditContainer";
 
 interface Props {
   onClick?: () => void;
 }
 
 const EditButton = ({ onClick }: Props) => {
-  const { draftIngredientsSet, commit } = useEditIngredients();
-
-  const isNotSelected = draftIngredientsSet.size === 0;
+  const { ingredientsMap } = useEditIngredients();
+  const { play } = useFullscreenModalStore();
+  const isNotSelected = ingredientsMap.size === 0;
 
   const handleClick = () => {
-    commit();
     onClick?.();
+    play(EditContainer);
   };
 
   return (

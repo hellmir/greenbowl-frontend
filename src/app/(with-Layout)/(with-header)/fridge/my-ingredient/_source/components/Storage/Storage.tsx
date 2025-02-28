@@ -1,44 +1,30 @@
 "use client";
 
 import MyIngredients from "./MyIngredients";
-import { useEffect, useState } from "react";
-import EditContainer from "../editIngredient/EditContainer";
-import useEditIngredients from "@/store/editIngredientsStore";
+import { useEffect } from "react";
+
 import useIngredientConfigState from "@/store/ingredientConfigStore";
 import { FridgeIngredient } from "@/app/type/ingredients";
+import useEditIngredients from "@/store/editIngredientsStore";
 
 interface Props {
   ingredients: FridgeIngredient[];
 }
 
 const Storage = ({ ingredients }: Props) => {
-  const [isEdit, setIsEdit] = useState(false);
-  const { clearDraft } = useEditIngredients();
   const { changeConfigState } = useIngredientConfigState();
-
-  const handleEditOpen = () => setIsEdit(true);
-  const handleEditClose = () => setIsEdit(false);
+  const clear = useEditIngredients((state) => state.clear);
 
   useEffect(() => {
+    clear();
     return () => {
-      clearDraft();
-
       changeConfigState("recipe");
     };
-  }, [clearDraft, changeConfigState]);
+  }, [changeConfigState, clear]);
+
   return (
     <div className="min-h-full">
-      {isEdit ? (
-        <EditContainer
-          ingredients={ingredients}
-          handleEditClose={handleEditClose}
-        />
-      ) : (
-        <MyIngredients
-          handleEditOpen={handleEditOpen}
-          ingredients={ingredients}
-        />
-      )}
+      <MyIngredients ingredients={ingredients} />
     </div>
   );
 };

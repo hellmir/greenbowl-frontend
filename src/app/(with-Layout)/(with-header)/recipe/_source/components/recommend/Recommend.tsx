@@ -6,25 +6,26 @@ import { FoodType, FoodTypes } from "./FoodType";
 import SelectedIngredients from "./SelectedIngredients";
 import useEditIngredients from "@/store/editIngredientsStore";
 import { useEffect, useState } from "react";
-import { FridgeIngredient } from "@/app/type/ingredients";
 
-interface Props {
-  ingredients: FridgeIngredient[];
-}
+const Recommend = () => {
+  const { ingredientsMap, clear } = useEditIngredients();
 
-const Recommend = ({ ingredients }: Props) => {
-  const { ingredientsSet, allClear } = useEditIngredients();
   const [selectedTime, setSelectedTime] = useState<CookTimes>("all");
   const [selectedType, setSelectedType] = useState<FoodTypes>("all");
+
+  const excludesSameNameIngredients = [
+    ...new Set(
+      ingredientsMap.values().map((ingredient) => ingredient.categoryDetail)
+    ),
+  ];
+
   const [selectedIngredients, setSelectedIngredients] = useState(
-    ingredients
-      .filter((ingredient) => ingredientsSet.has(+ingredient.id))
-      .map((ingredient) => ({ name: ingredient.categoryDetail }))
+    excludesSameNameIngredients.map((ingredients) => ({ name: ingredients }))
   );
 
   useEffect(() => {
-    return () => allClear();
-  }, [allClear]);
+    return () => clear();
+  }, [clear]);
 
   return (
     <div className="">

@@ -1,18 +1,15 @@
-import { FridgeIngredient } from "@/app/type/ingredients";
+import { CategoryIngredient } from "@/app/type/ingredients";
 import XIcon from "@/components/icons/XIcon";
-import { categories } from "@/constants/categories";
-import useEditIngredients from "@/store/editIngredientsStore";
+import { useCategoryIngredientsStore } from "@/store/categoryIngredientsStore";
 import Image from "next/image";
 
 interface Props {
-  ingredient: FridgeIngredient;
+  category: string;
+  selectedIngredient: CategoryIngredient;
 }
 
-const Head = ({ ingredient }: Props) => {
-  const toggleIngredient = useEditIngredients(
-    (state) => state.toggleIngredient
-  );
-  const handleClickXBtn = () => toggleIngredient(ingredient);
+const Head = ({ category, selectedIngredient }: Props) => {
+  const { toggleIngredient } = useCategoryIngredientsStore();
   return (
     <div className="w-full min-h-5  flex justify-between items-center">
       <Image
@@ -22,7 +19,7 @@ const Head = ({ ingredient }: Props) => {
         width={40}
       />
       <div className="flex items-center grow justify-start ml-3 mr-3 label-m text-content-secondary ">
-        <p className="">{categories[ingredient.sequence].name}</p>
+        <p className="">{category}</p>
         <div className="h-5 w-5 flex items-center justify-center ml-1 mr-1">
           <Image
             className=""
@@ -34,10 +31,13 @@ const Head = ({ ingredient }: Props) => {
         </div>
 
         <p className="flex-grow w-1/3 line-clamp-1">
-          {ingredient.categoryDetail}
+          {selectedIngredient.categoryDetail}
         </p>
       </div>
-      <XIcon onClick={handleClickXBtn} stroke="content-tertiary" />
+      <XIcon
+        onClick={() => toggleIngredient(selectedIngredient)}
+        stroke="content-tertiary"
+      />
     </div>
   );
 };

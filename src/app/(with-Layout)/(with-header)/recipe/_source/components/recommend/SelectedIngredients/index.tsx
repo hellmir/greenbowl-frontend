@@ -52,11 +52,10 @@ const SelectedIngredients = ({
           onSubmit={(e) => {
             e.preventDefault();
           }}
-          
           onChange={(e) => {
             const isSame =
               selectedIngredients.filter(
-                (ingredient) => ingredient.name === e.target.value
+                (ingredient) => ingredient.name === e.target.value.trim()
               ).length > 0;
 
             if (e.target.value[e.target.value.length - 1] !== " ") return;
@@ -65,7 +64,7 @@ const SelectedIngredients = ({
               return;
             }
 
-            const name = e.target.value;
+            const name = e.target.value.trim();
 
             setSelectedIngredients((prev) => {
               return [...prev, { name }];

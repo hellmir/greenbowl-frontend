@@ -5,42 +5,54 @@ import ExpirationDate from "./ExpirationDate";
 import Quantity from "./Quantity";
 import StorageCondition from "./StorageCondition";
 
+import { categories } from "@/constants/categories";
+
 import CalendarModal from "@/components/modal/CalendarModal";
-import { FridgeIngredient } from "@/app/type/ingredients";
+import {
+  CategoryIngredient,
+  CreateFridgeIngredient,
+} from "@/app/type/ingredients";
 import storageMethodMap from "@/constants/ingredients/storageMethod";
 import formatDate from "@/utils/date/formatDate";
 
 interface Props {
-  ingredient: FridgeIngredient;
-  setSelectedIngredients: Dispatch<SetStateAction<FridgeIngredient[]>>;
+  ingredient: CreateFridgeIngredient;
+
+  selectedIngredient: CategoryIngredient;
+  setCreateFridgeIngredients: Dispatch<
+    SetStateAction<CreateFridgeIngredient[]>
+  >;
 }
 
-const EditIngredient = memo(function EditIngreDient({
+const CreateIngredient = memo(function CreateIngredient({
   ingredient,
-  setSelectedIngredients,
+  selectedIngredient,
+  setCreateFridgeIngredients,
 }: Props) {
   const [active, setActive] = useState(false);
 
   const handleChangeQuantity = (quantity: number) =>
-    setSelectedIngredients((prev) =>
+    setCreateFridgeIngredients((prev) =>
       prev.map((p) =>
-        p.id === ingredient.id ? { ...ingredient, quantity } : p
+        p.categoryId === ingredient.categoryId ? { ...ingredient, quantity } : p
       )
     );
 
   const handleChangeCondition = (
     storageMethod: keyof typeof storageMethodMap
   ) =>
-    setSelectedIngredients((prev) =>
+    setCreateFridgeIngredients((prev) =>
       prev.map((p) =>
-        p.id === ingredient.id ? { ...ingredient, storageMethod } : p
+        p.categoryId === ingredient.categoryId
+          ? { ...ingredient, storageMethod }
+          : p
       )
     );
 
   const handleChangeExpirationDate = (date: Date) =>
-    setSelectedIngredients((prev) =>
+    setCreateFridgeIngredients((prev) =>
       prev.map((p) =>
-        p.id === ingredient.id
+        p.categoryId === ingredient.categoryId
           ? { ...ingredient, expirationDate: formatDate(date) }
           : p
       )
@@ -48,7 +60,10 @@ const EditIngredient = memo(function EditIngreDient({
 
   return (
     <div className="px-3 pb-3 pt-2 bg-foundation-secondary rounded-[20px] mb-5">
-      <Head ingredient={ingredient} />
+      <Head
+        category={categories[1].name}
+        selectedIngredient={selectedIngredient}
+      />
       <div className=" mt-5 flex flex-col gap-3 label-s text-content-tertiary  ">
         <ExpirationDate
           expirationDate={ingredient.expirationDate}
@@ -73,4 +88,4 @@ const EditIngredient = memo(function EditIngreDient({
   );
 });
 
-export default EditIngredient;
+export default CreateIngredient;

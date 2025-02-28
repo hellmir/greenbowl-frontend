@@ -11,14 +11,12 @@ import { FridgeIngredient } from "@/app/type/ingredients";
 
 interface Props {
   ingredients: FridgeIngredient[];
-  handleEditOpen: () => void;
 }
 
 export type Config = "recipe" | "delete" | "edit";
 
-const MyIngredients = ({ ingredients, handleEditOpen }: Props) => {
-  const { draftIngredientsSet, toggleIngredient, allClear } =
-    useEditIngredients();
+const MyIngredients = ({ ingredients }: Props) => {
+  const { ingredientsMap, toggleIngredient, clear } = useEditIngredients();
 
   const config = useIngredientConfigState((state) => state.configState);
 
@@ -26,12 +24,12 @@ const MyIngredients = ({ ingredients, handleEditOpen }: Props) => {
     (state) => state.changeConfigState
   );
 
-  const handleCardClick = (n: number) => {
-    toggleIngredient(n);
+  const handleCardClick = (ingredient: FridgeIngredient) => {
+    toggleIngredient(ingredient);
   };
 
   const handleCloseBtn = () => {
-    allClear();
+    clear();
     changeConfigState("recipe");
   };
 
@@ -42,7 +40,7 @@ const MyIngredients = ({ ingredients, handleEditOpen }: Props) => {
           <div className="flex label-s items-center ">
             <XIcon stroke="content-tertiary" onClick={handleCloseBtn} />
             <p className="ml-2 text-foundation-primary">
-              {draftIngredientsSet.size}
+              {ingredientsMap.size}
             </p>
             <p className=" text-content-tertiary">개 선택됨</p>
           </div>
@@ -51,13 +49,13 @@ const MyIngredients = ({ ingredients, handleEditOpen }: Props) => {
 
       <IngredientList
         ingredients={ingredients}
-        selectedIngredients={draftIngredientsSet}
+        selectedIngredients={ingredientsMap}
         handleCardClick={handleCardClick}
       />
 
       {config === "recipe" && <RecipeRecommendBtn />}
       {config === "delete" && <DeleteBtn />}
-      {config === "edit" && <EditButton onClick={handleEditOpen} />}
+      {config === "edit" && <EditButton />}
     </div>
   );
 };

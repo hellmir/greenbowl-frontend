@@ -7,8 +7,8 @@ interface BaseIngredient {
 }
 
 export type CategoryIngredient = BaseIngredient;
-export type CreateCategoryIngredient = Omit<BaseIngredient, "id">;
-export type DeleteCategoryIngredient = Pick<BaseIngredient, "id">[];
+export type CreateCategoryIngredient = Omit<CategoryIngredient, "id">;
+export type DeleteCategoryIngredient = Pick<CategoryIngredient, "id">[];
 
 export interface FridgeIngredient extends BaseIngredient {
   expirationDate: string;
@@ -22,6 +22,10 @@ type FetchFridgeIngredient = Omit<
   "categoryDetail" | "sequence"
 >;
 
-export type CreateFridgeIngredients = Omit<FetchFridgeIngredient, "id">[];
-export type UpdateFridgeIngredients = FetchFridgeIngredient[];
-export type DeleteFidgetIngredients = Pick<FetchFridgeIngredient, "id">[];
+export type CreateFridgeIngredient = Omit<FetchFridgeIngredient, "id">;
+export type UpdateFridgeIngredient = FetchFridgeIngredient;
+export type DeleteFidgetIngredient = Pick<FetchFridgeIngredient, "id">;
+
+export type CreateFridgeIngredients = CreateFridgeIngredient[];
+export type UpdateFridgeIngredients = UpdateFridgeIngredient[];
+export type DeleteFidgetIngredients = DeleteFidgetIngredient[];

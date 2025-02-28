@@ -4,7 +4,7 @@ import storageMethodMap from "@/constants/ingredients/storageMethod";
 interface Props {
   ingredient: FridgeIngredient;
   isSelected: boolean;
-  onClick: (n: number) => void;
+  onClick: (ingredient: FridgeIngredient) => void;
 }
 
 const diffDays = (from: Date, to: Date) =>
@@ -34,10 +34,10 @@ const Card = ({ ingredient, isSelected, onClick }: Props) => {
   return (
     <div
       className={`w-full rounded-lg py-2 px-3 border  ${isSelected ? "bg-yellowgreen-100 border-foundation-primary" : "bg-foundation-secondary border-border-default"}`}
-      onClick={() => onClick(+ingredient.id)}
+      onClick={() => onClick(ingredient)}
     >
       <div className={`${expirationDateClassName} mb-1 heading-s`}>
-        {`D${expirationDate >= 0 ? "+" : ""}${expirationDate}`}
+        {`D${expirationDate === 0 ? "-Day" : expirationDate > 0 ? `+${expirationDate}` : `${expirationDate}`}`}
       </div>
       <div className=" text-content-secondary label-m">
         {ingredient.categoryDetail}

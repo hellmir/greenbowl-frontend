@@ -3,22 +3,23 @@ import {
   CreateCategoryIngredient,
 } from "@/app/type/ingredients";
 import BASE_API_URL from "@/constants/apiUrl";
-import { revalidateTag } from "next/cache";
 
-const categoryIngredientTags = {
-  baseKey: () => "categoryIngredient",
-};
+export const getCategoryIngredients = async (sequence = 1) => {
+  try {
+    const res = await fetch(
+      `${BASE_API_URL}/api/fridges/category-items?sequence=${sequence}`,
+      { cache: "no-cache" }
+    );
 
-export const getCategoryIngredients = async () => {
-  const res = await fetch(`${BASE_API_URL}/api/fridges/category-items`, {
-    next: { revalidate: 1000, tags: [categoryIngredientTags.baseKey()] },
-  });
+    const json: CategoryIngredient[] = await res.json();
 
-  const json: CategoryIngredient[] = await res.json();
+    if (!res.ok) throw new Error(`${res.status}`);
 
-  if (!res.ok) throw new Error(`${res.statusText}`);
-
-  return json;
+    return json;
+  } catch (e) {
+    console.log(e);
+    return [];
+  }
 };
 
 export const createCategoryIngredients = async ({
@@ -33,8 +34,9 @@ export const createCategoryIngredients = async ({
         categoryDetail,
         sequence,
       }),
+      cache: "no-cache",
     });
-    console.log(res);
+
     if (!res.ok) throw new Error(JSON.stringify(res.status));
 
     const json: CategoryIngredient = await res.json();
@@ -43,4 +45,19 @@ export const createCategoryIngredients = async ({
   } catch (e) {
     console.log(e);
   }
+};
+
+export const deleteCategoryIngredient = async (id: number) => {
+  const res = await fetch(`${BASE_API_URL}/api/fridges/category-items`, {
+    method: "DELETE",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      id,
+    }),
+    cache: "no-cache",
+  });
+
+  if (!res.ok) throw new Error(`Failed to delete, status: ${res.status}`);
+
+  return;
 };

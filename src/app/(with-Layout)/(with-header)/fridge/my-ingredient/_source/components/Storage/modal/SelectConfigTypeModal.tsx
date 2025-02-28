@@ -18,11 +18,11 @@ import { DialogDescription } from "@radix-ui/react-dialog";
 
 const SelectConfigTypeModal = () => {
   const { changeConfigState } = useIngredientConfigState();
-  const { allClear } = useEditIngredients();
+  const { clear } = useEditIngredients();
 
   const handleClick = (s: Config) => {
     changeConfigState(s);
-    allClear();
+    clear();
   };
 
   return (

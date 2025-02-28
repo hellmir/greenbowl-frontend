@@ -1,21 +1,16 @@
 "use client";
 
 import BackIcon from "@/components/icons/backIcon";
-import { useHeaderStore } from "@/store/headerStore";
-import { useEffect } from "react";
-import AddCustomIngredient from "./bottomSheet/AddCustomIngredient";
+
+import { useRouter } from "next/navigation";
 
 const Header = () => {
-  const { setHeaderType } = useHeaderStore();
+  const router = useRouter();
+  const handleClickBackIcon = () => router.back();
 
-  useEffect(() => {
-    setHeaderType("none");
-    return () => setHeaderType("show");
-  }, [setHeaderType]);
   return (
-    <div className="bg-foundation-secondary sticky w-full max-w-[35.5rem] top-0 flex items-center h-[3.375rem] justify-between z-10">
-      <BackIcon stroke="content-tertiary" />
-      <AddCustomIngredient />
+    <div className="bg-foundation-secondary sticky w-full top-0 flex items-center h-[3.375rem] justify-between z-10">
+      <BackIcon onClick={handleClickBackIcon} stroke="content-tertiary" />
     </div>
   );
 };
