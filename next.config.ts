@@ -9,11 +9,6 @@ const nextConfig: NextConfig = {
         destination: route.recipe.root,
         permanent: false,
       },
-      {
-        source: route.myFridge.root,
-        destination: route.myFridge.myIngredient,
-        permanent: false,
-      },
     ];
   },
   images: {
