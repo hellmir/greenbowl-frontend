@@ -13,9 +13,11 @@ module.exports = {
       colors: {
         ...colors,
       },
-
       fontFamily: {
         spoqa: ["var(--font-spoqa)"],
+      },
+      screens: {
+        md: "599px",
       },
     },
   },

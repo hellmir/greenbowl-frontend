@@ -3,19 +3,13 @@
 import NavigationItem from "./Item";
 
 import { navList } from "@/constants/navigation";
-import useEditIngredients from "@/store/editIngredientsStore";
-import useIngredientConfigState from "@/store/ingredientConfigStore";
 
 import { usePathname } from "next/navigation";
-import { useEffect } from "react";
+
 import NavigationLoginRequireItem from "./LoginRequireItem";
 
 const NavigationItemList = () => {
   const pathName = usePathname();
-  const { allClear } = useEditIngredients();
-  const { changeConfigState } = useIngredientConfigState();
-
-  useEffect(() => {}, [pathName, allClear, changeConfigState]);
 
   return (
     <ul className="flex gap-4 h-full">

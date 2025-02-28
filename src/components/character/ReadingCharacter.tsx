@@ -18,7 +18,12 @@ const ReadingCharacter = ({ isPlay }: { isPlay: boolean }) => {
           return numberB - numberA;
         }
       );
-      const tl = gsap.timeline({ repeat: -1, repeatDelay: 2 });
+      const tl = gsap.timeline({
+        repeat: -1,
+        repeatDelay: 2,
+        delay: 0.5,
+        paused: true,
+      });
       $books.forEach((book, idx) => {
         const stagger = idx === 0 ? "<+0" : "<+0.3";
         tl.fromTo(
@@ -27,13 +32,13 @@ const ReadingCharacter = ({ isPlay }: { isPlay: boolean }) => {
           { y: 0, duration: 0.8, ease: "bounce.out" },
           stagger
         );
-        gsap.to("#eyes", {
-          x: -3,
-          duration: 1,
-          repeat: -1,
-          yoyo: true,
-          repeatDelay: 0.5,
-        });
+      });
+      gsap.to("#eyes", {
+        x: -3,
+        duration: 1,
+        repeat: -1,
+        yoyo: true,
+        repeatDelay: 0.5,
       });
       if (!isPlay) {
         tl.pause(0);

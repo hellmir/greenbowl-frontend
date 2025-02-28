@@ -28,8 +28,9 @@ const TipItem = () => {
         </div>
         <div className=" relative paragraph-xs ">
           <SwiperTags />
+
           <div
-            className=" z-20 absolute top-0 w-10 h-full right-0"
+            className=" z-[1] absolute top-0 w-10 h-full right-0"
             style={{
               background:
                 "linear-gradient(to left, #fff 0%, rgba(255,255,255,0) 100%)",

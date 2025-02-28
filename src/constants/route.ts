@@ -1,7 +1,7 @@
 const route = {
   myFridge: {
     root: "/fridge",
-    addIngredient: "/fridge/add-ingredient",
+    addIngredient: "/fridge/add-ingredient?categoryId=1",
     myIngredient: "/fridge/my-ingredient",
     tip: "/fridge/tip",
   },

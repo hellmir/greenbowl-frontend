@@ -1,48 +1,39 @@
+import { FridgeIngredient } from "@/app/type/ingredients";
 import { create } from "zustand";
 
 type State = {
-  draftIngredientsSet: Set<number>;
-  ingredientsSet: Set<number>;
+  ingredientsMap: Map<number, FridgeIngredient>;
 };
 
 type Actions = {
-  toggleIngredient: (id: number) => void;
+  toggleIngredient: (ingredient: FridgeIngredient) => void;
   uncommitIngredient: (id: number) => void;
-  commit: () => void;
-  clearDraft: () => void;
   clear: () => void;
-  allClear: () => void;
 };
 
-const useEditIngredients = create<State & Actions>((set, get) => ({
-  draftIngredientsSet: new Set(),
-  ingredientsSet: new Set(),
+const useEditIngredients = create<State & Actions>((set) => ({
+  ingredientsMap: new Map(),
 
-  toggleIngredient: (id) =>
+  toggleIngredient: (ingredient) =>
     set((state) => {
-      if (state.draftIngredientsSet.has(id)) {
-        state.draftIngredientsSet.delete(id);
+      const newMap = new Map(state.ingredientsMap);
+      if (newMap.has(ingredient.id)) {
+        newMap.delete(ingredient.id);
       } else {
-        state.draftIngredientsSet.add(id);
+        newMap.set(ingredient.id, ingredient);
       }
-      return { draftIngredientsSet: new Set(state.draftIngredientsSet) };
+      return { ingredientsMap: newMap };
     }),
+
   uncommitIngredient: (id: number) =>
     set((state) => {
-      state.ingredientsSet.delete(id);
-      return { ingredientsSet: new Set(state.ingredientsSet) };
+      const newIngredientsMap = new Map(state.ingredientsMap);
+
+      newIngredientsMap.delete(id);
+      return { ingredientsMap: newIngredientsMap };
     }),
-  commit: () =>
-    set((state) => ({ ingredientsSet: new Set(state.draftIngredientsSet) })),
 
-  clearDraft: () => set({ draftIngredientsSet: new Set() }),
-  clear: () => set({ ingredientsSet: new Set() }),
-
-  allClear: () => {
-    const { clear, clearDraft } = get();
-    clear();
-    clearDraft();
-  },
+  clear: () => set({ ingredientsMap: new Map() }),
 }));
 
 export default useEditIngredients;

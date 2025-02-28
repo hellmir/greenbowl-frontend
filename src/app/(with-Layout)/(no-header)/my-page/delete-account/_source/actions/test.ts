@@ -1,7 +1,7 @@
 "use server";
 
 const action = async (formData: FormData) => {
-  const a = formData.get("question");
+  console.log(formData);
 };
 
 export default action;

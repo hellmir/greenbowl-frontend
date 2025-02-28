@@ -34,13 +34,15 @@ const MedicineCharacter = ({ isPlay }: { isPlay: boolean }) => {
               let progress = this.progress() + startProgress;
               progress = progress % 1;
 
-              const scaleValue = 0.5 + 0.5 * Math.sin(progress * Math.PI * 2);
+              const scaleValue = 0.7 + 0.6 * Math.sin(progress * Math.PI * 2);
 
               gsap.set(item, { scale: scaleValue });
             },
           },
           0
         );
+        if (isPlay) {
+        }
       });
     },
     { scope: ref, revertOnUpdate: true }

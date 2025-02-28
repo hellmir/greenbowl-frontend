@@ -10,7 +10,7 @@ const SleepCharacter = ({ isPlay }: { isPlay: boolean }) => {
   const ref = useRef<SVGSVGElement>(null);
   useGSAP(
     () => {
-      const tl = gsap.timeline({ repeat: -1, repeatDelay: 0.8 });
+      const tl = gsap.timeline({ repeat: -1, repeatDelay: 0.8, paused: true });
       tl.fromTo(
         ".z",
         { y: -5, scale: 1.5 },
