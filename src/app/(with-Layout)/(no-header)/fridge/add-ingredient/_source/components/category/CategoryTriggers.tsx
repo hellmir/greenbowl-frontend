@@ -2,7 +2,7 @@
 
 import { TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { categories } from "@/constants/categories";
-import Image from "next/image";
+
 import { useRouter, useSearchParams } from "next/navigation";
 import React from "react";
 
@@ -27,13 +27,11 @@ const CategoryTriggers = () => {
             onClick={() => handleClick(category.id)}
             className="hover:cursor-pointer flex flex-col items-center justify-center"
           >
-            <Image
-              className={` border-2 ${+currentCategoryId === category.id ? " rounded-full border border-foundation-primary" : ""} rounded-full object-cover overflow-hidden  bg-foundation-quarternary`}
-              src={category.image}
-              alt="카테고리이미지"
-              height={40}
-              width={40}
-            />
+            <div
+              className={`rounded-full border-2 object-cover overflow-hidden mb-[4px]  ${category.id === +currentCategoryId ? " border-foundation-primary bg-foundation-quarternary" : ""}`}
+            >
+              <category.icon />
+            </div>
             <p
               className={`${+currentCategoryId === category.id ? "text-foundation-primary" : "text-content-secondary"} label-xs`}
             >

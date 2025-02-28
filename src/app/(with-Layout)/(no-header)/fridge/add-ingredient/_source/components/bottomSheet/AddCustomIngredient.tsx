@@ -12,7 +12,6 @@ import {
 import { categories } from "@/constants/categories";
 import PlusIcon from "@/components/icons/PlusIcon";
 
-import Image from "next/image";
 import { useState, useTransition } from "react";
 import {
   createCategoryIngredients,
@@ -98,13 +97,11 @@ const AddCustomIngredient = () => {
                 onClick={() => setSelectedCategory(category.id)}
               >
                 <div className="hover:cursor-pointer flex flex-col items-center justify-center">
-                  <Image
-                    className={`rounded-full border-2 object-cover overflow-hidden mb-[4px]  ${category.id === selectedCategory ? " border-foundation-primary" : ""}`}
-                    src={category.image}
-                    alt="카테고리이미지"
-                    height={40}
-                    width={40}
-                  />
+                  <div
+                    className={`rounded-full border-2 object-cover overflow-hidden mb-[4px]  ${category.id === selectedCategory ? " border-foundation-primary bg-foundation-quarternary" : ""}`}
+                  >
+                    <category.icon />
+                  </div>
                   <p
                     className={`${selectedCategory === category.id ? "text-foundation-primary" : "text-content-secondary"} label-xs`}
                   >

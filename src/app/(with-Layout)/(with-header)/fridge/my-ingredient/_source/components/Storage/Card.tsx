@@ -1,5 +1,6 @@
 import { FridgeIngredient } from "@/app/type/ingredients";
 import storageMethodMap from "@/constants/ingredients/storageMethod";
+import { memo } from "react";
 
 interface Props {
   ingredient: FridgeIngredient;
@@ -25,7 +26,7 @@ const getExpirationDateClassName = (expirationDate: number) => {
   }
 };
 
-const Card = ({ ingredient, isSelected, onClick }: Props) => {
+const Card = memo(function Card({ ingredient, isSelected, onClick }: Props) {
   const expirationDate = diffDays(
     new Date(),
     new Date(ingredient.expirationDate)
@@ -49,6 +50,6 @@ const Card = ({ ingredient, isSelected, onClick }: Props) => {
       </div>
     </div>
   );
-};
+});
 
 export default Card;

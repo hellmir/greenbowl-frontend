@@ -1,5 +1,4 @@
 import { categories } from "@/constants/categories";
-import Image from "next/image";
 import Card from "./Card";
 import { useMemo } from "react";
 import { categorized } from "../../utils/categorized";
@@ -29,12 +28,7 @@ const IngredientList = ({
             className="mb-5 bg-foundation-secondary rounded-[12px] p-3"
           >
             <div className="flex items-center label-m h-10 mb-5">
-              <Image
-                src={category.image}
-                alt="카테고리 이미지"
-                height={40}
-                width={40}
-              />
+              <category.icon />
               <p className=" label-m">{`${category.name} (${
                 categorizedMap[category.id].ingredients.length
               })`}</p>
