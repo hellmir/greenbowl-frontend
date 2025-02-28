@@ -1,5 +1,5 @@
 import {create} from "zustand";
-import {MenuApiResponse} from "@/app/api/recipe/ai/config";
+import {MenuApiResponse} from "@/app/(with-Layout)/(with-header)/recipe/ai/_source/config";
 
 interface RecipeState {
     selectedRecipe: MenuApiResponse | null;

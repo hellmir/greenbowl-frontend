@@ -2,11 +2,18 @@
 
 import {IoIosArrowBack} from "react-icons/io";
 import {useAiRecipe} from "@/store/aiRecipeStore";
-import {useEffect, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import {MdOutlineAccessTimeFilled} from "react-icons/md";
 import {FaFire} from "react-icons/fa6";
-import {AiDetailedMenusRequestPayload, DetailedMenuOptions, UsedIngredient} from "@/app/api/recipe/ai/config";
-import {POST as postMenus} from "@/app/api/recipe/ai/gpt/menus";
+import {
+    AddDetailedBookmarkRequestPayload,
+    AiDetailedMenusRequestPayload,
+    DetailedMenuOptions,
+    Nutrition,
+    UsedIngredient
+} from "@/app/(with-Layout)/(with-header)/recipe/ai/_source/config";
+import {POST as postMenus} from "@/app/(with-Layout)/(with-header)/recipe/ai/_source/actions/menus";
+import {POST as postBookmark} from "@/app/(with-Layout)/(with-header)/recipe/ai/_source/actions/bookmark";
 import {Bookmark} from "lucide-react";
 import {GoShareAndroid} from "react-icons/go";
 import RecipeStreaming from "@/app/(with-Layout)/(with-header)/recipe/ai/[name]/_source/components/RecipeStreaming";
@@ -22,18 +29,55 @@ const Page = () => {
 
     const [oneLineIntroduction, setOneLineIntroduction] = useState<string>();
     const [usedIngredients, setUsedIngredients] = useState<UsedIngredient[]>([]);
-    const [nutrition, setNutrition] = useState<{ label: string; value: number | undefined }[]>([
-        {label: "열량", value: calories},
-        {label: "탄수화물", value: undefined},
-        {label: "단백질", value: undefined},
-        {label: "지방", value: undefined},
-        {label: "나트륨", value: undefined},
-        {label: "당류", value: undefined},
-    ]);
+    const [nutrition, setNutrition] = useState<Nutrition>({
+        calories: calories,
+        carbohydrate: undefined,
+        protein: undefined,
+        fat: undefined,
+        sodium: undefined,
+        sugar: undefined
+    });
+
     const [recipeIntroduction, setRecipeIntroduction] = useState<string>("");
 
     const handleClickArrowBack = () => {
         window.history.back();
+    };
+
+    const bookmarkRef = useRef<SVGSVGElement | null>(null);
+    let isBookmarked = false;
+
+    const handleClickBookmark = async () => {
+        isBookmarked = !isBookmarked;
+
+        if (bookmarkRef.current) {
+            bookmarkRef.current.classList.toggle("text-yellow-500", isBookmarked);
+            bookmarkRef.current.classList.toggle("text-gray-500", !isBookmarked);
+        }
+
+        const payload: AddDetailedBookmarkRequestPayload = {
+            name: recipeName,
+            imageUrl: representativeImageUrl,
+            cookingTime: cookingTime,
+            calories: calories,
+            oneLineIntroduction: oneLineIntroduction,
+            ingredients: usedIngredients,
+            introduction: recipeIntroduction,
+            nutrition: nutrition,
+        };
+
+        await postBookmark(payload);
+    };
+
+    const AI_MODEL = process.env.NEXT_PUBLIC_AI_DETAILED_MENU_REQUEST_MODEL!;
+    const TEMPLATE = process.env.NEXT_PUBLIC_AI_DETAILED_MENU_REQUEST_TEMPLATE!;
+    const SECRET_KEY = process.env.NEXT_PUBLIC_AI_DETAILED_MENU_SECRET_KEY!;
+
+    const detailedMenuOptions: DetailedMenuOptions = {
+        name: [recipeName],
+        availableIngredients: availableIngredients,
+        cookingTime: [`${cookingTime}분`],
+        calories: [`${calories}kcal`],
     };
 
     useEffect(() => {
@@ -49,19 +93,9 @@ const Page = () => {
             setUsedIngredients(parsedData.usedIngredients);
             setNutrition(parsedData.nutrition);
             setRecipeIntroduction(parsedData.recipeIntroduction);
+
             return;
         }
-
-        const AI_MODEL = process.env.NEXT_PUBLIC_AI_DETAILED_MENU_REQUEST_MODEL!;
-        const TEMPLATE = process.env.NEXT_PUBLIC_AI_DETAILED_MENU_REQUEST_TEMPLATE!;
-        const SECRET_KEY = process.env.NEXT_PUBLIC_AI_DETAILED_MENU_SECRET_KEY!;
-
-        const detailedMenuOptions: DetailedMenuOptions = {
-            name: [recipeName],
-            availableIngredients: availableIngredients,
-            cookingTime: [`${cookingTime}분`],
-            calories: [`${calories}kcal`],
-        };
 
         const fetchAdditionalInfo = async () => {
             const payload: AiDetailedMenusRequestPayload = {
@@ -74,25 +108,16 @@ const Page = () => {
             console.log("레시피 추가 정보 요청 전송");
             const data = await postMenus(payload);
 
-            const newNutrition = nutrition.map((item) => ({
-                ...item,
-                value:
-                    item.label === "탄수화물"
-                        ? data.carbohydrate
-                        : item.label === "단백질"
-                            ? data.protein
-                            : item.label === "지방"
-                                ? data.fat
-                                : item.label === "나트륨"
-                                    ? data.sodium
-                                    : item.label === "당류"
-                                        ? data.sugar
-                                        : item.value,
-            }));
-
             setOneLineIntroduction(data.oneLineIntroduction);
             setUsedIngredients(data.usedIngredients);
-            setNutrition(newNutrition);
+            setNutrition(prev => ({
+                ...prev,
+                carbohydrate: data.carbohydrate,
+                protein: data.protein,
+                fat: data.fat,
+                sodium: data.sodium,
+                sugar: data.sugar
+            }));
         };
 
         fetchAdditionalInfo();
@@ -128,7 +153,11 @@ const Page = () => {
                             <h2 className="text-center text-2xl font-bold">추천 레시피</h2>
                             <div className="flex justify-end gap-2">
                                 <GoShareAndroid className="w-8 h-8 mx-2"/>
-                                <Bookmark className="w-8 h-8"/>
+                                <Bookmark
+                                    className="w-8 h-8"
+                                    onClick={handleClickBookmark}
+                                    ref={bookmarkRef}
+                                />
                             </div>
                         </div>
 
@@ -191,12 +220,30 @@ const Page = () => {
                         <div className="mt-8">
                             <h2 className="text-lg font-bold border-b pb-2">영양 정보</h2>
                             <div className="bg-gray-200 rounded-lg grid grid-cols-3 gap-4 mb-24">
-                                {nutrition.map((item, index) => (
-                                    <div key={index} className="p-3 text-sm text-gray-400 text-center">
-                                        <p className="font-semibold">{item.label}</p>
-                                        <p className="text-green-600">{item.value}</p>
-                                    </div>
-                                ))}
+                                <div className="p-3 text-sm text-gray-400 text-center">
+                                    <p className="font-semibold">열량</p>
+                                    <p className="text-green-600">{nutrition.calories}</p>
+                                </div>
+                                <div className="p-3 text-sm text-gray-400 text-center">
+                                    <p className="font-semibold">탄수화물</p>
+                                    <p className="text-green-600">{nutrition.carbohydrate}</p>
+                                </div>
+                                <div className="p-3 text-sm text-gray-400 text-center">
+                                    <p className="font-semibold">단백질</p>
+                                    <p className="text-green-600">{nutrition.protein}</p>
+                                </div>
+                                <div className="p-3 text-sm text-gray-400 text-center">
+                                    <p className="font-semibold">지방</p>
+                                    <p className="text-green-600">{nutrition.fat}</p>
+                                </div>
+                                <div className="p-3 text-sm text-gray-400 text-center">
+                                    <p className="font-semibold">나트륨</p>
+                                    <p className="text-green-600">{nutrition.sodium}</p>
+                                </div>
+                                <div className="p-3 text-sm text-gray-400 text-center">
+                                    <p className="font-semibold">당류</p>
+                                    <p className="text-green-600">{nutrition.sugar}</p>
+                                </div>
                             </div>
                         </div>
                     </div>

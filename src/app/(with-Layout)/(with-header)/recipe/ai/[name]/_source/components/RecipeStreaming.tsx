@@ -1,8 +1,12 @@
 "use client";
 
 import React, {useEffect, useRef, useState} from "react";
-import {AiRecipeRequestPayload, RecipeOptions, UsedIngredient} from "@/app/api/recipe/ai/config";
-import {POST as postRecipe} from "@/app/api/recipe/ai/gpt/recipe";
+import {
+    AiRecipeRequestPayload,
+    RecipeOptions,
+    UsedIngredient
+} from "@/app/(with-Layout)/(with-header)/recipe/ai/_source//config";
+import {POST as postRecipe} from "@/app/(with-Layout)/(with-header)/recipe/ai/_source/actions/recipe";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import remarkBreaks from "remark-breaks";
