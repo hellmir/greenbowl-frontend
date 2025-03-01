@@ -34,14 +34,16 @@ const IngredientList = ({
               })`}</p>
             </div>
             <div className="w-full grid grid-cols-2 gap-4">
-              {categorizedMap[category.id].ingredients.map((ingredient) => (
-                <Card
-                  key={ingredient.id}
-                  ingredient={ingredient}
-                  isSelected={selectedIngredients.has(+ingredient.id)}
-                  onClick={handleCardClick}
-                />
-              ))}
+              {categorizedMap[category.id].ingredients.map(
+                (ingredient, idx) => (
+                  <Card
+                    key={idx}
+                    ingredient={ingredient}
+                    isSelected={selectedIngredients.has(+ingredient.id)}
+                    onClick={handleCardClick}
+                  />
+                )
+              )}
             </div>
           </div>
         );

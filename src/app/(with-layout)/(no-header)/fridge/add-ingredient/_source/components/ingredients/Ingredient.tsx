@@ -28,8 +28,10 @@ const Ingredient = ({ ingredient }: Props) => {
         if (selectedIngredientsMap.has(ingredient.id)) {
           toggleIngredient(ingredient);
         }
-        await deleteCategoryIngredient(ingredient.id);
-        // await new Promise((res) => setTimeout(() => res, 2000));
+        const a = await deleteCategoryIngredient(ingredient.id);
+        // await new Promise((res) => setTimeout(() > res, 2000));
+
+        console.log(a);
 
         afterAction();
       } catch (e) {
@@ -45,9 +47,9 @@ const Ingredient = ({ ingredient }: Props) => {
     <div
       onClick={() => !isPending && toggleIngredient(ingredient)}
       key={ingredient.id}
-      className={`${isSelected ? "bg-scale-yellowgreen-100 border-foundation-primary text-foundation-primary" : "bg-foundation-secondary border border-border-default text-content-secondary"} border relative w-full h-9  label-xs  flex justify-center items-center hover:cursor-pointer rounded-lg`}
+      className={`${isSelected ? "bg-scale-yellowgreen-100 border-foundation-primary text-foundation-primary" : "bg-foundation-secondary border border-border-default text-content-secondary"} border relative w-full h-9  label-xs  flex justify-center items-center hover:cursor-pointer rounded-lg `}
     >
-      <p>{ingredient.categoryDetail}</p>
+      <p className="">{ingredient.categoryDetail}</p>
       <div className="absolute right-0 top-0 p-1">
         <Button
           variant={"ghost"}

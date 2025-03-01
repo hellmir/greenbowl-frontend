@@ -5,6 +5,7 @@ import "./globals.css";
 import AuthSession from "@/providers/AuthSession";
 import Alert from "@/components/alert/Alert";
 import FullscreenModal from "@/components/fullscreenModal/FullscreenModal";
+import Script from "next/script";
 
 const myFont = localFont({
   src: [
@@ -42,6 +43,10 @@ export default function RootLayout({
         className={`${myFont.className} antialiased overflow-x-hidden  relative`}
       >
         <AuthSession>
+          <Script
+            src="https://cdn.swygbro.com/public/widget/swyg-widget.js"
+            strategy="lazyOnload"
+          />
           <div className="fixed inset-0 bg-black  z-0"></div>
           <div className="  flex justify-center items-center z-30">
             <div className="w-full max-w-[37.5rem] min-h-screen mx-auto relative text-content-secondary z-40 bg-white">

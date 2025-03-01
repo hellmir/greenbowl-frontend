@@ -24,6 +24,18 @@ const imagePath = {
       src: "/image/onboarding/recipe.png",
       alt: "온보딩 레시피 설명 이미지",
     },
+    myIngredient: {
+      src: "/image/onboarding/myIngredient.png",
+      alt: "온보딩 내 재료 설명 이미지",
+    },
+    tips: {
+      src: "/image/onboarding/tips.png",
+      alt: "온보딩 냉장고 팁 설명 이미지",
+    },
+    diet: {
+      src: "/image/onboarding/diet.png",
+      alt: "온보딩 식단 설명 페이지",
+    },
   },
 };
 

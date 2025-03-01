@@ -11,6 +11,7 @@ const route = {
   },
   recipe: {
     root: "/recipe",
+    ai: "/recipe/ai",
   },
   save: "/save",
   login: {

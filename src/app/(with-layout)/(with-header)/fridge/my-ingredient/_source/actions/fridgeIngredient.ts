@@ -1,3 +1,5 @@
+import customFetchClient from "@/api/customFetchClient";
+import customFetchServer from "@/api/customFetchServer";
 import {
   CreateFridgeIngredients,
   DeleteFidgetIngredients,
@@ -11,58 +13,69 @@ export const fridgeIngredientsTags = {
 };
 
 export const getFridgeIngredients = async () => {
-  const res = await fetch(`${BASE_API_URL}/api/fridges/ingredients`, {
-    next: { tags: [fridgeIngredientsTags.baseTag()] },
-    cache: "no-store",
-  });
+  const res: FridgeIngredient[] = await customFetchServer(
+    `${BASE_API_URL}/api/fridges/ingredients`,
+    {
+      next: { tags: [fridgeIngredientsTags.baseTag()] },
+      cache: "no-store",
+    }
+  );
 
-  const json: FridgeIngredient[] = await res.json();
-
-  if (!res.ok) throw new Error(res.status + "");
-
-  return json;
+  return res;
 };
 
 export const createFridgeIngredients = async (
   fridgeIngredients: CreateFridgeIngredients
 ) => {
-  const res = await fetch(`${BASE_API_URL}/api/fridges/ingredients`, {
-    headers: { "Content-Type": "application/json" },
-    method: "POST",
-    body: JSON.stringify(fridgeIngredients),
-  });
-  const json: FridgeIngredient[] = await res.json();
+  const res = await customFetchClient(
+    `${BASE_API_URL}/api/fridges/ingredients`,
+    {
+      headers: { "Content-Type": "application/json" },
+      method: "POST",
+      body: JSON.stringify(fridgeIngredients),
+    }
+  );
 
-  if (!res.ok) throw new Error(res.status + "");
-
-  return json;
+  return res;
 };
 
+export const createFridgeIngredientsWithDefault = async (
+  fridgeIngredients: CreateFridgeIngredients
+) => {
+  const res = await customFetchClient(
+    `${BASE_API_URL}/api/fridges/default-ingredients`,
+    {
+      headers: { "Content-Type": "application/json" },
+      method: "POST",
+      body: JSON.stringify(fridgeIngredients),
+    }
+  );
+
+  return res;
+};
 export const updateFridgeIngredients = async (
   fridgeIngredients: UpdateFridgeIngredients
 ) => {
-  const res = await fetch(`${BASE_API_URL}/api/fridges/ingredients`, {
-    headers: { "Content-Type": "application/json" },
-    method: "PUT",
-    body: JSON.stringify(fridgeIngredients),
-  });
-  const json: FridgeIngredient[] = await res.json();
+  const res = await customFetchClient(
+    `${BASE_API_URL}/api/fridges/ingredients`,
+    {
+      headers: { "Content-Type": "application/json" },
+      method: "PUT",
+      body: JSON.stringify(fridgeIngredients),
+    }
+  );
 
-  if (!res.ok) throw new Error(res.status + "");
-
-  return json;
+  return res;
 };
 
 export const deleteFridgeIngredients = async (
   fridgeIngredients: DeleteFidgetIngredients
 ) => {
-  const res = await fetch(`${BASE_API_URL}/api/fridges/ingredients`, {
+  await customFetchClient(`${BASE_API_URL}/api/fridges/ingredients`, {
     headers: { "Content-Type": "application/json" },
     method: "DELETE",
     body: JSON.stringify(fridgeIngredients),
   });
-
-  if (!res.ok) throw new Error(res.status + "");
 
   return;
 };
