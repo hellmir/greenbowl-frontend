@@ -2,7 +2,7 @@ import {
     AI_MENUS_REQUEST_API_BASE_URL,
     AI_RECOMMENDATION_REQUEST_ENDPOINT,
     AiRecipeRequestPayload,
-} from "@/app/(with-layout)/(no-header)/recipe/ai/_source/config";
+} from "@/app/(with-Layout)/(no-header)/recipe/ai/_source/config";
 import React from "react";
 
 interface Props {

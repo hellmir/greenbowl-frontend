@@ -7,9 +7,9 @@ import {
     MenuApiResponse,
     MenuOptions
 } from "@/app/(with-Layout)/(no-header)/recipe/ai/_source//config";
-import {POST} from "@/app/(with-layout)/(no-header)/recipe/ai/_source/actions/menus"
+import {POST} from "@/app/(with-Layout)/(no-header)/recipe/ai/_source/actions/menus"
 import {useAiRecipe} from "@/store/aiRecipeStore";
-import RecommendedMenu from "@/app/(with-layout)/(no-header)/recipe/ai/_source/components/RecommendedMenu";
+import RecommendedMenu from "@/app/(with-Layout)/(no-header)/recipe/ai/_source/components/RecommendedMenu";
 import {useSearchParams} from "next/navigation";
 
 const Page = () => {

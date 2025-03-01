@@ -28,7 +28,7 @@ const CalendarModal = ({
     <Dialog open={active} onOpenChange={setActive}>
       <DialogContent
         aria-describedby={undefined}
-        className="w-auto rounded-2xl sm:rounded-2xl p-0"
+        className="w-auto rounded-2xl sm:rounded-2xl p-0 top-[50%]"
       >
         <CalendarContainer
           date={date}

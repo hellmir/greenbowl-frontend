@@ -11,15 +11,15 @@ import {
     DetailedMenuOptions,
     Nutrition,
     UsedIngredient
-} from "@/app/(with-layout)/(no-header)/recipe/ai/_source/config";
-import {POST as postMenus} from "@/app/(with-layout)/(no-header)/recipe/ai/_source/actions/menus";
+} from "@/app/(with-Layout)/(no-header)/recipe/ai/_source/config";
+import {POST as postMenus} from "@/app/(with-Layout)/(no-header)/recipe/ai/_source/actions/menus";
 import {
     DELETE as deleteBookmark,
     POST as postBookmark
-} from "@/app/(with-layout)/(no-header)/recipe/ai/_source/actions/bookmark";
+} from "@/app/(with-Layout)/(no-header)/recipe/ai/_source/actions/bookmark";
 import {Bookmark} from "lucide-react";
 import {GoShareAndroid} from "react-icons/go";
-import RecipeStreaming from "@/app/(with-layout)/(no-header)/recipe/ai/[name]/_source/components/RecipeStreaming";
+import RecipeStreaming from "@/app/(with-Layout)/(no-header)/recipe/ai/[name]/_source/components/RecipeStreaming";
 
 const Page = () => {
     const {selectedRecipe, availableIngredients} = useAiRecipe();

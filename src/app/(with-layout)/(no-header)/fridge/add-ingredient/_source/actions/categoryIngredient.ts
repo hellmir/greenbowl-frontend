@@ -26,25 +26,22 @@ export const createCategoryIngredients = async ({
   categoryDetail,
   sequence,
 }: CreateCategoryIngredient) => {
-  try {
-    const res = await fetch(`${BASE_API_URL}/api/fridges/category-items`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        categoryDetail,
-        sequence,
-      }),
-      cache: "no-cache",
-    });
+  const res = await fetch(`${BASE_API_URL}/api/fridges/category-items`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      categoryDetail,
+      sequence,
+    }),
+    cache: "no-cache",
+  });
+  console.log(res.ok);
 
-    if (!res.ok) throw new Error(JSON.stringify(res.status));
+  if (!res.ok) throw new Error(JSON.stringify(res.status));
 
-    const json: CategoryIngredient = await res.json();
+  const json: CategoryIngredient = await res.json();
 
-    return json;
-  } catch (e) {
-    console.log(e);
-  }
+  return json;
 };
 
 export const deleteCategoryIngredient = async (id: number) => {

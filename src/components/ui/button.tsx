@@ -11,8 +11,7 @@ const buttonVariants = cva(
       variant: {
         default:
           "bg-foundation-primary text-foundation-secondary shadow  dark:bg-neutral-50 dark:text-neutral-900 dark:hover:bg-neutral-50/90",
-        bottom:
-          "bg-foundation-primary text-foundation-secondary sticky w-full max-w-[35.4rem] bottom-20 z-30",
+        bottom: "bg-foundation-primary text-foundation-secondary w-full ",
         destructive:
           "bg-red-500 text-neutral-50 shadow-sm hover:bg-red-500/90 dark:bg-red-900 dark:text-neutral-50 dark:hover:bg-red-900/90",
         outline:
@@ -62,19 +61,39 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ) => {
     const Comp = asChild ? Slot : "button";
     return (
-      <Comp
-        className={cn(buttonVariants({ variant, size, className }))}
-        ref={ref}
-        disabled={loading || disabled}
-        {...props}
-      >
-        {loading && (
-          <Loader2
-            className={`h-5 w-5  animate-spin text-muted ${LoaderClassname}`}
-          />
+      <>
+        {variant === "bottom" ? (
+          <div className="fixed pr-8 md:pr-0 w-full max-w-[35.4rem] bottom-20 z-30">
+            <Comp
+              className={cn(buttonVariants({ variant, size, className }))}
+              ref={ref}
+              disabled={loading || disabled}
+              {...props}
+            >
+              {loading && (
+                <Loader2
+                  className={`h-5 w-5  animate-spin text-muted ${LoaderClassname}`}
+                />
+              )}
+              {loading ? "" : children}
+            </Comp>
+          </div>
+        ) : (
+          <Comp
+            className={cn(buttonVariants({ variant, size, className }))}
+            ref={ref}
+            disabled={loading || disabled}
+            {...props}
+          >
+            {loading && (
+              <Loader2
+                className={`h-5 w-5  animate-spin text-muted ${LoaderClassname}`}
+              />
+            )}
+            {loading ? "" : children}
+          </Comp>
         )}
-        {loading ? "" : children}
-      </Comp>
+      </>
     );
   }
 );

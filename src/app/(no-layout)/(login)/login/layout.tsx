@@ -9,5 +9,9 @@ export default function MyFridgeLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return <>{children}</>;
+  return (
+    <>
+      <div className="px-4">{children}</div>
+    </>
+  );
 }
