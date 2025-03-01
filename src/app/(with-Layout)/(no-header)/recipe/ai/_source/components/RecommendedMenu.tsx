@@ -3,9 +3,12 @@ import {FaFire} from "react-icons/fa6";
 import {Bookmark} from "lucide-react";
 import {useRouter} from "next/navigation";
 import {useAiRecipe} from "@/store/aiRecipeStore";
-import {MenuApiResponse} from "@/app/(with-Layout)/(with-header)/recipe/ai/_source//config";
-import {AddBookmarkRequestPayload} from "@/app/(with-Layout)/(with-header)/recipe/ai/_source/config";
-import {POST as postBookmark} from "@/app/(with-Layout)/(with-header)/recipe/ai/_source/actions/bookmark";
+import {MenuApiResponse} from "@/app/(with-Layout)/(no-header)/recipe/ai/_source//config";
+import {AddBookmarkRequestPayload} from "@/app/(with-Layout)/(no-header)/recipe/ai/_source/config";
+import {
+    DELETE as deleteBookmark,
+    POST as postBookmark
+} from "@/app/(with-Layout)/(no-header)/recipe/ai/_source/actions/bookmark";
 import {useRef} from "react";
 
 interface Props {
@@ -49,7 +52,10 @@ const RecommendedMenu = ({index, recipe}: Props) => {
 
         if (isBookmarked) {
             await postBookmark(payload);
+            return;
         }
+
+        await deleteBookmark(name);
     };
 
     return (

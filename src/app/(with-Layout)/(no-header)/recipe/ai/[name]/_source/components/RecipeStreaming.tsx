@@ -5,8 +5,8 @@ import {
     AiRecipeRequestPayload,
     RecipeOptions,
     UsedIngredient
-} from "@/app/(with-Layout)/(with-header)/recipe/ai/_source//config";
-import {POST as postRecipe} from "@/app/(with-Layout)/(with-header)/recipe/ai/_source/actions/recipe";
+} from "@/app/(with-Layout)/(no-header)/recipe/ai/_source//config";
+import {POST as postRecipe} from "@/app/(with-Layout)/(no-header)/recipe/ai/_source/actions/recipe";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import remarkBreaks from "remark-breaks";

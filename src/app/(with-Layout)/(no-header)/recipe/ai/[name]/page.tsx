@@ -11,19 +11,22 @@ import {
     DetailedMenuOptions,
     Nutrition,
     UsedIngredient
-} from "@/app/(with-Layout)/(with-header)/recipe/ai/_source/config";
-import {POST as postMenus} from "@/app/(with-Layout)/(with-header)/recipe/ai/_source/actions/menus";
-import {POST as postBookmark} from "@/app/(with-Layout)/(with-header)/recipe/ai/_source/actions/bookmark";
+} from "@/app/(with-Layout)/(no-header)/recipe/ai/_source/config";
+import {POST as postMenus} from "@/app/(with-Layout)/(no-header)/recipe/ai/_source/actions/menus";
+import {
+    DELETE as deleteBookmark,
+    POST as postBookmark
+} from "@/app/(with-Layout)/(no-header)/recipe/ai/_source/actions/bookmark";
 import {Bookmark} from "lucide-react";
 import {GoShareAndroid} from "react-icons/go";
-import RecipeStreaming from "@/app/(with-Layout)/(with-header)/recipe/ai/[name]/_source/components/RecipeStreaming";
+import RecipeStreaming from "@/app/(with-Layout)/(no-header)/recipe/ai/[name]/_source/components/RecipeStreaming";
 
 const Page = () => {
     const {selectedRecipe, availableIngredients} = useAiRecipe();
     const recipeName = selectedRecipe?.name;
     const cookingTime = selectedRecipe?.cookingTime;
     const calories = selectedRecipe?.calories;
-    const representativeImageUrl = selectedRecipe?.imageUrls
+    const representativeImageUrl = selectedRecipe?.imageUrls && selectedRecipe.imageUrls.length > 0
         ? selectedRecipe.imageUrls[0]
         : process.env.NEXT_PUBLIC_DEFAULT_IMAGE_URL;
 
@@ -66,7 +69,12 @@ const Page = () => {
             nutrition: nutrition,
         };
 
-        await postBookmark(payload);
+        if (isBookmarked) {
+            await postBookmark(payload);
+            return;
+        }
+
+        await deleteBookmark(recipeName!);
     };
 
     const AI_MODEL = process.env.NEXT_PUBLIC_AI_DETAILED_MENU_REQUEST_MODEL!;
@@ -138,7 +146,7 @@ const Page = () => {
     }, [recipeIntroduction]);
 
     return (
-        <div className="mt-[60px] px-4 pb-16">
+        <div className="mt-4 px-4 pb-16">
             {/* TODO: 로딩 페이지 완성 후 대체 */}
             {usedIngredients.length === 0 ? (
                 <p className="text-center text-gray-500">로딩 중...</p>

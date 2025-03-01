@@ -3,7 +3,8 @@ import BASE_API_URL from "@/constants/apiUrl";
 export const AI_MENUS_REQUEST_API_BASE_URL: string = process.env.NEXT_PUBLIC_LLM_SERVER_URL!;
 export const AI_MENUS_REQUEST_ENDPOINT: string = process.env.NEXT_PUBLIC_AI_MENUS_REQUEST_ENDPOINT!;
 export const AI_RECOMMENDATION_REQUEST_ENDPOINT: string = process.env.NEXT_PUBLIC_AI_RECOMMENDATION_REQUEST_ENDPOINT!;
-export const RECIPE_SERVICE_URL: string = BASE_API_URL + process.env.NEXT_PUBLIC_AI_RECIPE_REQUEST_ENDPOINT!;
+// export const RECIPE_SERVICE_URL: string = BASE_API_URL + process.env.NEXT_PUBLIC_AI_RECIPE_REQUEST_ENDPOINT!;
+export const RECIPE_SERVICE_URL: string = BASE_API_URL + process.env.NEXT_PUBLIC_RECIPE_SERVER_ENDPOINT!
 
 export interface AiMenusRequestPayload {
     llm_type: string;

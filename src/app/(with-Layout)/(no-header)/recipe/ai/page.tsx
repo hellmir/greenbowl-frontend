@@ -6,10 +6,10 @@ import {
     AiMenusRequestPayload,
     MenuApiResponse,
     MenuOptions
-} from "@/app/(with-Layout)/(with-header)/recipe/ai/_source//config";
-import {POST} from "@/app/(with-Layout)/(with-header)/recipe/ai/_source/actions/menus"
+} from "@/app/(with-Layout)/(no-header)/recipe/ai/_source//config";
+import {POST} from "@/app/(with-Layout)/(no-header)/recipe/ai/_source/actions/menus"
 import {useAiRecipe} from "@/store/aiRecipeStore";
-import RecommendedMenu from "@/app/(with-Layout)/(with-header)/recipe/ai/_source/components/RecommendedMenu";
+import RecommendedMenu from "@/app/(with-Layout)/(no-header)/recipe/ai/_source/components/RecommendedMenu";
 import {useSearchParams} from "next/navigation";
 
 const Page = () => {
@@ -94,7 +94,7 @@ const Page = () => {
     };
 
     return (
-        <div className="mt-[60px] px-4 pb-16">
+        <div className="mt-4 px-4 pb-16">
             <div className="flex flex-col justify-between h-screen">
                 <div>
                     <div className="flex items-center mb-14">
