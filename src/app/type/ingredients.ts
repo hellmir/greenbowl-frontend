@@ -9,7 +9,10 @@ interface BaseIngredient {
 export interface CategoryIngredient extends BaseIngredient {
   default: boolean;
 }
-export type CreateCategoryIngredient = Omit<CategoryIngredient, "id">;
+export type CreateCategoryIngredient = Omit<
+  CategoryIngredient,
+  "id" | "default"
+>;
 export type DeleteCategoryIngredient = Pick<CategoryIngredient, "id">[];
 
 export interface FridgeIngredient extends BaseIngredient {

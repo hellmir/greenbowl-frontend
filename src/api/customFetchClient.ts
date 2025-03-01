@@ -17,8 +17,7 @@ const customFetchClient = async (url: string, options: RequestInit = {}) => {
 
   try {
     return response.json();
-  } catch (e) {
-  } finally {
+  } catch {
     return;
   }
 };
