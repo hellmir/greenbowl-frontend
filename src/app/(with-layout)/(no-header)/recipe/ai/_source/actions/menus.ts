@@ -3,7 +3,7 @@ import {
     AI_MENUS_REQUEST_ENDPOINT,
     AiDetailedMenusRequestPayload,
     AiMenusRequestPayload
-} from "@/app/(with-Layout)/(no-header)/recipe/ai/_source/config";
+} from "@/app/(with-layout)/(no-header)/recipe/ai/_source/config";
 
 
 export const POST = async (payload: AiMenusRequestPayload | AiDetailedMenusRequestPayload) => {

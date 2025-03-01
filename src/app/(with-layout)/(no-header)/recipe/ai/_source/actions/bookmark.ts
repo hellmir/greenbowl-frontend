@@ -2,7 +2,7 @@ import {
     AddBookmarkRequestPayload,
     AddDetailedBookmarkRequestPayload,
     RECIPE_SERVICE_URL
-} from "@/app/(with-Layout)/(no-header)/recipe/ai/_source/config";
+} from "@/app/(with-layout)/(no-header)/recipe/ai/_source/config";
 
 const DETAILED_RECIPE_ENDPOINT = "detailed";
 const ONE_LINE_INTRODUCTION = "oneLineIntroduction";
