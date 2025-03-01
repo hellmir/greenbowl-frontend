@@ -19,6 +19,12 @@ const imagePath = {
     src: "/image/empty.png",
     alt: "냉장고 빈 화면 이미지",
   },
+  onboarding: {
+    recipe: {
+      src: "/image/onboarding/recipe.png",
+      alt: "온보딩 레시피 설명 이미지",
+    },
+  },
 };
 
 export default imagePath;
