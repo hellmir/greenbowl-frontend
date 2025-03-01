@@ -9,7 +9,7 @@ gsap.registerPlugin(useGSAP);
 
 const Alert = () => {
   const { isOpen } = useAlertStore();
-  console.log(isOpen);
+
   return <>{isOpen && <AlertContent />}</>;
 };
 

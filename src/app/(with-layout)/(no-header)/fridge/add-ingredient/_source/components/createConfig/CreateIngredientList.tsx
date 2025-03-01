@@ -5,7 +5,10 @@ import CreateIngredient from "./CreateIngredient";
 import { useCategoryIngredientsStore } from "@/store/categoryIngredientsStore";
 import { useEffect, useState, useTransition } from "react";
 import { Button } from "@/components/ui/button";
-import { createFridgeIngredients } from "@/app/(with-layout)/(with-header)/fridge/my-ingredient/_source/actions/fridgeIngredient";
+import {
+  createFridgeIngredients,
+  createFridgeIngredientsWithDefault,
+} from "@/app/(with-layout)/(with-header)/fridge/my-ingredient/_source/actions/fridgeIngredient";
 import { useRouter } from "next/navigation";
 import route from "@/constants/route";
 import formatDate from "@/utils/date/formatDate";
@@ -25,7 +28,7 @@ const CreateIngredientList = () => {
     "냉장고에 재료를 추가했습니다.",
     () => router.push(route.myFridge.myIngredient)
   );
-
+  console.log(selectedIngredientsMap);
   useEffect(() => {
     const newFridgeIngredients = [...selectedIngredientsMap.values()].map(
       (ingredient): CreateFridgeIngredient => ({
@@ -39,9 +42,19 @@ const CreateIngredientList = () => {
   }, [selectedIngredientsMap]);
 
   const handleClickSubmitBtn = () => {
+    const defaultIngredient = fridgeIngredients.filter((ingredient) => {
+      console.log(ingredient);
+      return ingredient;
+    });
+    const ingredients = fridgeIngredients.filter((ingredient) => !ingredient);
+
+    console.log(defaultIngredient);
     startTransition(async () => {
       try {
-        await createFridgeIngredients(fridgeIngredients);
+        await Promise.all([
+          createFridgeIngredients(ingredients),
+          createFridgeIngredientsWithDefault(defaultIngredient),
+        ]);
         afterAction();
       } catch (e) {
         console.error(e);

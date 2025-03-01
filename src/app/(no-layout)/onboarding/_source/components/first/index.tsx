@@ -7,11 +7,15 @@ import route from "@/constants/route";
 import DietOnboardCharacter from "@/components/character/DietOnboardCharacter";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { useRef } from "react";
+import { RefObject, useRef } from "react";
 
 gsap.registerPlugin(useGSAP);
 
-const FirstOnboarding = () => {
+const FirstOnboarding = ({
+  observeTarget,
+}: {
+  observeTarget: RefObject<HTMLAnchorElement | null>;
+}) => {
   const ref = useRef<HTMLDivElement>(null);
 
   useGSAP(
@@ -44,12 +48,12 @@ const FirstOnboarding = () => {
   );
 
   return (
-    <div ref={ref} className=" relative h-screen min-h-[500px]">
+    <div ref={ref} className="pt-20 relative h-screen min-h-[500px]">
       <div className="absolute inset-0 top-0 -z-50">
         <BackgroundSvg />
       </div>
 
-      <div className="h-screen min-h-[500px] z-20 px-7 w-full flex flex-col items-center pt-20 gap-6 ">
+      <div className="h-screen min-h-[500px] z-20 px-7 w-full flex flex-col items-center  gap-6 ">
         <p className="whitespace-pre text-center heading-l text-content-primary firstTexts">
           <span className="block">{"나의 건강을 담은 영양가 있는\n"}</span>
           <span className="block">{"맞춤형 AI 요리 코치\n"}</span>
@@ -63,6 +67,7 @@ const FirstOnboarding = () => {
         <Link
           href={route.onboarding.login}
           className="w-full flex flex-col items-center firstStartBtn"
+          ref={observeTarget}
         >
           <Button className="w-1/2 h-10 rounded-xl">시작하기</Button>
         </Link>

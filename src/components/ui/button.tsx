@@ -63,7 +63,12 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     return (
       <>
         {variant === "bottom" ? (
-          <div className="fixed pr-8 md:pr-0 w-full max-w-[35.4rem] bottom-20 z-30">
+          <div
+            className={cn(
+              "fixed pr-8 md:pr-0 w-full max-w-[35.4rem] bottom-20 z-30",
+              className
+            )}
+          >
             <Comp
               className={cn(buttonVariants({ variant, size, className }))}
               ref={ref}

@@ -14,7 +14,7 @@ const PigTailBottom = () => {
         },
         {
           y: 0,
-          repeat: 4,
+          repeat: -1,
           yoyo: true,
           ease: "power3.out",
           duration: 0.3,

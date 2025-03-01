@@ -1,7 +1,7 @@
 const BackgroundSvg = () => {
   return (
     <svg
-      className="  h-full max-w-[37.5rem] w-full mx-auto -z-20"
+      className="h-full max-w-[37.5rem] w-full mx-auto -z-20"
       viewBox="0 0 340 568"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
