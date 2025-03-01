@@ -2,8 +2,12 @@
 
 import {useEffect, useState} from "react";
 import {IoIosArrowBack} from "react-icons/io";
-import {AiMenusRequestPayload, MenuApiResponse, MenuOptions} from "@/app/api/recipe/ai/config";
-import {POST} from "@/app/api/recipe/ai/gpt/menus";
+import {
+    AiMenusRequestPayload,
+    MenuApiResponse,
+    MenuOptions
+} from "@/app/(with-Layout)/(with-header)/recipe/ai/_source//config";
+import {POST} from "@/app/(with-Layout)/(with-header)/recipe/ai/_source/actions/menus"
 import {useAiRecipe} from "@/store/aiRecipeStore";
 import RecommendedMenu from "@/app/(with-Layout)/(with-header)/recipe/ai/_source/components/RecommendedMenu";
 import {useSearchParams} from "next/navigation";
@@ -24,7 +28,6 @@ const Page = () => {
             */
 
             const availableIngredients = searchParams.getAll("ingredients");
-            console.log(availableIngredients, "availableIngredients")
 
             /* 기존 파라미터 대체
             setAvailableIngredients(availablePorkBellyIngredients);
@@ -42,9 +45,6 @@ const Page = () => {
 
             const cachedData = sessionStorage.getItem("ai_recipes");
             const cachedParams = sessionStorage.getItem("option_params");
-
-            console.log(cachedParams)
-            console.log(JSON.stringify(selectedOptions), "abcd")
 
             if (cachedData && cachedParams && cachedParams === JSON.stringify(selectedOptions)) {
                 setRecipes(JSON.parse(cachedData));

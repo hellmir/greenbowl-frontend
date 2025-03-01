@@ -1,8 +1,8 @@
 import {
     AI_MENUS_REQUEST_API_BASE_URL,
-    AI_RECIPE_REQUEST_ENDPOINT,
+    AI_RECOMMENDATION_REQUEST_ENDPOINT,
     AiRecipeRequestPayload,
-} from "@/app/api/recipe/ai/config";
+} from "@/app/(with-Layout)/(with-header)/recipe/ai/_source/config";
 import React from "react";
 
 interface Props {
@@ -13,16 +13,18 @@ interface Props {
 }
 
 export const POST = async ({setRecipeIntroduction, setIsStreaming, controller, payload}: Props) => {
-    const response = await fetch(AI_MENUS_REQUEST_API_BASE_URL + AI_RECIPE_REQUEST_ENDPOINT, {
+    const response = await fetch(AI_MENUS_REQUEST_API_BASE_URL + AI_RECOMMENDATION_REQUEST_ENDPOINT, {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         signal: controller.signal,
         body: JSON.stringify(payload)
     });
+
     if (!response.body) {
         setIsStreaming(false);
         return;
     }
+
     const reader = response.body.getReader();
     const decoder = new TextDecoder("utf-8");
     let done = false;
@@ -50,7 +52,7 @@ export const POST = async ({setRecipeIntroduction, setIsStreaming, controller, p
             }
         }
     } catch (error) {
-        console.log("스트리밍 중단:", error);
+        console.log("Streaming error", error);
     }
     setIsStreaming(false);
 };
