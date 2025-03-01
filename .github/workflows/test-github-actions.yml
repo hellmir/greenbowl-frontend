@@ -1,0 +1,48 @@
+name: CI CD DesignSystem
+
+on:
+  push:
+    branches:
+      - design
+    paths:
+      - tokens.json
+
+jobs:
+  transform-tokens:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run Token Transformer
+        run: |
+          npx token-transformer tokens.json ./src/style/global.json core
+          git config --global user.name "사용자"
+          git config --global user.email "이메일"
+          git add .
+          git commit -m 'Figma updated styles'
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+
+      - name: Run transform script
+        run: node transformToken.js
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v4
+        with:
+          token: ${{ secrets.ACCESS_TOKEN }}
+          commit-message: Transform tokens and update styles
+          branch: transform-tokens-branch
+          title: "Transform tokens and update styles"
+          body: "This PR transforms tokens and updates styles automatically."
+          base: main
