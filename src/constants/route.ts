@@ -29,6 +29,10 @@ const route = {
   privacy: {
     root: "/privacy",
   },
+  onboarding: {
+    root: "/onboarding",
+    login: "/onboarding/login",
+  },
 };
 
 export default route;
