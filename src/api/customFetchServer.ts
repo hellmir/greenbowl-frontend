@@ -3,9 +3,9 @@ import { getServerSession } from "next-auth";
 
 const customFetchServer = async (url: string, options: RequestInit = {}) => {
   const token = await getServerSession(authOptions);
-
+  console.log(token);
   const headers = {
-    Authorization: token ? `Bearer ${token.accessToken}` : "",
+    Authorization: token?.accessToken ? `Bearer ${token.accessToken}` : "",
     "Content-Type": "application/json",
     ...options.headers,
   };
