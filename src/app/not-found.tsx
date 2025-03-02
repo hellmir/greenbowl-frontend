@@ -1,8 +1,7 @@
 import ErrorCharacter from "@/components/character/ErrorCharacter";
 import { Button } from "@/components/ui/button";
-import route from "@/constants/route";
+
 import { Metadata } from "next";
-import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "404 not-found",
