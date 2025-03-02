@@ -16,7 +16,7 @@ const AddIngredientContainer = async ({ categoryId }: Props) => {
       <Header />
       <div className=" ">
         <CategoriesContainer />
-        <Suspense fallback={<CategoryIngredientSkeleton />}>
+        <Suspense key={categoryId} fallback={<CategoryIngredientSkeleton />}>
           <IngredientsContainer categoryId={categoryId} />
         </Suspense>
       </div>
