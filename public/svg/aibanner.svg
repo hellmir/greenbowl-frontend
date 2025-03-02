@@ -9,7 +9,7 @@
 <ellipse cx="284.5" cy="2.5" rx="25.5" ry="26.5" fill="url(#paint1_radial_2377_6513)"/>
 </g>
 <g style="mix-blend-mode:soft-light" opacity="0.72" filter="url(#filter2_f_2377_6513)">
-<path d="M6 38C75 -11.5 98.5 -7 186.755 24.6878C283.478 59.416 398.463 -14.8104 443 -54" stroke="url(#paint2_linear_2377_6513)" stroke-width="32" stroke-linecap="round"/>
+<path d="M6 38C75 -11.5 98.5 -7 186.755 24.6878C283.478 59.416 398.463 -14.8104 443 -54" stroke="url(#paint2_linear_2377_6513)" strokeWidth="32" strokeLinecap="round"/>
 </g>
 
 <foreignObject x="-11.7" y="-7.7" width="342.4" height="56.4"><div xmlns="http://www.w3.org/1999/xhtml" style="backdrop-filter:blur(3.85px);clip-path:url(#bgblur_2_2377_6513_clip_path);height:100%;width:100%"></div></foreignObject><rect data-figma-bg-blur-radius="7.7" x="-4" width="327" height="41" fill="white" fill-opacity="0.04"/>
