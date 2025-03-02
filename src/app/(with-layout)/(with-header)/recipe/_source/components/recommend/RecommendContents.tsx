@@ -8,12 +8,10 @@ import useEditIngredients from "@/store/editIngredientsStore";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import route from "@/constants/route";
-import { useSession } from "next-auth/react";
 
 const RecommendContents = () => {
   const { ingredientsMap, clear } = useEditIngredients();
   const router = useRouter();
-  const session = useSession();
 
   const [selectedTime, setSelectedTime] = useState<CookTimes>("all");
   const [selectedType, setSelectedType] = useState<FoodTypes>("all");

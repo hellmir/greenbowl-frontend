@@ -27,6 +27,10 @@ const nextConfig: NextConfig = {
         hostname: "img1.kakaocdn.net",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "cdn.pixabay.com",
+      },
     ],
   },
 };
