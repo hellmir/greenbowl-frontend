@@ -18,7 +18,7 @@ const authOptions: NextAuthOptions = {
     async jwt({ token, account }) {
       if (account) {
         try {
-          console.log(token);
+    
           const res = await fetch(`${BASE_API_URL}/api/users/login`, {
             method: "POST",
             headers: {

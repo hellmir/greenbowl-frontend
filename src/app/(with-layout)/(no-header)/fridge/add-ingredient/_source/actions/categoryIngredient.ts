@@ -30,7 +30,7 @@ export const createCategoryIngredients = async ({
     }),
     cache: "no-cache",
   });
-  console.log(res.ok);
+
 
   if (!res.ok) throw new Error(JSON.stringify(res.status));
 

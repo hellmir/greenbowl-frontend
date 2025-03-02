@@ -14,7 +14,7 @@ const RecommendContents = () => {
   const { ingredientsMap, clear } = useEditIngredients();
   const router = useRouter();
   const session = useSession();
-  console.log(session);
+
   const [selectedTime, setSelectedTime] = useState<CookTimes>("all");
   const [selectedType, setSelectedType] = useState<FoodTypes>("all");
 

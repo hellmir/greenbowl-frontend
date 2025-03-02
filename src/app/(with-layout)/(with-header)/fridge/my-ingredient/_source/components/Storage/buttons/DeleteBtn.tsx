@@ -39,7 +39,7 @@ const DeleteBtn = () => {
         ]);
         afterMutationAction();
       } catch (e) {
-        console.log(e);
+  
         play("삭제에 실패했습니다.");
       }
     });

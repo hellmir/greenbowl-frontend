@@ -30,7 +30,7 @@ const Onboarding = () => {
     return () => observer.disconnect();
   }, []);
 
-  console.log(isVisible);
+
   return (
     <div className="relative">
       <Header isChangeHeader={isVisible} />
