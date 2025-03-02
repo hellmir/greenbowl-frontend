@@ -13,8 +13,9 @@ const IngredientsContainer = async ({ categoryId }: Props) => {
         <IngredientsList initialIngredients={ingredients} />
       </div>
     );
-  } catch {
-    <div>데이터를 가져오는데 실패했습니다</div>;
+  } catch (e) {
+    console.error(e);
+    return <div>데이터를 가져오는데 실패했습니다</div>;
   }
 };
 

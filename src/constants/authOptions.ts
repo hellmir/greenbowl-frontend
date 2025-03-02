@@ -18,7 +18,6 @@ const authOptions: NextAuthOptions = {
     async jwt({ token, account }) {
       if (account) {
         try {
-    
           const res = await fetch(`${BASE_API_URL}/api/users/login`, {
             method: "POST",
             headers: {
@@ -29,7 +28,8 @@ const authOptions: NextAuthOptions = {
 
           if (!res.ok) throw new Error("서버 로그인 실패");
 
-          const { accessToken } = await res.json();
+          const accessToken = res.headers.get("Authorization");
+
           if (!accessToken) throw new Error("토큰이 존재하지 않습니다.");
 
           token.accessToken = accessToken;
@@ -45,6 +45,7 @@ const authOptions: NextAuthOptions = {
       return session;
     },
   },
+
   pages: {
     signIn: "/login",
     error: "/error",

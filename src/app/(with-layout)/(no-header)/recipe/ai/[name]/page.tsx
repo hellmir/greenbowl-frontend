@@ -149,71 +149,87 @@ const Page = () => {
   }, [recipeIntroduction]);
 
   return (
-    <div className="mt-4 px-4 pb-16">
+    <div className="bg-white">
       {/* TODO: 로딩 페이지 완성 후 대체 */}
       {usedIngredients.length === 0 ? (
         <p className="text-center text-gray-500">로딩 중...</p>
       ) : (
-        <div className="flex flex-col justify-between h-screen">
+        <div className="">
           <div>
-            <div className="grid grid-cols-3 items-center mb-6">
-              <IoIosArrowBack
-                className="text-2xl cursor-pointer size-8"
-                onClick={handleClickArrowBack}
-              />
-              <h2 className="text-center text-2xl font-bold">추천 레시피</h2>
-              <div className="flex justify-end gap-2">
-                <GoShareAndroid className="w-8 h-8 mx-2" />
-                <Bookmark
-                  className="w-8 h-8"
-                  onClick={handleClickBookmark}
-                  ref={bookmarkRef}
+            <header className=" top-0 z-20 bg-foundation-secondary sticky w-[calc(100%+32px)] -ml-4 -mr-[50px] px-4">
+              <div className="flex h-14 items-center justify-center relative">
+                <IoIosArrowBack
+                  className=" cursor-pointer size-6 absolute left-0"
+                  onClick={handleClickArrowBack}
                 />
+                <h2 className="heading-m text-content-secondary">
+                  추천 레시피
+                </h2>
+                <div className=" absolute right-0 flex gap-2">
+                  <GoShareAndroid className="w-6 h-6 mr-4" />
+                  <Bookmark
+                    className="w-6 h-6"
+                    onClick={handleClickBookmark}
+                    ref={bookmarkRef}
+                  />
+                </div>
               </div>
-            </div>
+            </header>
 
-            <div className="relative w-full h-100">
+            <div className="relative max-w-[37.5rem]  w-[calc(100%+32px)] -ml-4 -mr-[50px]">
               <img
                 src={representativeImageUrl}
                 alt="메뉴 이미지"
-                className="w-full h-full object-cover"
+                className="w-full h-auto object-cover"
               />
-              <img
-                src="/svg/aibanner.svg"
-                alt="배너"
-                className="inline-block w-full h-13"
-              />
-            </div>
-
-            <h1 className="text-2xl font-bold text-start mt-8">{recipeName}</h1>
-
-            <div className="text-gray-500 mt-3">{oneLineIntroduction}</div>
-
-            <div className="flex justify-start gap-4 text-gray-600 mt-3">
-              <div className="flex items-center gap-1.5 text-sm font-medium text-gray-600">
-                <MdOutlineAccessTimeFilled />
-                <span className="text-green-600">{cookingTime}</span> min
-              </div>
-              <div className="flex items-center gap-1.5 text-sm font-medium text-gray-600">
-                <FaFire />
-                <span className="text-green-600">{calories}</span> kcal
+              <div className=" relative ">
+                <img
+                  src="/svg/aibanner.svg"
+                  alt="배너"
+                  className="inline-block w-full h-auto "
+                />
+                <p className=" absolute heading-s h-full top-0 w-full flex justify-center items-center md:heading-xl">
+                  그린볼 <span className="text-foundation-primary">AI</span>가
+                  제안하는 레시피에요!
+                </p>
               </div>
             </div>
 
-            <div className="mt-8">
-              <h2 className="text-lg font-bold border-b pb-2">재료</h2>
-              <ul className="mt-2 space-y-2 flex flex-col">
+            <div className="py-5">
+              <h1 className="text-content-secondary heading-m">{recipeName}</h1>
+
+              <div className=" paragraph-xs text-content-tertiary mt-3">
+                {oneLineIntroduction}
+              </div>
+
+              <div className="flex justify-start gap-4 text-gray-600 mt-4">
+                <div className="flex items-center gap-1.5 text-sm font-medium text-gray-600">
+                  <MdOutlineAccessTimeFilled className="text-content-quarternary" />
+                  <span className="text-green-600">{cookingTime}</span>
+                  <span className=" text-content-quarternary">min</span>
+                </div>
+                <div className="flex items-center gap-1.5 text-sm font-medium text-gray-600">
+                  <FaFire className=" text-content-quarternary" />
+                  <span className="text-green-600">{calories}</span>
+                  <span className="text-content-quarternary">kcal</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-2">
+              <h2 className="heading-s text-content-secondary mt-3">재료</h2>
+              <ul className="mt-1 flex flex-col ">
                 {usedIngredients.length > 0 ? (
                   usedIngredients.map((item, index) => (
                     <li
                       key={index}
-                      className="flex justify-between p-2 border-b-2 border-gray-200"
+                      className="flex label-s text-content-tertiary justify-between h-11 py-3 border-b-border-default"
                     >
                       <span className="flex">
                         <img
                           src="/image/meat.png"
                           alt={item.name}
-                          className="w-7 h-7 mx-2"
+                          className="w-5 h-5 mr-2"
                         />
                         {item.name}
                       </span>
