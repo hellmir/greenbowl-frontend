@@ -9,6 +9,7 @@ interface Props {
 }
 
 export const FoodType = ({ handleClickItem, selectedType }: Props) => {
+  
   return (
     <div className="p-3">
       <div className="label-s text-content-secondary mb-3">음식 종류</div>

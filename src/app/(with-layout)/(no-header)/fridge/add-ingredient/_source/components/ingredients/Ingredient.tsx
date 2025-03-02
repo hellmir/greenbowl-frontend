@@ -28,10 +28,8 @@ const Ingredient = ({ ingredient }: Props) => {
         if (selectedIngredientsMap.has(ingredient.id)) {
           toggleIngredient(ingredient);
         }
-        const a = await deleteCategoryIngredient(ingredient.id);
+        await deleteCategoryIngredient(ingredient.id);
         // await new Promise((res) => setTimeout(() > res, 2000));
-
-        console.log(a);
 
         afterAction();
       } catch (e) {

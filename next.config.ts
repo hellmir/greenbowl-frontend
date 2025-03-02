@@ -6,7 +6,12 @@ const nextConfig: NextConfig = {
     return [
       {
         source: "/",
-        destination: route.recipe.root,
+        destination: route.onboarding.root,
+        permanent: false,
+      },
+      {
+        source: route.myFridge.root,
+        destination: route.myFridge.myIngredient,
         permanent: false,
       },
     ];
@@ -21,6 +26,14 @@ const nextConfig: NextConfig = {
         protocol: "http",
         hostname: "img1.kakaocdn.net",
         pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "cdn.pixabay.com",
+      },
+      {
+        protocol: "https",
+        hostname: "images.unsplash.com",
       },
     ],
   },

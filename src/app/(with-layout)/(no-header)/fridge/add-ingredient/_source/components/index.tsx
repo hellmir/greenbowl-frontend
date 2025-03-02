@@ -10,13 +10,14 @@ interface Props {
   categoryId: number;
 }
 
-const AddIngredientContainer = async ({ categoryId }: Props) => {
+const AddIngredientContainer = ({ categoryId }: Props) => {
   return (
     <div className=" ">
       <Header />
       <div className=" ">
         <CategoriesContainer />
-        <Suspense fallback={<CategoryIngredientSkeleton />}>
+
+        <Suspense key={categoryId} fallback={<CategoryIngredientSkeleton />}>
           <IngredientsContainer categoryId={categoryId} />
         </Suspense>
       </div>

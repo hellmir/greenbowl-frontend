@@ -1,25 +1,23 @@
 import { CategoryIngredient } from "@/app/type/ingredients";
 import XIcon from "@/components/icons/XIcon";
+import { categories } from "@/constants/categories";
 import { useCategoryIngredientsStore } from "@/store/categoryIngredientsStore";
 import Image from "next/image";
 
 interface Props {
-  category: string;
+  sequence: number;
   selectedIngredient: CategoryIngredient;
 }
 
-const Head = ({ category, selectedIngredient }: Props) => {
+const Head = ({ sequence, selectedIngredient }: Props) => {
   const { toggleIngredient } = useCategoryIngredientsStore();
+  const category = categories[sequence - 1];
+
   return (
     <div className="w-full min-h-5  flex justify-between items-center">
-      <Image
-        src={"/anything.gif"}
-        alt="카테고리 이미지"
-        height={40}
-        width={40}
-      />
+      {<category.icon />}
       <div className="flex items-center grow justify-start ml-3 mr-3 label-m text-content-secondary ">
-        <p className="">{category}</p>
+        <p className="">{category.name}</p>
         <div className="h-5 w-5 flex items-center justify-center ml-1 mr-1">
           <Image
             className=""

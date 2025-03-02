@@ -13,14 +13,10 @@ const Head = ({ ingredient }: Props) => {
     (state) => state.toggleIngredient
   );
   const handleClickXBtn = () => toggleIngredient(ingredient);
+  const CategoryIcon = categories[ingredient.sequence - 1].icon();
   return (
     <div className="w-full min-h-5  flex justify-between items-center">
-      <Image
-        src={"/anything.gif"}
-        alt="카테고리 이미지"
-        height={40}
-        width={40}
-      />
+      {CategoryIcon}
       <div className="flex items-center grow justify-start ml-3 mr-3 label-m text-content-secondary ">
         <p className="">{categories[ingredient.sequence].name}</p>
         <div className="h-5 w-5 flex items-center justify-center ml-1 mr-1">

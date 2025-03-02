@@ -16,7 +16,7 @@ export const navList: NavItem[] = [
   {
     name: "냉장고",
     icon: FridgeIcon,
-    href: route.myFridge.myIngredient,
+    href: route.myFridge.root,
     isLoginRequire: true,
   },
   {

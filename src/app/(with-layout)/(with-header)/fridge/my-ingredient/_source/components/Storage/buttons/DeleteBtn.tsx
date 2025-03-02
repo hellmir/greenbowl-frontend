@@ -38,8 +38,7 @@ const DeleteBtn = () => {
             .map((ingredient) => ({ id: ingredient.id })),
         ]);
         afterMutationAction();
-      } catch (e) {
-        console.log(e);
+      } catch {
         play("삭제에 실패했습니다.");
       }
     });

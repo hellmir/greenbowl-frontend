@@ -28,7 +28,7 @@ const NavigationLoginRequireItem = ({ item, pathName }: Props) => {
       return;
     }
 
-    router.push(item.href);
+    router.push(item.href, { scroll: false });
   };
   const handleOkBtn = () => {
     router.push(route.login.root);
@@ -37,7 +37,7 @@ const NavigationLoginRequireItem = ({ item, pathName }: Props) => {
     <>
       <li onClick={handleClick} className="w-full ">
         <div
-          className={`hover:cursor-pointer h-full flex flex-col justify-center items-center  paragraph-xs ${isCurrentPath ? "text-foundation-primary" : "text-content-tertiary"}`}
+          className={`hover:cursor-pointer h-full flex flex-col justify-center items-center paragraph-xs ${isCurrentPath ? "text-foundation-primary" : "text-content-tertiary"}`}
         >
           <Icon
             fill={`${isCurrentPath ? "foundation-primary" : "content-quinary"}`}

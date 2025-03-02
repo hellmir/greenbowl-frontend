@@ -5,21 +5,16 @@ import {
 import BASE_API_URL from "@/constants/apiUrl";
 
 export const getCategoryIngredients = async (sequence = 1) => {
-  try {
-    const res = await fetch(
-      `${BASE_API_URL}/api/fridges/category-items?sequence=${sequence}`,
-      { cache: "no-cache" }
-    );
+  const res = await fetch(
+    `${BASE_API_URL}/api/fridges/category-items?sequence=${sequence}`,
+    { cache: "no-cache" }
+  );
 
-    const json: CategoryIngredient[] = await res.json();
+  const json: CategoryIngredient[] = await res.json();
 
-    if (!res.ok) throw new Error(`${res.status}`);
+  if (!res.ok) throw new Error(`${res.status}`);
 
-    return json;
-  } catch (e) {
-    console.log(e);
-    return [];
-  }
+  return json;
 };
 
 export const createCategoryIngredients = async ({
@@ -35,7 +30,7 @@ export const createCategoryIngredients = async ({
     }),
     cache: "no-cache",
   });
-  console.log(res.ok);
+
 
   if (!res.ok) throw new Error(JSON.stringify(res.status));
 

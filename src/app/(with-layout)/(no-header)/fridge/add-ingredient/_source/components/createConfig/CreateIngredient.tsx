@@ -5,8 +5,6 @@ import ExpirationDate from "./ExpirationDate";
 import Quantity from "./Quantity";
 import StorageCondition from "./StorageCondition";
 
-import { categories } from "@/constants/categories";
-
 import CalendarModal from "@/components/modal/CalendarModal";
 import {
   CategoryIngredient,
@@ -22,12 +20,14 @@ interface Props {
   setCreateFridgeIngredients: Dispatch<
     SetStateAction<CreateFridgeIngredient[]>
   >;
+  sequence: number;
 }
 
 const CreateIngredient = memo(function CreateIngredient({
   ingredient,
   selectedIngredient,
   setCreateFridgeIngredients,
+  sequence,
 }: Props) {
   const [active, setActive] = useState(false);
 
@@ -60,10 +60,7 @@ const CreateIngredient = memo(function CreateIngredient({
 
   return (
     <div className="px-3 pb-3 pt-2 bg-foundation-secondary rounded-[20px] mb-5">
-      <Head
-        category={categories[1].name}
-        selectedIngredient={selectedIngredient}
-      />
+      <Head sequence={sequence} selectedIngredient={selectedIngredient} />
       <div className=" mt-5 flex flex-col gap-3 label-s text-content-tertiary  ">
         <ExpirationDate
           expirationDate={ingredient.expirationDate}
