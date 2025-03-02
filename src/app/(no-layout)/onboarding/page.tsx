@@ -7,7 +7,7 @@ import Onboarding from "./_source";
 const page = async () => {
   const session = await getServerSession(authOptions);
 
-  if (!session) {
+  if (session) {
     redirect(route.recipe.root);
   }
 
