@@ -28,7 +28,7 @@ const CreateIngredientList = () => {
     "냉장고에 재료를 추가했습니다.",
     () => router.push(route.myFridge.myIngredient)
   );
-  console.log(selectedIngredientsMap);
+
   useEffect(() => {
     const newFridgeIngredients = [...selectedIngredientsMap.values()].map(
       (ingredient): CreateFridgeIngredient => ({
@@ -43,12 +43,10 @@ const CreateIngredientList = () => {
 
   const handleClickSubmitBtn = () => {
     const defaultIngredient = fridgeIngredients.filter((ingredient) => {
-      console.log(ingredient);
       return ingredient;
     });
     const ingredients = fridgeIngredients.filter((ingredient) => !ingredient);
 
-    console.log(defaultIngredient);
     startTransition(async () => {
       try {
         await Promise.all([
@@ -78,6 +76,7 @@ const CreateIngredientList = () => {
                 ingredient={ingredient}
                 selectedIngredient={selectedIngredient}
                 setCreateFridgeIngredients={setFridgeIngredients}
+                sequence={selectedIngredient.sequence}
               />
             );
           }

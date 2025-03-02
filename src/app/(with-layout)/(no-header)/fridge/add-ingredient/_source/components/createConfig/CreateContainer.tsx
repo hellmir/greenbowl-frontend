@@ -10,7 +10,7 @@ const CreateContainer = ({ handleClose }: Props) => {
   return (
     <div className=" z-30">
       <Header handleClose={handleClose} />
-      <div className="px-4">
+      <div className="px-4 mb-20">
         <CreateIngredientList />
       </div>
       <Navigation />
