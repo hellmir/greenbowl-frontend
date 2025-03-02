@@ -9,6 +9,11 @@ const nextConfig: NextConfig = {
         destination: route.onboarding.root,
         permanent: false,
       },
+      {
+        source: route.myFridge.root,
+        destination: route.myFridge.myIngredient,
+        permanent: false,
+      },
     ];
   },
   images: {
