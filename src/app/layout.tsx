@@ -30,6 +30,9 @@ const myFont = localFont({
 
 export const metadata: Metadata = {
   title: "메인",
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({
