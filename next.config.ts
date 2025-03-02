@@ -6,7 +6,7 @@ const nextConfig: NextConfig = {
     return [
       {
         source: "/",
-        destination: route.recipe.root,
+        destination: route.onboarding.root,
         permanent: false,
       },
     ];

@@ -18,6 +18,7 @@ const LoginPage = async () => {
         <LoginTitle />
         <CharacterImg />
         <SocialLoginButtons />
+        <div className="min-h-10"></div>
         <LoginTerms />
       </div>
     </div>
