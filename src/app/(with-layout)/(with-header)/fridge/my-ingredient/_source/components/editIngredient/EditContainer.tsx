@@ -1,3 +1,4 @@
+import { Navigation } from "@/components/navigation";
 import EditIngredientList from "./EditIngredientList";
 
 import Header from "./Header";
@@ -13,6 +14,7 @@ const EditContainer = ({ handleClose }: Props) => {
       <div className="px-4">
         <EditIngredientList />
       </div>
+      <Navigation />
     </div>
   );
 };
