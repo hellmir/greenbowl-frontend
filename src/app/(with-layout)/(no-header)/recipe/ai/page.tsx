@@ -1,7 +1,7 @@
 "use client";
 
 import { Suspense, useEffect, useState } from "react";
-import { IoIosArrowBack } from "react-icons/io";
+
 import {
   AiMenusRequestPayload,
   MenuApiResponse,
@@ -11,6 +11,7 @@ import { POST } from "@/app/(with-layout)/(no-header)/recipe/ai/_source/actions/
 import { useAiRecipe } from "@/store/aiRecipeStore";
 import RecommendedMenu from "@/app/(with-layout)/(no-header)/recipe/ai/_source/components/RecommendedMenu";
 import { useSearchParams } from "next/navigation";
+import Header from "./_source/components/Header";
 
 const page = () => {
   return (
@@ -24,10 +25,6 @@ const Page = () => {
   const { setAvailableIngredients } = useAiRecipe();
   const [recipes, setRecipes] = useState<MenuApiResponse[]>([]);
   const searchParams = useSearchParams();
-
-  const handleClickArrowBack = () => {
-    window.history.back();
-  };
 
   useEffect(() => {
     /*
@@ -108,33 +105,21 @@ const Page = () => {
   };
 
   return (
-    <div className="mt-4 px-4 pb-16">
-      <div className="flex flex-col justify-between h-screen">
-        <div>
-          <div className="flex items-center mb-14">
-            <IoIosArrowBack
-              className="text-2xl cursor-pointer size-8"
-              onClick={handleClickArrowBack}
-            />
-            <h2 className="flex-1 text-center text-2xl font-bold">
-              AI 추천 메뉴
-            </h2>
-          </div>
-          <p className="text-start text-gray-800 mb-10 font-semibold text-xl">
-            원하는 메뉴를 선택해 주세요!
-          </p>
+    <div className="bg- white">
+      <Header />
+      <p className="mt-5 mb-5 heading-m text-content-secondary">
+        원하는 메뉴를 선택해 주세요!
+      </p>
 
-          <div className="mt-4 space-y-4">
-            {/* TODO: 로딩 페이지 완성 후 대체 */}
-            {recipes.length === 0 ? (
-              <p className="text-center text-gray-500">로딩 중...</p>
-            ) : (
-              recipes.map((recipe, index) => (
-                <RecommendedMenu key={index} index={index} recipe={recipe} />
-              ))
-            )}
-          </div>
-        </div>
+      <div className="mt-4 space-y-4 mb-20">
+        {/* TODO: 로딩 페이지 완성 후 대체 */}
+        {recipes.length === 0 ? (
+          <p className="text-center text-gray-500 heading-m">로딩 중...</p>
+        ) : (
+          recipes.map((recipe, index) => (
+            <RecommendedMenu key={index} index={index} recipe={recipe} />
+          ))
+        )}
       </div>
     </div>
   );

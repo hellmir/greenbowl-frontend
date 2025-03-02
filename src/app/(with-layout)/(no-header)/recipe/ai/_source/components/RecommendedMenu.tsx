@@ -64,28 +64,30 @@ const RecommendedMenu = ({ index, recipe }: Props) => {
   return (
     <div
       key={index}
-      className="flex items-start gap-5 p-3 bg-scale-white rounded-lg shadow-md h-32 mb-8"
+      className="flex items-start gap-5 p-3 bg-foundation-secondary rounded-lg shadow-md h-32 mb-8"
       onClick={handleClick}
     >
       <Image
         src={representativeImageUrl as string}
         alt="레시피 이미지"
         width={127}
-        height={127}
-        className="w-40 h-full object-cover rounded-lg"
+        height={87}
+        className="w-[127px] h-[87px] object-cover rounded-lg"
       />
 
-      <div className="flex flex-col flex-1 justify-center gap-1">
-        <p className=" font-semibold text-xl">{name}</p>
+      <div className="flex flex-col flex-1 justify-center gap-1 ">
+        <p className=" heading-s text-content-secondary">{name}</p>
 
         <div className="flex items-center gap-1.5 text-sm font-medium text-gray-600">
-          <MdOutlineAccessTimeFilled />
-          <span className="text-green-600">{cookingTime}</span> min
+          <MdOutlineAccessTimeFilled className="text-content-quarternary" />
+          <span className="text-foundation-primary">{cookingTime}</span>
+          <span className="text-content-quarternary">min</span>
         </div>
 
         <div className="flex items-center gap-1.5 text-sm font-medium text-gray-600">
-          <FaFire />
-          <span className="text-green-600">{calories}</span> kcal
+          <FaFire className="text-content-quarternary" />
+          <span className="text-green-600">{calories}</span>{" "}
+          <span className="text-content-quarternary">kcal</span>
         </div>
 
         {/*
@@ -98,7 +100,7 @@ const RecommendedMenu = ({ index, recipe }: Props) => {
       </div>
 
       <Bookmark
-        className="w-7 h-7 text-gray-400 cursor-pointer"
+        className="w-6 h-6 text-content-tertiary cursor-pointer"
         onClick={(e) => handleClickBookmark(e)}
         ref={bookmarkRef}
       />
