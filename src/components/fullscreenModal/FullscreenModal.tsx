@@ -21,7 +21,7 @@ const FullscreenModal = () => {
 
 const FullscreenModalContent = () => {
   const ref = useRef<HTMLDivElement>(null);
-  const { ReactNode, close } = useFullscreenModalStore();
+  const { Component, close, props } = useFullscreenModalStore();
 
   const closeAnimation = () => {
     gsap.to(ref.current, {
@@ -57,7 +57,7 @@ const FullscreenModalContent = () => {
         className="top-0 fixed h-screen w-full max-w-[37.5rem] mx-auto bg-white "
       >
         <div className="h-full overflow-y-auto">
-          <ReactNode handleClose={closeAnimation} />
+          <Component handleClose={closeAnimation} {...props} />
         </div>
       </div>
     </div>

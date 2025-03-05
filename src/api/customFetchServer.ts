@@ -5,7 +5,7 @@ const customFetchServer = async (url: string, options: RequestInit = {}) => {
   const token = await getServerSession(authOptions);
 
   const headers = {
-    Authorization: token?.accessToken ? `Bearer ${token.accessToken}` : "",
+    Authorization: token?.accessToken ? `${token.accessToken}` : "",
     "Content-Type": "application/json",
     ...options.headers,
   };

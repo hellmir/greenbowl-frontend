@@ -5,14 +5,21 @@ import Question from "./Question";
 import "swiper/css";
 import { useEffect, useRef } from "react";
 import { Swiper as TSwiper } from "swiper/types";
+import { Answer, HandleClickAnswer } from ".";
 
 interface Props {
-  handleClickAnswer: (questionId: number, answerId: number) => void;
-  answers: number[];
+  handleClickAnswer: HandleClickAnswer;
+  answers: Answer[];
   currentIdx: number;
+  handleClickNext: (isMultiple: boolean) => void;
 }
 
-const QuestionSwiper = ({ handleClickAnswer, answers, currentIdx }: Props) => {
+const QuestionSwiper = ({
+  handleClickAnswer,
+  answers,
+  currentIdx,
+  handleClickNext,
+}: Props) => {
   const swiperRef = useRef<TSwiper>(null);
 
   useEffect(() => {
@@ -32,6 +39,7 @@ const QuestionSwiper = ({ handleClickAnswer, answers, currentIdx }: Props) => {
             handleClickAnswer={handleClickAnswer}
             selectedAnswer={answers[idx]}
             currentIdx={currentIdx}
+            handleClickNext={handleClickNext}
           />
         </SwiperSlide>
       ))}
