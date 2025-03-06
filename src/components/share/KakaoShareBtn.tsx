@@ -1,21 +1,30 @@
 "use client";
 
 import React from "react";
+import Kakaotalk from "../svg/share/Kakaotalk";
 
-// type KakaoShareButtonProps = {
-//   description: string;
-//   link: string;
-// };
+interface KakaoShareButtonProps {
+  requestUrl: string;
+}
 
-const KakaoShareBtn = () => {
+const KakaoShareBtn = ({ requestUrl }: KakaoShareButtonProps) => {
   const handleShearToKakao = () => {
     const { Kakao } = window;
     Kakao.Share.sendScrap({
-      requestUrl: "https://greenbowl-eta.vercel.app/fridge/tip/1",
+      requestUrl,
     });
   };
 
-  return <div onClick={handleShearToKakao}>test</div>;
+  return (
+    <button
+      type="button"
+      className=" cursor-pointer flex flex-col items-center"
+      onClick={handleShearToKakao}
+    >
+      <Kakaotalk />
+      <p className="label-xs mt-1 text-content-secondary">카카오톡</p>
+    </button>
+  );
 };
 
 export default KakaoShareBtn;
