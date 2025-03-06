@@ -1,36 +1,21 @@
-import React, { useEffect } from "react";
+"use client";
 
-type KakaoShareButtonProps = {
-  description: string;
-};
+import React from "react";
 
-const KakaoShareBtn = ({ description }: KakaoShareButtonProps) => {
-  const shareUrl = typeof window !== "undefined" ? window.location.href : "";
+// type KakaoShareButtonProps = {
+//   description: string;
+//   link: string;
+// };
 
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const { Kakao } = window;
-
-      if (!Kakao.isInitialized()) {
-        Kakao.init(process.env.NEXT_PUBLIC_KAKAO_API_KEY);
-      }
-    }
-  }, []);
-
-  const handleShare = () => {
+const KakaoShareBtn = () => {
+  const handleShearToKakao = () => {
     const { Kakao } = window;
-
-    Kakao.Share.sendDefault({
-      objectType: "text",
-      text: description,
-      link: {
-        mobileWebUrl: shareUrl,
-        webUrl: shareUrl,
-      },
+    Kakao.Share.sendScrap({
+      requestUrl: "https://greenbowl-eta.vercel.app/fridge/tip/1",
     });
   };
 
-  return <div onClick={handleShare}></div>;
+  return <div onClick={handleShearToKakao}>test</div>;
 };
 
 export default KakaoShareBtn;

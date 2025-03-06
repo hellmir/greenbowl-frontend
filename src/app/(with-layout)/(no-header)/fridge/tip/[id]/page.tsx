@@ -14,7 +14,6 @@ export async function generateStaticParams() {
 
 type Props = {
   params: Promise<{ id: string }>;
-  searchParams: { [key: string]: string | string[] | undefined };
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -34,6 +33,19 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: data.title,
     description: data.description,
+    openGraph: {
+      title: data.title,
+      description: data.description,
+      type: "website",
+      images: [
+        {
+          url: imagePath.fridgeTipDetail.src,
+          width: 600,
+          height: 300,
+          alt: "사이트 이미지",
+        },
+      ],
+    },
   };
 }
 

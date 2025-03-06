@@ -6,6 +6,7 @@ import AuthSession from "@/providers/AuthSession";
 import Alert from "@/components/alert/Alert";
 import FullscreenModal from "@/components/fullscreenModal/FullscreenModal";
 import Script from "next/script";
+import KakaoScript from "@/script/KakaoScript";
 
 const myFont = localFont({
   src: [
@@ -66,11 +67,8 @@ export default function RootLayout({
           <Alert />
           <FullscreenModal />
         </AuthSession>
-        <Script
-          src="https://developers.kakao.com/sdk/js/kakao.js"
-          strategy="afterInteractive"
-        />
       </body>
+      <KakaoScript />
     </html>
   );
 }
