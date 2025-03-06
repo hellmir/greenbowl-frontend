@@ -65,7 +65,7 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
 
   return (
     <div className="mb-20">
-      <Header />
+      <Header title={data.title} />
       <div>
         <h1 className="heading-xl text-content-secondary mb-2">{data.title}</h1>
         <p>{data.description}</p>

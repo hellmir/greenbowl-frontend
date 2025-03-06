@@ -2,14 +2,17 @@
 
 import React from "react";
 import URLCopy from "../svg/share/URLCopy";
+import { useAlertStore } from "@/store/alertStore";
 
 interface Props {
   requestUrl: string;
 }
 
 const URLCopyBtn = ({ requestUrl }: Props) => {
+  const play = useAlertStore((state) => state.play);
   const handleClickCopy = () => {
     navigator.clipboard.writeText(requestUrl);
+    play("복사가 완료되었습니다.");
   };
 
   return (
