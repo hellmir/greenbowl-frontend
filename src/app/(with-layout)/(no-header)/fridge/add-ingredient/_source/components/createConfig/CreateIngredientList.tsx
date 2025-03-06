@@ -63,7 +63,7 @@ const CreateIngredientList = () => {
 
   return (
     <div className="mt-3 pb-12  ">
-      <div className="min-h-[80vh]">
+      <div className="">
         {fridgeIngredients.map((ingredient) => {
           const selectedIngredient = selectedIngredientsMap.get(
             ingredient.categoryId

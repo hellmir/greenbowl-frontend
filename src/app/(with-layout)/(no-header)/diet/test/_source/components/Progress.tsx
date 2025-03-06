@@ -21,7 +21,7 @@ const Progress = ({ currentIdx }: { currentIdx: number }) => {
   return (
     <div
       ref={ref}
-      className="h-1 fixed mt-[3.375rem] max-w-[37.5rem] w-full -ml-4  "
+      className="h-1 fixed mt-[3.375rem] max-w-[37.5rem] w-full -ml-4 bg-foundation-secondary"
     >
       <div className="progress bg-foundation-primary mb-4 h-1 w-full"></div>
     </div>

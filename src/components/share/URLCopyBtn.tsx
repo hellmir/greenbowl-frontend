@@ -12,7 +12,7 @@ const URLCopyBtn = ({ requestUrl }: Props) => {
   const play = useAlertStore((state) => state.play);
   const handleClickCopy = () => {
     navigator.clipboard.writeText(requestUrl);
-    play("복사가 완료되었습니다.");
+    play("링크가 복사되었습니다.");
   };
 
   return (

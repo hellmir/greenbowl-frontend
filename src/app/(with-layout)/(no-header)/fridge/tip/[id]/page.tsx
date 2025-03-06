@@ -64,7 +64,7 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
   const data: Article = JSON.parse(rawData);
 
   return (
-    <div className="mb-20">
+    <div className="mb-20 px-4">
       <Header title={data.title} />
       <div>
         <h1 className="heading-xl text-content-secondary mb-2">{data.title}</h1>

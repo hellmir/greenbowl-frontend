@@ -52,12 +52,12 @@ const Result = ({ score, advice }: IResult) => {
           <div className="mt-6">
             <healthState.character />
           </div>
-          <div className="p-3 max-w-72 mt-6 label-xs">
+          <div className="p-3 max-w-72 mt-6 label-xs bg-foundation-tertiary rounded-[0.65rem]">
             참고: 아보카도는 건강한 지방과 영양소가 풍부한 과일입니다. 여러분의
             상태를 아보카도 숙성 단계로 비유해 봤어요!
           </div>
         </div>
-        <div className="p-3 label-s">
+        <div className="p-3 label-s rounded-[0.65rem] border border-border-default mt-5">
           <p className="mb-3">건강 조언</p>
           <div className="flex flex-col gap-4">
             {advice.map((ad) => (

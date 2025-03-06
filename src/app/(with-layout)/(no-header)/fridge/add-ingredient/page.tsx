@@ -9,7 +9,7 @@ const page = async ({ searchParams }: Props) => {
   const categoryId = params.categoryId ? +(params.categoryId as string) : 1;
 
   return (
-    <div className="w-full">
+    <div className="w-full ">
       <AddIngredientContainer categoryId={categoryId} />
     </div>
   );

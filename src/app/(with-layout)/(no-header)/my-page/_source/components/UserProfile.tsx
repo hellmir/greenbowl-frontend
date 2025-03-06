@@ -6,7 +6,7 @@ const UserProfile = async () => {
   const session = await getServerSession();
 
   return (
-    <div className="h-16 py-3 flex items-center">
+    <div className="h-16 py-3 flex items-center bg-foundation-secondary px-4">
       {session?.user?.image ? (
         <Image
           src={session.user.image}

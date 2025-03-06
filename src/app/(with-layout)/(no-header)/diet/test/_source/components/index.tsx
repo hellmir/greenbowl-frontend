@@ -130,7 +130,7 @@ const TestContainer = () => {
   };
 
   return (
-    <div>
+    <div className="px-4 bg-scale-yellowgreen-100 min-h-screen">
       <Header handleClickBackIcon={handleClickBackIcon} />
       <Progress currentIdx={currentIdx} />
       <QuestionSwiper

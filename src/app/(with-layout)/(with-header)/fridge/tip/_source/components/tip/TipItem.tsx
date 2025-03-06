@@ -11,7 +11,10 @@ interface Props {
 
 const TipItem = ({ article }: Props) => {
   return (
-    <Link href={`${route.myFridge.tip}/${article.id}`}>
+    <Link
+      href={`${route.myFridge.tip}/${article.id}`}
+      className="bg-foundation-secondary"
+    >
       <div className="flex flex-col gap-4 relative">
         <div className="px-3 py-5 rounded-b-[12px] flex flex-col gap-4">
           <div className=" absolute right-0 top-3">

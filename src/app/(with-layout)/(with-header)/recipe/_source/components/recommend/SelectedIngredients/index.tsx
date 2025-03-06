@@ -27,7 +27,7 @@ const SelectedIngredients = ({
   const inputRef = useRef<HTMLInputElement>(null);
 
   return (
-    <div className="py-3 px-4 ">
+    <div className="py-3 px-4 bg-foundation-secondary rounded-xl">
       <div className="flex items-center justify-between mb-3">
         <div className="label-s  text-content-secondary ">
           내 재료({selectedIngredients.length})

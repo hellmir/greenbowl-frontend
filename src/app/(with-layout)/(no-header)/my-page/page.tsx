@@ -10,11 +10,11 @@ const page = async ({ searchParams }: Props) => {
   const tabName = params.tabName ? (params.tabName as string) : "recipe";
 
   return (
-    <div>
+    <div className=" bg-foundation-tertiary min-h-screen">
       <MyPageHeader />
-
       <UserProfile />
       <TabsContainer tabName={tabName} />
+      <div className="px-4 mb-20"></div>
     </div>
   );
 };

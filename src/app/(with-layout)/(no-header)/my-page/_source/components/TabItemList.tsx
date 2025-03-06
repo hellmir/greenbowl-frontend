@@ -14,7 +14,7 @@ interface Props {
 
 const TabItemList = ({ activeTabName }: Props) => {
   return (
-    <TabsList className="flex justify-between w-[calc(100%+32px)] -ml-4 h-9">
+    <TabsList className="flex justify-between  h-9">
       {itemList.map((item) => (
         <TabsTrigger
           key={item.value}

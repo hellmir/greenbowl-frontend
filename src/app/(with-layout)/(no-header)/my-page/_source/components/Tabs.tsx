@@ -10,7 +10,7 @@ const TabsContainer = ({ tabName }: Props) => {
     <>
       <Tabs
         defaultValue={tabName}
-        className="w-full sticky top-[3.375rem] flex flex-col  z-20 bg-foundation-quarternary"
+        className="w-full sticky top-[3.375rem] flex flex-col z-20 bg-foundation-secondary"
       >
         <TabItemList activeTabName={tabName} />
       </Tabs>
