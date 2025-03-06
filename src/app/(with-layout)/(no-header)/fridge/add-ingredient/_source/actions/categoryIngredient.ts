@@ -31,7 +31,6 @@ export const createCategoryIngredients = async ({
     cache: "no-cache",
   });
 
-
   if (!res.ok) throw new Error(JSON.stringify(res.status));
 
   const json: CategoryIngredient = await res.json();

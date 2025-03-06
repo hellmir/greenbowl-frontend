@@ -15,14 +15,14 @@ const Note = () => {
       <div className="mt-[4.5rem]">
         <ul className="flex flex-col gap-3">
           {notes.map((note) => (
-            <div key={note.id} className="ml-4">
+            <li key={note.id} className="ml-4">
               <div className=" heading-s text-content-secondary">
                 {note.title}
               </div>
               <div className="mt-1 paragraph-s text-content-tertiary">
                 {note.value}
               </div>
-            </div>
+            </li>
           ))}
         </ul>
       </div>
