@@ -4,11 +4,37 @@ import fs from "fs";
 import Header from "./_source/components/Header";
 import Image from "next/image";
 import imagePath from "@/constants/imagePath";
+import { Metadata } from "next";
 
 export const dynamicParams = false;
 
 export async function generateStaticParams() {
   return Array.from({ length: 6 }).map((_, idx) => ({ id: idx + 1 + "" }));
+}
+
+type Props = {
+  params: Promise<{ id: string }>;
+  searchParams: { [key: string]: string | string[] | undefined };
+};
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const param = await params;
+  const id = param.id;
+
+  const filePath = path.join(
+    process.cwd(),
+    "src/app/(with-layout)/(no-header)/fridge/tip/[id]/_source/data/tips",
+    `${id}.json`
+  );
+
+  const rawData = fs.readFileSync(filePath, "utf8");
+
+  const data: Article = JSON.parse(rawData);
+
+  return {
+    title: data.title,
+    description: data.description,
+  };
 }
 
 const page = async ({ params }: { params: Promise<{ id: string }> }) => {
