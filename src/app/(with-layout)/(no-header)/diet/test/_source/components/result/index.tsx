@@ -45,7 +45,7 @@ const Result = ({ score, advice }: IResult) => {
   const healthState = getHealthState(score);
   return (
     <>
-      <div className="px-4 flex flex-col items-center text-content-tertiary mb-20">
+      <div className="px-4 flex flex-col items-center text-content-tertiary mb-20 bg-foundation-secondary">
         <div className="mt-8 flex flex-col items-center">
           <p className="label-s mb-2">{healthState.prev}</p>
           <healthState.text />

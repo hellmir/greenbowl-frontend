@@ -8,7 +8,7 @@ interface Props {
 
 const CreateContainer = ({ handleClose }: Props) => {
   return (
-    <div className="bg-foundation-tertiary z-30">
+    <div className="bg-foundation-tertiary z-30 min-h-screen">
       <Header handleClose={handleClose} />
       <div className="px-4 mb-20">
         <CreateIngredientList />

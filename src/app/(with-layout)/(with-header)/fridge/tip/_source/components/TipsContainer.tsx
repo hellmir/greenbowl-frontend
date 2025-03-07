@@ -25,9 +25,11 @@ const TipsContainer = async () => {
       <div className=" mt-5 mb-5 heading-m">
         <p>식재료 관리가 고민이시라면</p>
       </div>
-      {ArticleList.map((article) => (
-        <TipItem article={article} key={article.id} />
-      ))}
+      <div className="flex flex-col gap-4 mb-20">
+        {ArticleList.map((article) => (
+          <TipItem article={article} key={article.id} />
+        ))}
+      </div>
     </div>
   );
 };

@@ -21,7 +21,7 @@ const OnboardingContainer = () => {
     setStage((prev) => prev + 1);
   };
   return (
-    <div className=" relative min-h-screen -mx-4">
+    <div className=" relative min-h-screen ">
       <Image
         className="absolute h-full z-20 object-cover"
         src={imagePath.dietOnboarding.src}

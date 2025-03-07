@@ -71,11 +71,11 @@ const colors = {
   "content-quinary": "#dfdfdf",
   "foundation-primary": "#72b76d",
   "foundation-secondary": "#ffffff",
-  "foundation-tertiary": "#f9f9f9",
+  "foundation-tertiary": "#f2f2f2",
   "foundation-quarternary": "#f4f3ec",
   "foundation-accent": "#ff974b",
   "foundation-negative": "#ff4949",
-  "foundation-warning": "#fcff78",
+  "foundation-warning": "#fcff56",
   "border-default": "#e6e6e6",
 };
 

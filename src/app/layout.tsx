@@ -49,9 +49,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className=" stable">
       <body
-        className={`${myFont.className} antialiased overflow-x-hidden  relative`}
+        className={`${myFont.className} antialiased overflow-x-hidden  relative `}
       >
         <AuthSession>
           <Script

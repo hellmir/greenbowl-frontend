@@ -79,10 +79,10 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
             className="w-[calc(100%+32px)] -ml-4 -mr-[50px] h-auto"
           />
         </div>
-        <ul className="flex flex-wrap mb-5">
+        <ul className="flex flex-wrap mb-5 gap-3">
           {data.tags.map((tag) => (
             <li
-              className="bg-foundation-tertiary px-2 py-0.5 paragraph-xs rounded"
+              className="bg-foundation-tertiary px-2 py-0.5 paragraph-xs rounded "
               key={tag}
             >
               {tag}

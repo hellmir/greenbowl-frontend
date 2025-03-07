@@ -5,10 +5,7 @@ import CreateIngredient from "./CreateIngredient";
 import { useCategoryIngredientsStore } from "@/store/categoryIngredientsStore";
 import { useEffect, useState, useTransition } from "react";
 import { Button } from "@/components/ui/button";
-import {
-  createFridgeIngredients,
-  createFridgeIngredientsWithDefault,
-} from "@/app/(with-layout)/(with-header)/fridge/my-ingredient/_source/actions/fridgeIngredient";
+import { createFridgeIngredients } from "@/app/(with-layout)/(with-header)/fridge/my-ingredient/_source/actions/fridgeIngredient";
 import { useRouter } from "next/navigation";
 import route from "@/constants/route";
 import formatDate from "@/utils/date/formatDate";
@@ -42,17 +39,10 @@ const CreateIngredientList = () => {
   }, [selectedIngredientsMap]);
 
   const handleClickSubmitBtn = () => {
-    const defaultIngredient = fridgeIngredients.filter((ingredient) => {
-      return ingredient;
-    });
-    const ingredients = fridgeIngredients.filter((ingredient) => !ingredient);
-
     startTransition(async () => {
       try {
-        await Promise.all([
-          createFridgeIngredients(ingredients),
-          createFridgeIngredientsWithDefault(defaultIngredient),
-        ]);
+        await createFridgeIngredients(fridgeIngredients);
+
         afterAction();
       } catch (e) {
         console.error(e);

@@ -45,7 +45,7 @@ const RadiosAndNextButton = () => {
           );
         })}
       </div>
-      <Button variant={"bottom"} type="button" disabled={selected === null}>
+      <Button variant={"bottom"} type="button" className="" disabled={selected === null}>
         다음
       </Button>
     </div>

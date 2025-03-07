@@ -15,7 +15,7 @@ const Note = () => {
       <div className="mt-[4.5rem]">
         <ul className="flex flex-col gap-3">
           {notes.map((note) => (
-            <li key={note.id} className="ml-4">
+            <li key={note.id} className="ml-4 list-disc">
               <div className=" heading-s text-content-secondary">
                 {note.title}
               </div>

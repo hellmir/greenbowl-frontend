@@ -26,7 +26,7 @@ const ShareBottomSheet = ({ requestUrl, title, children }: Props) => {
       <SheetTrigger>{children}</SheetTrigger>
       <SheetContent
         side={"bottom"}
-        className=" max-w-[37.5rem] mx-auto w-screen rounded-t-[20px] pt-3 px-4 pb-0"
+        className=" max-w-[37.5rem] mx-auto w-screen rounded-t-[20px] pt-3  pb-0"
       >
         <VisuallyHidden>
           <SheetDescription />
