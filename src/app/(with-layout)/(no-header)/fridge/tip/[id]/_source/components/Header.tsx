@@ -4,7 +4,7 @@ import BackIcon from "@/components/icons/backIcon";
 import ShareBottomSheet from "@/components/share/ShareBottomSheet";
 import { deploymentUrl } from "@/constants/url";
 import { Bookmark } from "lucide-react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useMemo } from "react";
 import { GoShareAndroid } from "react-icons/go";
 
@@ -14,14 +14,17 @@ interface Props {
 
 const Header = ({ title }: Props) => {
   const router = useRouter();
+  const pathname = usePathname();
 
   const handleClickBack = () => router.back();
   const requestUrl = useMemo(() => {
     if (typeof window !== "undefined") {
-      return `${deploymentUrl}${window.location.pathname}`;
+      return `${deploymentUrl}${pathname}`;
     }
     return "";
-  }, []);
+  }, [pathname]);
+
+  console.log(requestUrl);
 
   return (
     <header className=" top-0 z-20 bg-foundation-secondary sticky w-[calc(100%+32px)] -ml-4 -mr-[50px] px-4">

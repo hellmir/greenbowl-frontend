@@ -142,7 +142,7 @@ const Page = () => {
   }, [recipeIntroduction]);
 
   return (
-    <div className="bg-white">
+    <div className="bg-white px-4">
       <div className="">
         <div>
           <header className=" top-0 z-20 bg-foundation-secondary sticky w-[calc(100%+32px)] -ml-4 -mr-[50px] px-4">

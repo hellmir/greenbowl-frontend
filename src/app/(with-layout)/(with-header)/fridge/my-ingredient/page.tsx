@@ -4,7 +4,7 @@ import MyIngredientContainer from "./_source/components/MyIngredientContainer";
 
 const page = () => {
   return (
-    <div className="bg-foundation-quarternary px-4">
+    <div className="bg-foundation-quarternary min-h-screen px-4">
       <MyFridgeTabs />
       <Suspense fallback={"로딩중"}>
         <MyIngredientContainer />
