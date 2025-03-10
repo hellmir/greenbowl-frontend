@@ -1,4 +1,5 @@
 import MyPageHeader from "./_source/components/Header";
+import Recipe from "./_source/components/TabItem/Recipe";
 import TabsContainer from "./_source/components/Tabs";
 import UserProfile from "./_source/components/UserProfile";
 
@@ -14,6 +15,7 @@ const page = async ({ searchParams }: Props) => {
       <MyPageHeader />
       <UserProfile />
       <TabsContainer tabName={tabName} />
+      <Recipe />
       <div className="px-4 mb-20"></div>
     </div>
   );

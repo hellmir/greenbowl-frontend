@@ -1,7 +1,8 @@
 import ErrorCharacter from "@/components/character/ErrorCharacter";
 import { Button } from "@/components/ui/button";
-
+import route from "@/constants/route";
 import { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "404 not-found",
@@ -26,11 +27,11 @@ const NotFound = () => {
           </p>
         </div>
       </div>
-      <div className="">
+      <Link href={route.recipe.root} className="">
         <Button className=" " variant={"bottom"}>
           그린볼 메인 페이지로 이동하기
         </Button>
-      </div>
+      </Link>
     </div>
   );
 };
