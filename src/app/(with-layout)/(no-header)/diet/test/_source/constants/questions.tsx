@@ -62,9 +62,9 @@ export const questions: Question[] = [
     options: [
       { label: "0회", value: "veryBad" },
       { label: "1회", value: "bad" },
-      { label: "2~3회", value: "moderate" },
-      { label: "4~5회", value: "good" },
-      { label: "5회 이상", value: "veryGood" },
+      { label: "2회", value: "moderate" },
+      { label: "3~5회", value: "good" },
+      { label: "6회 이상", value: "veryGood" },
     ],
     character: ExerciseCharacter,
   },

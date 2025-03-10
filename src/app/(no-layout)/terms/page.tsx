@@ -1,5 +1,7 @@
+import Terms from "@/components/rules/Terms";
+
 const page = () => {
-  return <div>page</div>;
+  return <Terms />;
 };
 
 export default page;

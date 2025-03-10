@@ -34,9 +34,9 @@ const state = {
 };
 
 const getHealthState = (score: number) => {
-  if (score >= 48) return state.veryGood;
-  if (score >= 36) return state.good;
-  if (score >= 24) return state.bad;
+  if (score >= 36) return state.veryGood;
+  if (score >= 27) return state.good;
+  if (score >= 15) return state.bad;
   return state.veryBad;
 };
 

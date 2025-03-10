@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "이용 약관",
+  title: "서비스 이용 약관",
 };
 
 export default function MyPageLayout({

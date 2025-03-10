@@ -1,9 +1,10 @@
 import imagePath from "@/constants/imagePath";
 import Image from "next/image";
+import BgEllipse from "../BgEllipse";
 
 const FourthOnboarding = () => {
   return (
-    <div className="px-4">
+    <div className="px-4 relative">
       <div className="mt-14 flex flex-col gap-3 text-center whitespace-pre justify-center">
         <span className="text-foundation-primary heading-s">식단 코치</span>
         <p className="heading-l text-content-primary">
@@ -22,6 +23,9 @@ const FourthOnboarding = () => {
             />
           </div>
         </div>
+      </div>
+      <div className=" absolute top-1/2  left-1/2 -translate-x-[50%] -translate-y-[50%] -z-30 ">
+        <BgEllipse />
       </div>
     </div>
   );

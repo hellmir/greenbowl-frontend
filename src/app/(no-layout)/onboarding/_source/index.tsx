@@ -10,6 +10,7 @@ import Header from "./components/Header";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import route from "@/constants/route";
+import FifthOnboarding from "./components/fifth/FifthOnboarding";
 
 const Onboarding = () => {
   const observeTarget = useRef<HTMLAnchorElement>(null);
@@ -30,7 +31,6 @@ const Onboarding = () => {
     return () => observer.disconnect();
   }, []);
 
-
   return (
     <div className="relative">
       <Header isChangeHeader={isVisible} />
@@ -38,6 +38,7 @@ const Onboarding = () => {
       <SecondOnboarding />
       <ThirdOnboarding />
       <FourthOnboarding />
+      <FifthOnboarding />
       {!isVisible && (
         <div className="fixed left-1/2 -translate-x-1/2 bottom-0 z-30">
           <PigTailBottom />

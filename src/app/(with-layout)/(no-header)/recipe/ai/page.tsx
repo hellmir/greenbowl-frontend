@@ -98,7 +98,7 @@ const Page = () => {
   };
 
   return (
-    <div className="bg-white px-4">
+    <div className="bg-foundation-tertiary px-4">
       <Header />
       <p className="mt-5 mb-5 heading-m text-content-secondary">
         원하는 메뉴를 선택해 주세요!

@@ -18,7 +18,7 @@ const IngredientList = ({
   const categorizedMap = useMemo(() => categorized(ingredients), [ingredients]);
 
   return (
-    <div className="pb-28">
+    <div className="mb-20 mt-3">
       {categories.map((category) => {
         const isEmpty = categorizedMap[category.id].ingredients.length <= 0;
         if (isEmpty) return;
