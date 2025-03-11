@@ -23,7 +23,7 @@ const RecommendedMenu = ({index, recipe}: Props) => {
 
     const name: string = recipe.name;
     const representativeImageUrl =
-        recipe.imageUrls && recipe.imageUrls.length > 0
+        recipe.imageUrls && recipe.imageUrls.length > 0 && recipe.imageUrls[0]?.startsWith("https://")
             ? recipe.imageUrls[0]
             : process.env.NEXT_PUBLIC_DEFAULT_IMAGE_URL;
     const cookingTime = recipe.cookingTime;

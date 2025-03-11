@@ -31,10 +31,10 @@ const Page = () => {
     const recipeName = storedSelectedRecipe?.name;
     const cookingTime = storedSelectedRecipe?.cookingTime;
     const calories = storedSelectedRecipe?.calories;
-    const representativeImageUrl =
-        storedSelectedRecipe?.imageUrls && storedSelectedRecipe.imageUrls.length > 0
-            ? storedSelectedRecipe.imageUrls[0]
-            : process.env.NEXT_PUBLIC_DEFAULT_IMAGE_URL;
+    const imageUrls = storedSelectedRecipe.imageUrls;
+    const representativeImageUrl = imageUrls && imageUrls.length > 0 && imageUrls[0]?.startsWith("https://")
+        ? storedSelectedRecipe.imageUrls[0]
+        : process.env.NEXT_PUBLIC_DEFAULT_IMAGE_URL;
 
     useEffect(() => {
         const storedRecipe = localStorage.getItem("selectedRecipe");
@@ -47,7 +47,6 @@ const Page = () => {
         const storedIngredients = localStorage.getItem("availableIngredients");
 
         if (!storedIngredients || storedIngredients === "[]" || recipeName !== storedName && availableIngredients) {
-            console.log("저장 중인 재료: ", availableIngredients);
             localStorage.setItem("availableIngredients", JSON.stringify(availableIngredients));
         }
     }, []);
@@ -111,12 +110,11 @@ const Page = () => {
             return;
         }
 
-        const navigationEntries = performance.getEntriesByType("navigation") as PerformanceNavigationTiming[];
-        const isRefreshed = navigationEntries.length > 0 && navigationEntries[0].type === "reload";
-
-        console.log("로컬 스토리지" + localStorage.getItem("availableIngredients"))
-
         const cachedData = sessionStorage.getItem(`recipe_${recipeName}`);
+
+        const isRefreshed = sessionStorage.getItem("isRefreshed") === "true";
+        console.log("새로고침 여부: ", isRefreshed);
+        sessionStorage.setItem("isRefreshed", "true");
 
         if (cachedData && !isRefreshed) {
             const parsedData = JSON.parse(cachedData);
