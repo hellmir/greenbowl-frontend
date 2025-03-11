@@ -128,8 +128,6 @@ const Page = () => {
             return;
         }
 
-        (performance.getEntriesByType as any) = () => [];
-
         const fetchAdditionalInfo = async () => {
             const payload: AiDetailedMenusRequestPayload = {
                 options: detailedMenuOptions,
