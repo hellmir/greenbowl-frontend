@@ -36,7 +36,7 @@ const RecommendedMenu = ({index, recipe}: Props) => {
     };
 
     const bookmarkRef = useRef<SVGSVGElement | null>(null);
-    const [isBookmarked, setIsBookmarked] = useState(true);
+    const [isBookmarked, setIsBookmarked] = useState(sessionStorage.getItem(`isBookmarked_${name}`) === "true");
     const {setMessage, setIsOpen} = useAlertStore();
 
     const handleClickBookmark = async (e: React.MouseEvent) => {
@@ -48,22 +48,25 @@ const RecommendedMenu = ({index, recipe}: Props) => {
             bookmarkRef.current.classList.toggle("text-gray-500", !isBookmarked);
         }
 
-        const payload: AddBookmarkRequestPayload = {
-            name: name,
-            imageUrl: representativeImageUrl,
-            cookingTime: cookingTime,
-            calories: calories,
-        };
-
-        if (isBookmarked) {
+        if (!isBookmarked) {
             setMessage("북마크에 추가되었습니다.");
             setIsOpen(true);
+
+            const payload: AddBookmarkRequestPayload = {
+                name: name,
+                imageUrl: representativeImageUrl,
+                cookingTime: cookingTime,
+                calories: calories,
+            };
+            sessionStorage.setItem(`isBookmarked_${name}`, "true");
             await postBookmark(payload);
+
             return;
         }
 
         setMessage("북마크에서 삭제되었습니다.");
         setIsOpen(true);
+        sessionStorage.setItem(`isBookmarked_${name}`, "false");
         await deleteBookmark(name);
     };
 
@@ -108,7 +111,7 @@ const RecommendedMenu = ({index, recipe}: Props) => {
             </div>
 
             <Bookmark
-                className="w-6 h-6 text-content-tertiary cursor-pointer"
+                className={`w-6 h-6 text-content-tertiary cursor-pointer ${isBookmarked ? "text-foundation-accent" : ""}`}
                 onClick={(e) => handleClickBookmark(e)}
                 ref={bookmarkRef}
             />

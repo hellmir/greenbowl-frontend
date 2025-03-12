@@ -38,6 +38,7 @@ const Page = () => {
         : process.env.NEXT_PUBLIC_DEFAULT_IMAGE_URL;
 
     useEffect(() => {
+        console.log(isBookmarked);
         const storedRecipe = localStorage.getItem("selectedRecipe");
         const storedName = JSON.parse(storedRecipe as string)?.name;
 
@@ -69,7 +70,7 @@ const Page = () => {
 
     const bookmarkRef = useRef<SVGSVGElement | null>(null);
 
-    const [isBookmarked, setIsBookmarked] = useState(false);
+    const [isBookmarked, setIsBookmarked] = useState(sessionStorage.getItem(`isBookmarked_${recipeName}`) === "true");
     const {setMessage, setIsOpen} = useAlertStore();
 
     const handleClickBookmark = async () => {
@@ -94,6 +95,7 @@ const Page = () => {
                 introduction: recipeIntroduction,
                 nutrition: nutrition,
             };
+            sessionStorage.setItem(`isBookmarked_${recipeName}`, "true");
             await postBookmark(payload);
 
             return;
@@ -101,6 +103,7 @@ const Page = () => {
 
         setMessage("북마크에서 삭제되었습니다.");
         setIsOpen(true);
+        sessionStorage.setItem(`isBookmarked_${recipeName}`, "false");
         await deleteBookmark(recipeName!);
     };
 
@@ -199,7 +202,7 @@ const Page = () => {
                             <h2 className="heading-m text-content-secondary">추천 레시피</h2>
                             <div className=" absolute right-0 flex gap-2">
                                 <Bookmark
-                                    className="w-6 h-6 text-content-tertiary cursor-pointer"
+                                    className={`w-6 h-6 text-content-tertiary cursor-pointer ${isBookmarked ? "text-foundation-accent" : ""}`}
                                     onClick={handleClickBookmark}
                                     ref={bookmarkRef}
                                 />
