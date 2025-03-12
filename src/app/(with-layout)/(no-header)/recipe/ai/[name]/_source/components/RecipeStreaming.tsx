@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
-import React, {useEffect, useRef, useState} from "react";
+import React, {useEffect, useRef} from "react";
 import {
     AiRecipeRequestPayload,
     RecipeOptions,
@@ -20,6 +20,8 @@ interface Props {
     calories: number | undefined;
     recipeIntroduction: string;
     setRecipeIntroduction: React.Dispatch<React.SetStateAction<string>>;
+    isStreaming: boolean;
+    setIsStreaming: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const RecipeStreaming = ({
@@ -29,8 +31,9 @@ const RecipeStreaming = ({
                              calories,
                              recipeIntroduction,
                              setRecipeIntroduction,
+                             isStreaming,
+                             setIsStreaming
                          }: Props) => {
-    const [isStreaming, setIsStreaming] = useState<boolean>(false);
     const abortControllerRef = useRef<AbortController | null>(null);
 
     useEffect(() => {
