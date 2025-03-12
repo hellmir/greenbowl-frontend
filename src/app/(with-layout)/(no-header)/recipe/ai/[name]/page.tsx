@@ -28,6 +28,7 @@ const Page = () => {
     const {selectedRecipe, availableIngredients} = useAiRecipe();
     const storedSelectedRecipe: MenuApiResponse = selectedRecipe
         || JSON.parse(localStorage.getItem("selectedRecipe") as string);
+    const storedIngredients = JSON.parse(localStorage.getItem("availableIngredients") as string);
     const recipeName = storedSelectedRecipe?.name;
     const cookingTime = storedSelectedRecipe?.cookingTime;
     const calories = storedSelectedRecipe?.calories;
@@ -43,8 +44,6 @@ const Page = () => {
         if (!storedRecipe || recipeName !== storedName && selectedRecipe) {
             localStorage.setItem("selectedRecipe", JSON.stringify(selectedRecipe));
         }
-
-        const storedIngredients = localStorage.getItem("availableIngredients");
 
         if (!storedIngredients || storedIngredients === "[]" || recipeName !== storedName && availableIngredients) {
             localStorage.setItem("availableIngredients", JSON.stringify(availableIngredients));
@@ -100,7 +99,7 @@ const Page = () => {
 
     const detailedMenuOptions: DetailedMenuOptions = {
         name: [recipeName],
-        availableIngredients: JSON.parse(localStorage.getItem("availableIngredients") as string),
+        availableIngredients: storedIngredients || availableIngredients,
         cookingTime: [`${cookingTime}분`],
         calories: [`${calories}kcal`],
     };
@@ -132,6 +131,7 @@ const Page = () => {
             };
 
             console.log("레시피 추가 정보 요청 전송");
+            console.log("payload: ", payload);
             const data = await GET(payload);
 
             setOneLineIntroduction(data.oneLineIntroduction);
