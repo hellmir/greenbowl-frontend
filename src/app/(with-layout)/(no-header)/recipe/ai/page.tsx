@@ -62,6 +62,7 @@ const Page = () => {
             return;
         }
 
+        localStorage.removeItem("availableIngredients");
         sessionStorage.setItem("option_params", JSON.stringify(selectedOptions));
 
         const fetchMenus = async () => {
