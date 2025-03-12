@@ -8,6 +8,7 @@ import {useEffect, useRef, useState} from "react";
 import {MdOutlineAccessTimeFilled} from "react-icons/md";
 import {FaFire} from "react-icons/fa6";
 import {
+    AddBookmarkRequestPayload,
     AddDetailedBookmarkRequestPayload,
     AiDetailedMenusRequestPayload,
     DetailedMenuOptions,
@@ -72,6 +73,7 @@ const Page = () => {
 
     const [isBookmarked, setIsBookmarked] = useState(sessionStorage.getItem(`isBookmarked_${recipeName}`) === "true");
     const {setMessage, setIsOpen} = useAlertStore();
+    const [isStreaming, setIsStreaming] = useState<boolean>(false);
 
     const handleClickBookmark = async () => {
         setIsBookmarked(!isBookmarked);
@@ -84,6 +86,20 @@ const Page = () => {
         if (!isBookmarked) {
             setMessage("북마크에 추가되었습니다.");
             setIsOpen(true);
+
+            if (!oneLineIntroduction || isStreaming) {
+                const payload: AddBookmarkRequestPayload = {
+                    name: recipeName,
+                    imageUrl: representativeImageUrl,
+                    cookingTime: cookingTime,
+                    calories: calories,
+                };
+
+                sessionStorage.setItem(`isBookmarked_${recipeName}`, "true");
+                await postBookmark(payload);
+
+                return;
+            }
 
             const payload: AddDetailedBookmarkRequestPayload = {
                 name: recipeName,
@@ -288,6 +304,8 @@ const Page = () => {
                                 calories={calories}
                                 recipeIntroduction={recipeIntroduction}
                                 setRecipeIntroduction={setRecipeIntroduction}
+                                isStreaming={isStreaming}
+                                setIsStreaming={setIsStreaming}
                             />
                         </div>
                     )}
