@@ -63,6 +63,7 @@ const RecipeStreaming = ({
             abortControllerRef.current = controller;
 
             console.log("레시피 스트리밍 요청 전송");
+            console.log("payload: ", recipePayload);
             await GET({
                 setRecipeIntroduction,
                 setIsStreaming,
