@@ -33,6 +33,7 @@ const CalendarModal = ({
         <CalendarContainer
           date={date}
           handleChangeExpirationDate={handleChangeExpirationDate}
+          setActive={setActive}
         />
       </DialogContent>
       <VisuallyHidden>

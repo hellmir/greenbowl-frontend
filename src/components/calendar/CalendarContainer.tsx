@@ -1,3 +1,6 @@
+"use client";
+
+import { Dispatch, SetStateAction, useState } from "react";
 import { Calendar } from "../ui/calendar";
 import { ko } from "react-day-picker/locale";
 
@@ -13,10 +16,16 @@ const formatDate = (date: Date) =>
 interface Props {
   date: Date;
   handleChangeExpirationDate: (date: Date) => void;
+  setActive: Dispatch<SetStateAction<boolean>>;
 }
 
-const CalendarContainer = ({ date, handleChangeExpirationDate }: Props) => {
+const CalendarContainer = ({
+  date,
+  handleChangeExpirationDate,
+  setActive,
+}: Props) => {
   const fullDate = formatDate(date);
+  const [selectedDate, setSelectedDate] = useState<Date>(date);
 
   return (
     <div className="px-4 py-4 ">
@@ -34,9 +43,26 @@ const CalendarContainer = ({ date, handleChangeExpirationDate }: Props) => {
           formatCaption: (date) => formatCaption(date),
         }}
         selected={date}
-        onDayClick={handleChangeExpirationDate}
+        onDayClick={setSelectedDate}
         defaultMonth={date}
       />
+      <div className="mt-3 w-full flex justify-between">
+        <div
+          className="py-2 w-full flex justify-center items-center rounded-lg border-border-default  label-xs text-content-secondary"
+          onClick={() => setActive(false)}
+        >
+          취소
+        </div>
+        <div
+          className="py-2 w-full flex justify-center items-center rounded-lg border-border-default  label-xs text-content-secondary"
+          onClick={() => {
+            handleChangeExpirationDate(selectedDate);
+            setActive(false);
+          }}
+        >
+          확인
+        </div>
+      </div>
     </div>
   );
 };

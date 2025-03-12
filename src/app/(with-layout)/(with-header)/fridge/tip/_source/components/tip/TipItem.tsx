@@ -24,7 +24,7 @@ const TipItem = ({ article }: Props) => {
               alt="팁이미지"
               height={86}
               width={86}
-              className="rounded-[8px] object-cover overflow-hidden flex-shrink-0"
+              className="rounded-[8px] shrink-0 h-[86px] w-[86px] object-cover overflow-hidden"
             />
             <div className="flex flex-col gap-1 w-full">
               <h2 className="  heading-s w-10/12">{article.title}</h2>
