@@ -9,7 +9,7 @@ const IngredientsContainer = async ({ categoryId }: Props) => {
   try {
     const ingredients = await getCategoryIngredients(categoryId);
     return (
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-2 gap-4 pb-3">
         <IngredientsList initialIngredients={ingredients} />
       </div>
     );
