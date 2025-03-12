@@ -16,7 +16,7 @@ const AddIngredientContainer = ({ categoryId }: Props) => {
       <Header />
 
       <CategoriesContainer />
-      <div className="px-4">
+      <div className="px-4 mb-20">
         <Suspense key={categoryId} fallback={<CategoryIngredientSkeleton />}>
           <IngredientsContainer categoryId={categoryId} />
         </Suspense>

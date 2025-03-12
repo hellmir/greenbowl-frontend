@@ -6,7 +6,7 @@ const page = () => {
   return (
     <div className="bg-foundation-quarternary  px-4">
       <MyFridgeTabs />
-      <Suspense fallback={"로딩중"}>
+      <Suspense>
         <MyIngredientContainer />
       </Suspense>
     </div>

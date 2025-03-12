@@ -2,7 +2,7 @@ import RecommendContents from "./RecommendContents";
 
 const Recommend = () => {
   return (
-    <div className="bg-foundation-quarternary px-4 min-h-screen">
+    <div className="bg-foundation-quarternary px-4 min-h-screen mb-20">
       <div className="mb-6">
         <h2 className="h-9 mb-1 text-content-secondary heading-m py-2">
           맞춤형 레시피 추천
@@ -12,7 +12,6 @@ const Recommend = () => {
         </p>
       </div>
       <RecommendContents />
-      <div className="mb-20 h-1"></div>
     </div>
   );
 };

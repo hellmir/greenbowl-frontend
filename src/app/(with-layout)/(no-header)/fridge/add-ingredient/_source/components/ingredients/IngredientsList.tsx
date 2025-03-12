@@ -7,9 +7,10 @@ interface Props {
 }
 
 const IngredientsList = ({ initialIngredients }: Props) => {
+  const sortIngredients = initialIngredients.toSorted((a, b) => b.id - a.id);
   return (
     <>
-      {initialIngredients.map((item) => {
+      {sortIngredients.map((item) => {
         return <Ingredient key={item.id} ingredient={item} />;
       })}
     </>

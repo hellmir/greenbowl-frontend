@@ -15,7 +15,7 @@ const page = async ({ searchParams }: Props) => {
       <MyPageHeader />
       <UserProfile />
       <TabsContainer tabName={tabName} />
-      <Recipe />
+      {tabName === "recipe" && <Recipe />}
       <div className="px-4 mb-20"></div>
     </div>
   );

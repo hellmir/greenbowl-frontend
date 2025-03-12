@@ -19,6 +19,9 @@ module.exports = {
       screens: {
         md: "599px",
       },
+      minHeight: {
+        screen: "100dvh",
+      },
     },
   },
   safelist: [

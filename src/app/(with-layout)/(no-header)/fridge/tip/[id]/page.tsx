@@ -70,14 +70,16 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
         <h1 className="heading-xl text-content-secondary mb-2">{data.title}</h1>
         <p>{data.description}</p>
         <div className="mt-4 mb-4">
-          <Image
-            src={imagePath.fridgeTipDetail.src}
-            alt={imagePath.fridgeTipDetail.alt}
-            height={300}
-            width={600}
-            priority
-            className="w-[calc(100%+32px)] -ml-4 -mr-[50px] h-auto"
-          />
+          <div className="w-[calc(100%+32px)] -ml-4 -mr-[50px] h-auto relative">
+            <Image
+              src={data.image}
+              alt={imagePath.fridgeTipDetail.alt}
+              width={700}
+              height={500}
+              className="w-[calc(100%+32px)]  -mr-[50px] h-auto max-h-52 object-cover relative"
+              priority
+            />
+          </div>
         </div>
         <ul className="flex flex-wrap mb-5 gap-3">
           {data.tags.map((tag) => (

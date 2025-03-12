@@ -10,6 +10,7 @@ interface Props {
 }
 
 const TipItem = ({ article }: Props) => {
+  console.log(article);
   return (
     <Link href={`${route.myFridge.tip}/${article.id}`} className="">
       <div className="flex flex-col gap-4 relative bg-foundation-secondary rounded-xl">
@@ -19,7 +20,7 @@ const TipItem = ({ article }: Props) => {
           </div>
           <div className="flex gap-4 ">
             <Image
-              src={"/image/img.png"}
+              src={article.image}
               alt="팁이미지"
               height={86}
               width={86}

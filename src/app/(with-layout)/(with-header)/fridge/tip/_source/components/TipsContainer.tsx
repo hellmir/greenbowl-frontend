@@ -7,6 +7,7 @@ export type PrevArticle = {
   title: string;
   description: string;
   tags: string[];
+  image: string;
 };
 
 const TipsContainer = async () => {
@@ -25,7 +26,7 @@ const TipsContainer = async () => {
       <div className=" mt-5 mb-5 heading-m">
         <p>식재료 관리가 고민이시라면</p>
       </div>
-      <div className="flex flex-col gap-4 mb-20">
+      <div className="flex flex-col gap-4 pb-20">
         {ArticleList.map((article) => (
           <TipItem article={article} key={article.id} />
         ))}
