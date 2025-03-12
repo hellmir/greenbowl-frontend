@@ -9,8 +9,9 @@ import {
     DELETE as deleteBookmark,
     POST as postBookmark,
 } from "@/app/(with-layout)/(no-header)/recipe/ai/_source/actions/bookmark";
-import {useRef} from "react";
+import {useRef, useState} from "react";
 import Image from "next/image";
+import {useAlertStore} from "@/store/alertStore";
 
 interface Props {
     index: number;
@@ -35,14 +36,15 @@ const RecommendedMenu = ({index, recipe}: Props) => {
     };
 
     const bookmarkRef = useRef<SVGSVGElement | null>(null);
-    let isBookmarked = false;
+    const [isBookmarked, setIsBookmarked] = useState(true);
+    const {setMessage, setIsOpen} = useAlertStore();
 
     const handleClickBookmark = async (e: React.MouseEvent) => {
         e.stopPropagation();
-        isBookmarked = !isBookmarked;
+        setIsBookmarked(!isBookmarked);
 
         if (bookmarkRef.current) {
-            bookmarkRef.current.classList.toggle("text-yellow-500", isBookmarked);
+            bookmarkRef.current.classList.toggle("text-foundation-accent", isBookmarked);
             bookmarkRef.current.classList.toggle("text-gray-500", !isBookmarked);
         }
 
@@ -54,17 +56,23 @@ const RecommendedMenu = ({index, recipe}: Props) => {
         };
 
         if (isBookmarked) {
+            setMessage("북마크에 추가되었습니다.");
+            setIsOpen(true);
             await postBookmark(payload);
             return;
         }
 
+        setMessage("북마크에서 삭제되었습니다.");
+        setIsOpen(true);
         await deleteBookmark(name);
     };
 
     return (
         <div
             key={index}
-            className="flex items-start gap-5 p-3 bg-foundation-secondary rounded-lg shadow-md h-32 mb-8"
+            className={`flex items-start gap-5 p-3 bg-foundation-secondary rounded-lg shadow-md h-32 ${
+                index === 0 ? "mb-2" : "mb-8"
+            }`}
             onClick={handleClick}
         >
             <Image

@@ -16,13 +16,13 @@ import {
 } from "@/app/(with-layout)/(no-header)/recipe/ai/_source/config";
 import {
     DELETE as deleteBookmark,
-    POST as postBookmark,
+    POST as postBookmark
 } from "@/app/(with-layout)/(no-header)/recipe/ai/_source/actions/bookmark";
 import {Bookmark} from "lucide-react";
-import {GoShareAndroid} from "react-icons/go";
 import RecipeStreaming from "@/app/(with-layout)/(no-header)/recipe/ai/[name]/_source/components/RecipeStreaming";
 import {GET} from "@/app/(with-layout)/(no-header)/recipe/ai/_source/actions/detailedMenu";
 import {MenuApiResponse} from "@/app/api/test/recipe/ai/gpt/menus";
+import {useAlertStore} from "@/store/alertStore";
 
 const Page = () => {
     const {selectedRecipe, availableIngredients} = useAiRecipe();
@@ -68,32 +68,39 @@ const Page = () => {
     };
 
     const bookmarkRef = useRef<SVGSVGElement | null>(null);
-    let isBookmarked = false;
+
+    const [isBookmarked, setIsBookmarked] = useState(false);
+    const {setMessage, setIsOpen} = useAlertStore();
 
     const handleClickBookmark = async () => {
-        isBookmarked = !isBookmarked;
+        setIsBookmarked(!isBookmarked);
 
         if (bookmarkRef.current) {
-            bookmarkRef.current.classList.toggle("text-yellow-500", isBookmarked);
-            bookmarkRef.current.classList.toggle("text-gray-500", !isBookmarked);
+            bookmarkRef.current.classList.toggle("text-foundation-accent", !isBookmarked);
+            bookmarkRef.current.classList.toggle("text-gray-500", isBookmarked);
         }
 
-        const payload: AddDetailedBookmarkRequestPayload = {
-            name: recipeName,
-            imageUrl: representativeImageUrl,
-            cookingTime: cookingTime,
-            calories: calories,
-            oneLineIntroduction: oneLineIntroduction,
-            ingredients: usedIngredients,
-            introduction: recipeIntroduction,
-            nutrition: nutrition,
-        };
+        if (!isBookmarked) {
+            setMessage("북마크에 추가되었습니다.");
+            setIsOpen(true);
 
-        if (isBookmarked) {
+            const payload: AddDetailedBookmarkRequestPayload = {
+                name: recipeName,
+                imageUrl: representativeImageUrl,
+                cookingTime: cookingTime,
+                calories: calories,
+                oneLineIntroduction: oneLineIntroduction,
+                ingredients: usedIngredients,
+                introduction: recipeIntroduction,
+                nutrition: nutrition,
+            };
             await postBookmark(payload);
+
             return;
         }
 
+        setMessage("북마크에서 삭제되었습니다.");
+        setIsOpen(true);
         await deleteBookmark(recipeName!);
     };
 
@@ -117,6 +124,8 @@ const Page = () => {
 
         if (cachedData && !isRefreshed) {
             const parsedData = JSON.parse(cachedData);
+            console.log("지방: " + parsedData.nutrition.fat);
+            console.log("사용된 재료: " + parsedData.usedIngredients);
             setOneLineIntroduction(parsedData.oneLineIntroduction);
             setUsedIngredients(parsedData.usedIngredients);
             setNutrition(parsedData.nutrition);
@@ -145,6 +154,7 @@ const Page = () => {
                 sugar: data.sugar,
             }));
         };
+        console.log("지방: ", nutrition.fat);
 
         fetchAdditionalInfo();
     }, [selectedRecipe, availableIngredients]);
@@ -188,9 +198,8 @@ const Page = () => {
                             />
                             <h2 className="heading-m text-content-secondary">추천 레시피</h2>
                             <div className=" absolute right-0 flex gap-2">
-                                <GoShareAndroid className="w-6 h-6 mr-4"/>
                                 <Bookmark
-                                    className="w-6 h-6"
+                                    className="w-6 h-6 text-content-tertiary cursor-pointer"
                                     onClick={handleClickBookmark}
                                     ref={bookmarkRef}
                                 />
