@@ -54,7 +54,7 @@ const Contents = ({ handleClose }: Props) => {
     <>
       <div className="w-full">
         <Input
-          className="h-[3.375rem] border-none focus-visible:ring-0 paragraph-s text-content-secondary bg-scale-gray-100 placeholder:text-content-quarternary"
+          className="h-[3.375rem] focus-visible:ring-0 paragraph-s text-content-secondary border-border-default border bg-scale-gray-100 placeholder:text-content-quarternary"
           placeholder="재료명을 입력해 주세요"
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}

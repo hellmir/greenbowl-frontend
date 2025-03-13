@@ -28,7 +28,7 @@ const TipItem = ({ article }: Props) => {
             />
             <div className="flex flex-col gap-1 w-full">
               <h2 className="  heading-s w-10/12">{article.title}</h2>
-              <p className=" heading-xs text-content-tertiary">
+              <p className=" paragraph-xs text-content-tertiary">
                 {article.description}
               </p>
             </div>

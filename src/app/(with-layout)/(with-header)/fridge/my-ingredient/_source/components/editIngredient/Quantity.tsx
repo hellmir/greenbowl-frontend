@@ -20,7 +20,7 @@ const Quantity = ({ quantity, onChange }: Props) => {
         <Button
           onClick={handleClickMinusBtn}
           variant={"ghost"}
-          className=" w-3/12 flex items-center justify-center"
+          className="text-3xl w-3/12 flex items-center justify-center"
         >
           -
         </Button>
@@ -30,7 +30,7 @@ const Quantity = ({ quantity, onChange }: Props) => {
         <Button
           onClick={handleClickPlusBtn}
           variant={"ghost"}
-          className=" w-3/12 flex items-center justify-center"
+          className="text-3xl w-3/12 flex items-center justify-center"
         >
           +
         </Button>

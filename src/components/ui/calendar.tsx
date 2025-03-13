@@ -164,7 +164,7 @@ function Calendar({
   return (
     <DayPicker
       showOutsideDays={showOutsideDays}
-      className={cn("p-3", className)}
+      className={cn("p-3 border-none", className)}
       style={{
         width: 248.8 * (columnsDisplayed ?? 1) + "px",
       }}
@@ -313,7 +313,7 @@ function Nav({
     <nav className={cn("flex items-center", className)}>
       <Button
         variant="outline"
-        className="absolute right-6 h-7 w-7 bg-transparent p-0 opacity-80 hover:opacity-100"
+        className="border-none shadow-none text-content-tertiary absolute right-6 h-7 w-7 bg-transparent p-0 opacity-80 hover:opacity-100"
         type="button"
         aria-label={
           navView === "month"
@@ -327,7 +327,7 @@ function Nav({
 
       <Button
         variant="outline"
-        className="absolute right-0 h-7 w-7 bg-transparent p-0 opacity-80 hover:opacity-100"
+        className="border-none shadow-none text-content-tertiary absolute right-0 h-7 w-7 bg-transparent p-0 opacity-80 hover:opacity-100"
         type="button"
         aria-label={
           navView === "month" ? `Go to the next year` : labelNext(nextMonth)

@@ -46,15 +46,15 @@ const CalendarContainer = ({
         onDayClick={setSelectedDate}
         defaultMonth={date}
       />
-      <div className="mt-3 w-full flex justify-between">
+      <div className="mt-3 w-full flex justify-between gap-2">
         <div
-          className="py-2 w-full flex justify-center items-center rounded-lg border-border-default  label-xs text-content-secondary"
+          className=" cursor-pointer py-2 w-full flex justify-center items-center rounded-lg border-border-default border label-xs text-content-secondary"
           onClick={() => setActive(false)}
         >
           취소
         </div>
         <div
-          className="py-2 w-full flex justify-center items-center rounded-lg border-border-default  label-xs text-content-secondary"
+          className="cursor-pointer  py-2 w-full flex justify-center items-center rounded-lg border-border-default border label-xs text-content-secondary"
           onClick={() => {
             handleChangeExpirationDate(selectedDate);
             setActive(false);

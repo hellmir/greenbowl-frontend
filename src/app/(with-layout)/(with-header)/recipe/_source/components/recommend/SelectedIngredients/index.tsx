@@ -39,7 +39,7 @@ const SelectedIngredients = ({
           </div>
         </Link>
       </div>
-      <div className="mb-1 flex h-12 p-2 items-center bg-scale-gray-100 border border-border-default">
+      <div className="mb-1 flex h-12 p-2 items-center bg-scale-gray-100 border border-border-default rounded-lg">
         <Ingredients
           ingredients={selectedIngredients}
           setSelectedIngredients={setSelectedIngredients}
@@ -49,7 +49,7 @@ const SelectedIngredients = ({
           placeholder={
             selectedIngredients.length > 0 ? "" : "재료를 선택해 주세요"
           }
-          className=" focus-visible:ring-transparent border-none placeholder:text-content-quarternary text-content-secondary"
+          className=" focus-visible:ring-transparent border-none rounded-none border-inherit placeholder:text-content-quarternary text-content-secondary"
           ref={inputRef}
           onSubmit={(e) => {
             e.preventDefault();

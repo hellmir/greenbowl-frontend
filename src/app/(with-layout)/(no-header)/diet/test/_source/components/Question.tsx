@@ -22,7 +22,7 @@ const Question = ({
   handleClickNext,
 }: Props) => {
   return (
-    <div className="heading-m flex flex-col items-center mt-[4rem]">
+    <div className="heading-m flex flex-col items-center mt-[4.5rem]">
       <div className="flex flex-col justify-center items-center ">
         <div className="text-foundation-primary mb-2">{`Q${question.id + 1}.`}</div>
         <p className="whitespace-pre text-center">{question.question}</p>
