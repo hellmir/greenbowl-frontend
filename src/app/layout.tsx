@@ -59,7 +59,7 @@ export default function RootLayout({
             strategy="lazyOnload"
           />
           <div className="fixed inset-0 bg-foundation-quarternary z-0"></div>
-          <div className="  flex justify-center items-center z-30">
+          <div className="flex justify-center items-center z-30">
             <div className="w-full max-w-[37.5rem] min-h-screen mx-auto relative text-content-secondary z-40 bg-white">
               <div>{children}</div>
             </div>
