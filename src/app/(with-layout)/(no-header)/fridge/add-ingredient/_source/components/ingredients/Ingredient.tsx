@@ -48,7 +48,7 @@ const Ingredient = ({ ingredient }: Props) => {
       className={`${isSelected ? "bg-scale-yellowgreen-100 border-foundation-primary text-foundation-primary" : "bg-foundation-secondary border border-border-default text-content-secondary"} border relative w-full h-9  label-xs  flex justify-center items-center hover:cursor-pointer rounded-lg `}
     >
       <p className="">{ingredient.categoryDetail}</p>
-      {ingredient.id >= 500 && (
+      {ingredient.id >= 160 && (
         <div className="absolute right-0 top-0 p-1">
           <Button
             variant={"ghost"}
