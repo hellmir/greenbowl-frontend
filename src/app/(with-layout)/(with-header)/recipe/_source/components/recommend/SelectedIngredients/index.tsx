@@ -39,7 +39,7 @@ const SelectedIngredients = ({
           </div>
         </Link>
       </div>
-      <div className="mb-1 flex h-12 p-2 items-center bg-scale-gray-100 border border-border-default rounded-lg">
+      <div className="mb-1 flex h-12 p-2 pl-0 items-center bg-scale-gray-100 border border-border-default rounded-lg">
         <Ingredients
           ingredients={selectedIngredients}
           setSelectedIngredients={setSelectedIngredients}
