@@ -50,7 +50,7 @@ const RecommendedMenu = ({ index, recipe }: RecommendedProps) => {
 
   const handleClick = () => {
     setSelectedRecipe(recipe);
-    router.push(`/recipe/ai/${recipe.id}}`);
+    router.push(`/recipe/ai/${recipe.id}`);
   };
   const handleClickBookmark = (e: React.MouseEvent) => {
     e.stopPropagation();
