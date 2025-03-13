@@ -12,11 +12,11 @@ const customFetchClient = async (url: string, options: RequestInit = {}) => {
   const response = await fetch(url, { ...options, headers });
 
   if (!response.ok) {
+    console.error("response not ok");
     throw new Error(`HTTP error! Status: ${response.status}`);
   }
-
   try {
-    return response.json();
+    return await response.json();
   } catch {
     return;
   }
