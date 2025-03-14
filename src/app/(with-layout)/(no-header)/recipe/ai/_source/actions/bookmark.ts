@@ -5,12 +5,13 @@ import {
     RECIPE_SERVICE_URL,
 } from "@/app/(with-layout)/(no-header)/recipe/ai/_source/config";
 import customFetchClient from "@/api/customFetchClient";
+import React from "react";
 
 const DETAILED_RECIPE_ENDPOINT = "detailed";
 const ONE_LINE_INTRODUCTION = "oneLineIntroduction";
 
 export const POST = async (
-    payload: AddBookmarkRequestPayload | AddDetailedBookmarkRequestPayload
+    payload: AddBookmarkRequestPayload | AddDetailedBookmarkRequestPayload, setId: React.Dispatch<React.SetStateAction<string>>
 ) => {
     let requestEndpoint = RECIPE_SERVICE_URL;
     if (ONE_LINE_INTRODUCTION in payload) {
@@ -27,9 +28,9 @@ export const POST = async (
             body: JSON.stringify(payload),
         });
 
-        if (!response.ok) {
-            throw new Error(`API Error: ${response.statusText}`);
-        }
+        const id = await response.text();
+        console.log("북마크 id: ", id);
+        setId(id);
     } catch (error) {
         console.error("Error adding bookmark:", error);
         throw error;
@@ -38,7 +39,6 @@ export const POST = async (
 
 export const GET = async (id: string) => {
     try {
-        console.log(id);
         const response = await fetch(`${RECIPE_SERVICE_URL}${id}`, {
             method: "GET",
             headers: {
