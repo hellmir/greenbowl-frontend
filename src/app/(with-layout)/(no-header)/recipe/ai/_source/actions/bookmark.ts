@@ -39,7 +39,7 @@ export const POST = async (
 export const GET = async (id: string) => {
     try {
         console.log(id);
-        const response = await customFetchClient(`${RECIPE_SERVICE_URL}${id}`, {
+        const response = await fetch(`${RECIPE_SERVICE_URL}${id}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
