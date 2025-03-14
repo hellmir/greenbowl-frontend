@@ -10,7 +10,6 @@ interface Props {
 }
 
 const TipItem = ({ article }: Props) => {
-  console.log(article);
   return (
     <Link href={`${route.myFridge.tip}/${article.id}`} className="">
       <div className="flex flex-col gap-4 relative bg-foundation-secondary rounded-xl">
