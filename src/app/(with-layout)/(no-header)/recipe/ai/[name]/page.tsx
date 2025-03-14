@@ -58,7 +58,7 @@ const Page = () => {
         }
     }, []);
 
-    const [isBookmarkedRecipe, setIsBookmarkedRecipe] = useState<boolean>(!Number.isNaN(Number(id)));
+    const isBookmarkedRecipe = !Number.isNaN(Number(id));
     const [oneLineIntroduction, setOneLineIntroduction] = useState<string>();
     const [usedIngredients, setUsedIngredients] = useState<UsedIngredient[]>([]);
     const [nutrition, setNutrition] = useState<Nutrition>({
