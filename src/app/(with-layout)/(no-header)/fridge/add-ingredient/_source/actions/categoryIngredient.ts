@@ -15,6 +15,15 @@ export const getCategoryIngredients = async (sequence = 1) => {
   return res;
 };
 
+export const getCategoryIngredientsWithClient = async (sequence = 1) => {
+  const res: CategoryIngredient[] = await customFetchClient(
+    `${BASE_API_URL}/api/fridges/category-items?sequence=${sequence}`,
+    { cache: "no-cache" }
+  );
+
+  return res;
+};
+
 export const createCategoryIngredients = async ({
   categoryDetail,
   sequence,

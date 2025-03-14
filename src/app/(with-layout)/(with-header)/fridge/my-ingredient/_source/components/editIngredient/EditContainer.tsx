@@ -11,7 +11,7 @@ const EditContainer = ({ handleClose }: Props) => {
   return (
     <div className=" bg-foundation-tertiary z-30">
       <Header handleClose={handleClose} />
-      <div className="px-4 mb-20">
+      <div className="px-4 pb-20">
         <EditIngredientList />
       </div>
       <Navigation />

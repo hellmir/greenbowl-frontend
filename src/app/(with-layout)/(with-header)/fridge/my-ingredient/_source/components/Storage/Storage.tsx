@@ -23,7 +23,7 @@ const Storage = ({ ingredients }: Props) => {
   }, [changeConfigState, clear]);
 
   return (
-    <div className="min-h-[75vh]">
+    <div className="min-h-screen pb-20">
       <MyIngredients ingredients={ingredients} />
     </div>
   );

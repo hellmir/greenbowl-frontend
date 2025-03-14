@@ -61,7 +61,7 @@ const CreateIngredient = memo(function CreateIngredient({
   return (
     <div className="px-3 pb-3 pt-2 bg-foundation-secondary rounded-[1.25rem] mb-5">
       <Head sequence={sequence} selectedIngredient={selectedIngredient} />
-      <div className=" mt-5 flex flex-col gap-3 label-s text-content-tertiary  ">
+      <div className=" mt-3 flex flex-col gap-3 label-s text-content-tertiary  ">
         <ExpirationDate
           expirationDate={ingredient.expirationDate}
           handleClick={() => setActive(true)}
