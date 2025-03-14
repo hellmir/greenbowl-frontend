@@ -7,7 +7,7 @@ import {
     DELETE as deleteBookmark,
     POST as postBookmark,
 } from "@/app/(with-layout)/(no-header)/recipe/ai/_source/actions/bookmark";
-import {useRef, useState} from "react";
+import React, {useRef, useState} from "react";
 import {useAlertStore} from "@/store/alertStore";
 import ClockSvg from "@/components/svg/Clock";
 import FireSvg from "@/components/svg/Fire";
@@ -58,7 +58,9 @@ const RecommendedMenu = ({index, recipe}: Props) => {
                 calories: calories,
             };
             sessionStorage.setItem(`isBookmarked_${name}`, "true");
-            await postBookmark(payload);
+
+            await postBookmark(payload, () => {
+            });
 
             return;
         }
