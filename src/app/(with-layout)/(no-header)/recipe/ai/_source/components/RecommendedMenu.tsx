@@ -37,7 +37,6 @@ const RecommendedMenu = ({index, recipe}: Props) => {
     const bookmarkRef = useRef<SVGSVGElement | null>(null);
     const [isBookmarked, setIsBookmarked] = useState(sessionStorage.getItem(`isBookmarked_${name}`) === "true");
     const {setMessage, setIsOpen} = useAlertStore();
-    const [id, setId] = useState();
 
     const handleClickBookmark = async (e: React.MouseEvent) => {
         e.stopPropagation();
@@ -60,7 +59,8 @@ const RecommendedMenu = ({index, recipe}: Props) => {
             };
             sessionStorage.setItem(`isBookmarked_${name}`, "true");
 
-            await postBookmark(payload, setId);
+            await postBookmark(payload, () => {
+            });
 
             return;
         }
