@@ -313,7 +313,7 @@ const Page = () => {
                                     추천 레시피
                                 </h2>
                                 <div className=" absolute right-0 flex gap-10">
-                                    {!isBookmarkedRecipe && (
+                                    {!isBookmarkedRequest && (
                                         <Bookmark
                                             className={`w-6 h-6 text-content-tertiary cursor-pointer ${isBookmarked ? "text-foundation-accent" : ""}`}
                                             onClick={handleClickBookmark}

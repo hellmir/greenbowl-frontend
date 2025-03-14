@@ -6,36 +6,46 @@ import {
 } from "@/app/(with-layout)/(no-header)/recipe/ai/_source/config";
 import customFetchClient from "@/api/customFetchClient";
 import React from "react";
+import {getSession} from "next-auth/react";
 
 const DETAILED_RECIPE_ENDPOINT = "detailed";
 const ONE_LINE_INTRODUCTION = "oneLineIntroduction";
 
 export const POST = async (
-    payload: AddBookmarkRequestPayload | AddDetailedBookmarkRequestPayload, setId: React.Dispatch<React.SetStateAction<string>>
-) => {
-    let requestEndpoint = RECIPE_SERVICE_URL;
-    if (ONE_LINE_INTRODUCTION in payload) {
-        requestEndpoint += DETAILED_RECIPE_ENDPOINT;
+        payload: AddBookmarkRequestPayload | AddDetailedBookmarkRequestPayload, setId: React.Dispatch<React.SetStateAction<string>>
+    ) => {
+        let requestEndpoint = RECIPE_SERVICE_URL;
+        if (ONE_LINE_INTRODUCTION in payload) {
+            requestEndpoint += DETAILED_RECIPE_ENDPOINT;
+        }
+
+        try {
+            const session = await getSession();
+
+            if (!session || !session.userId) {
+                throw new Error("로그인되지 않은 사용자입니다.");
+            }
+
+            console.log("userId: ", String(session.userId))
+            const response = await fetch(requestEndpoint, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "userId": String(session.userId),
+                },
+
+                body: JSON.stringify(payload),
+            });
+
+            const id = await response.text();
+            console.log("북마크 id: ", id);
+            setId(id);
+        } catch (error) {
+            console.error("Error adding bookmark:", error);
+            throw error;
+        }
     }
-
-    try {
-        const response = await customFetchClient(requestEndpoint, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-
-            body: JSON.stringify(payload),
-        });
-
-        const id = await response.text();
-        console.log("북마크 id: ", id);
-        setId(id);
-    } catch (error) {
-        console.error("Error adding bookmark:", error);
-        throw error;
-    }
-};
+;
 
 export const GET = async (id: string) => {
     try {
