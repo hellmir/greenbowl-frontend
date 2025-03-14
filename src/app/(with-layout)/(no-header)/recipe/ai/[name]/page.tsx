@@ -39,7 +39,6 @@ const Page = () => {
         : process.env.NEXT_PUBLIC_DEFAULT_IMAGE_URL;
 
     useEffect(() => {
-        console.log(isBookmarked);
         const storedRecipe = localStorage.getItem("selectedRecipe");
         const storedName = JSON.parse(storedRecipe as string)?.name;
 
@@ -74,7 +73,6 @@ const Page = () => {
     const [isBookmarked, setIsBookmarked] = useState(sessionStorage.getItem(`isBookmarked_${recipeName}`) === "true");
     const {setMessage, setIsOpen} = useAlertStore();
     const [isStreaming, setIsStreaming] = useState<boolean>(false);
-    const [streamInterrupted, setStreamInterrupted] = useState(false);
 
     const handleClickBookmark = async () => {
         setIsBookmarked(!isBookmarked);
@@ -329,7 +327,6 @@ const Page = () => {
                                     setRecipeIntroduction={setRecipeIntroduction}
                                     isStreaming={isStreaming}
                                     setIsStreaming={setIsStreaming}
-                                    setStreamInterrupted={setStreamInterrupted}
                                 />
                             </>
                         )}

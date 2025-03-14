@@ -22,7 +22,6 @@ interface Props {
     setRecipeIntroduction: React.Dispatch<React.SetStateAction<string>>;
     isStreaming: boolean;
     setIsStreaming: React.Dispatch<React.SetStateAction<boolean>>;
-    setStreamInterrupted: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const RecipeStreaming = ({
@@ -34,7 +33,6 @@ const RecipeStreaming = ({
                              setRecipeIntroduction,
                              isStreaming,
                              setIsStreaming,
-                             setStreamInterrupted,
                          }: Props) => {
     const abortControllerRef = useRef<AbortController | null>(null);
 
@@ -64,25 +62,12 @@ const RecipeStreaming = ({
 
         console.log("레시피 스트리밍 요청 전송");
         console.log("payload: ", recipePayload);
-        try {
-            await GET({
-                setRecipeIntroduction,
-                setIsStreaming,
-                controller,
-                payload: recipePayload,
-            });
-
-            if (!controller.signal.aborted) {
-                console.log("스트리밍 정상 완료");
-            }
-        } catch (error) {
-            if (controller.signal.aborted) {
-                console.log("스트리밍이 중단되었습니다.");
-                setStreamInterrupted(true);
-            } else {
-                console.error("스트리밍 중 오류 발생:", error);
-            }
-        }
+        await GET({
+            setRecipeIntroduction,
+            setIsStreaming,
+            controller,
+            payload: recipePayload,
+        });
     };
 
     useEffect(() => {

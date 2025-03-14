@@ -93,7 +93,7 @@ const Page = () => {
 
     const parseToObject = (data: string) => {
         try {
-            return typeof data === "string" ? JSON.parse(JSON.parse(data)) : JSON.parse(data);
+            return JSON.parse(JSON.parse(data));
         } catch (error) {
             console.error("JSON 파싱에 실패했습니다: ", error);
             return [];
