@@ -100,6 +100,7 @@ const RecommendedMenu = ({ index, recipe }: RecommendedProps) => {
         onClick={(e) => {
           handleClickBookmark(e);
         }}
+        fill={`${isBookmarked ? "#ff974b" : "white"}`}
       />
     </div>
   );
