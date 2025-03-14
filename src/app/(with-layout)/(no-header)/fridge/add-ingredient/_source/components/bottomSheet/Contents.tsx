@@ -45,7 +45,7 @@ const Contents = ({ handleClose }: Props) => {
         afterAction();
       } catch (e) {
         console.error(e);
-        console.log("요를레이히~");
+
         play("등록에 실패했습니다.");
       }
     });

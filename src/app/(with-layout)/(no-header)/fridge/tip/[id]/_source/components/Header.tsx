@@ -24,7 +24,7 @@ const Header = ({ title }: Props) => {
     return "";
   }, [pathname]);
 
-  console.log(requestUrl);
+
 
   return (
     <header className=" top-0 z-20 bg-foundation-secondary sticky w-[calc(100%+32px)] -ml-4 -mr-[50px] px-4">

@@ -15,7 +15,7 @@ interface Props {
 
 const Ingredient = ({ ingredient }: Props) => {
   const [isPending, startTransition] = useTransition();
-  console.log(ingredient);
+
   const { toggleIngredient, selectedIngredientsMap } =
     useCategoryIngredientsStore();
   const afterAction = useAfterMutationEffects("삭제가 완료되었습니다.");

@@ -6,7 +6,7 @@ import { getFridgeIngredients } from "../actions/fridgeIngredient";
 const MyIngredientContainer = async () => {
   try {
     const ingredients = await getFridgeIngredients();
-    console.log(ingredients);
+
     return (
       <>
         {ingredients.length === 0 ? (

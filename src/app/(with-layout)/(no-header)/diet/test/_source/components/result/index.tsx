@@ -41,7 +41,7 @@ const getHealthState = (score: number) => {
 };
 
 const Result = ({ score, advice }: IResult) => {
-  console.log(score);
+
   const healthState = getHealthState(score);
   return (
     <>
