@@ -11,32 +11,31 @@ const DETAILED_RECIPE_ENDPOINT = "detailed";
 const ONE_LINE_INTRODUCTION = "oneLineIntroduction";
 
 export const POST = async (
-        payload: AddBookmarkRequestPayload | AddDetailedBookmarkRequestPayload, setId: React.Dispatch<React.SetStateAction<string>>
-    ) => {
-        let requestEndpoint = RECIPE_SERVICE_URL;
-        if (ONE_LINE_INTRODUCTION in payload) {
-            requestEndpoint += DETAILED_RECIPE_ENDPOINT;
-        }
-
-        try {
-            const response = await customFetchClient(requestEndpoint, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-
-                body: JSON.stringify(payload),
-            });
-
-            const id = await response.text();
-            console.log("북마크 id: ", id);
-            setId(id);
-        } catch (error) {
-            console.error("Error adding bookmark:", error);
-            throw error;
-        }
+    payload: AddBookmarkRequestPayload | AddDetailedBookmarkRequestPayload, setId: React.Dispatch<React.SetStateAction<string>>
+) => {
+    let requestEndpoint = RECIPE_SERVICE_URL;
+    if (ONE_LINE_INTRODUCTION in payload) {
+        requestEndpoint += DETAILED_RECIPE_ENDPOINT;
     }
-;
+
+    try {
+        const response = await customFetchClient(requestEndpoint, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+
+            body: JSON.stringify(payload),
+        });
+
+        const id = await response.text();
+        console.log("북마크 id: ", id);
+        setId(id);
+    } catch (error) {
+        console.error("Error adding bookmark:", error);
+        throw error;
+    }
+};
 
 export const GET = async (id: string) => {
     try {
