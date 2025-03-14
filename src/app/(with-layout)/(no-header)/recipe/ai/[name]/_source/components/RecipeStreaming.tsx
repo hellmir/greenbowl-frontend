@@ -22,6 +22,8 @@ interface Props {
     setRecipeIntroduction: React.Dispatch<React.SetStateAction<string>>;
     isStreaming: boolean;
     setIsStreaming: React.Dispatch<React.SetStateAction<boolean>>;
+    isBookmarkedRecipe: boolean;
+    setIsBookmarkedRequest: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const RecipeStreaming = ({
@@ -33,6 +35,8 @@ const RecipeStreaming = ({
                              setRecipeIntroduction,
                              isStreaming,
                              setIsStreaming,
+                             isBookmarkedRecipe,
+                             setIsBookmarkedRequest
                          }: Props) => {
     const abortControllerRef = useRef<AbortController | null>(null);
 
@@ -91,12 +95,19 @@ const RecipeStreaming = ({
                 {isStreaming && <p className="text-gray-500"></p>}
             </div>
             {!isStreaming && (
-                <button
-                    className="mt-4 bg-green-500 text-white px-4 py-2 rounded-lg w-full"
-                    onClick={fetchRecipe}
-                >
-                    다시 추천 받기
-                </button>
+                <div className="flex justify-center items-center mt-4">
+                    <img
+                        src="/image/line.png"
+                        alt="다시 추천 받기"
+                        className="w-80 mb-8 cursor-pointer"
+                        onClick={() => {
+                            if (isBookmarkedRecipe) {
+                                setIsBookmarkedRequest(true);
+                            }
+                            fetchRecipe();
+                        }}
+                    />
+                </div>
             )}
         </div>
     );
