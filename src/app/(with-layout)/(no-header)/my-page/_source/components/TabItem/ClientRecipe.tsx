@@ -12,6 +12,7 @@ import { useState, useTransition } from "react";
 
 import useAfterMutationEffects from "@/hooks/useAfterMutationEffects";
 import { useAlertStore } from "@/store/alertStore";
+import { MenuApiResponse } from "@/app/api/test/recipe/ai/gpt/menus";
 
 interface Props {
   recipes: BookmarkRecipe[];
@@ -41,16 +42,21 @@ const RecommendedMenu = ({ index, recipe }: RecommendedProps) => {
   const play = useAlertStore((state) => state.play);
 
   const name: string = recipe.name;
-  const representativeImageUrl =
-    recipe.imageUrls && recipe.imageUrls.length > 0
-      ? recipe.imageUrls[0]
-      : process.env.NEXT_PUBLIC_DEFAULT_IMAGE_URL;
+  const representativeImageUrl = recipe.imageUrl
+    ? recipe.imageUrl
+    : process.env.NEXT_PUBLIC_DEFAULT_IMAGE_URL;
   const cookingTime = recipe.cookingTime;
   const calories = recipe.calories;
 
   const handleClick = () => {
     if (isPending) return;
-    setSelectedRecipe(recipe);
+    const newRecipes: MenuApiResponse = {
+      name: recipe.name,
+      cookingTime: recipe.cookingTime,
+      calories: recipe.calories,
+      imageUrls: [recipe.imageUrl],
+    };
+    setSelectedRecipe(newRecipes);
     router.push(`/recipe/ai/${recipe.id}`);
   };
   const handleClickBookmark = (e: React.MouseEvent) => {

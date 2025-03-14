@@ -3,8 +3,9 @@ import customFetchServer from "@/api/customFetchServer";
 import { MenuApiResponse } from "@/app/api/test/recipe/ai/gpt/menus";
 import BASE_API_URL from "@/constants/apiUrl";
 
-export interface BookmarkRecipe extends MenuApiResponse {
+export interface BookmarkRecipe extends Omit<MenuApiResponse, "imageUrls"> {
   id: number;
+  imageUrl: string;
 }
 
 export const getBookmarkRecipes = async () => {
