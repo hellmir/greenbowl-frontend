@@ -43,6 +43,14 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "github.com",
       },
+      {
+        protocol: "http",
+        hostname: "**",
+      },
+      {
+        protocol: "https",
+        hostname: "**",
+      },
     ],
   },
 };
