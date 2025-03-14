@@ -6,7 +6,11 @@ const page = () => {
   return (
     <div className="bg-foundation-quarternary  px-4">
       <MyFridgeTabs />
-      <Suspense>
+      <Suspense
+        fallback={
+          <div className="min-h-screen bg-foundation-quarternary"></div>
+        }
+      >
         <MyIngredientContainer />
       </Suspense>
     </div>
