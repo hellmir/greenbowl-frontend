@@ -74,6 +74,14 @@ export interface AddDetailedBookmarkRequestPayload {
     nutrition: Nutrition;
 }
 
+export interface ModifyDetailedBookmarkRequestPayload {
+    id: string;
+    oneLineIntroduction: string | undefined;
+    ingredients: UsedIngredient[];
+    introduction: string;
+    nutrition: Nutrition;
+}
+
 export interface Nutrition {
     calories: number | undefined;
     carbohydrate: number | undefined;

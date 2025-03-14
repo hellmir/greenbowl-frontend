@@ -10,11 +10,14 @@ import {
     AddDetailedBookmarkRequestPayload,
     AiDetailedMenusRequestPayload,
     DetailedMenuOptions,
+    ModifyDetailedBookmarkRequestPayload,
     Nutrition,
     UsedIngredient,
 } from "@/app/(with-layout)/(no-header)/recipe/ai/_source/config";
 import {
     DELETE as deleteBookmark,
+    GET as getBookmarkedData,
+    PATCH as patchBookmark,
     POST as postBookmark
 } from "@/app/(with-layout)/(no-header)/recipe/ai/_source/actions/bookmark";
 import {Bookmark} from "lucide-react";
@@ -24,8 +27,12 @@ import {MenuApiResponse} from "@/app/api/test/recipe/ai/gpt/menus";
 import {useAlertStore} from "@/store/alertStore";
 import ClockSvg from "@/components/svg/Clock";
 import FireSvg from "@/components/svg/Fire";
+import {usePathname} from "next/navigation";
 
 const Page = () => {
+    const pathname = usePathname();
+    const parts = pathname.split("/");
+    const id = parts[parts.length - 1];
     const {selectedRecipe, availableIngredients} = useAiRecipe();
     const storedSelectedRecipe: MenuApiResponse = selectedRecipe
         || JSON.parse(localStorage.getItem("selectedRecipe") as string);
@@ -51,6 +58,7 @@ const Page = () => {
         }
     }, []);
 
+    const [isBookmarkedRecipe, setIsBookmarkedRecipe] = useState<boolean>(!Number.isNaN(Number(id)));
     const [oneLineIntroduction, setOneLineIntroduction] = useState<string>();
     const [usedIngredients, setUsedIngredients] = useState<UsedIngredient[]>([]);
     const [nutrition, setNutrition] = useState<Nutrition>({
@@ -73,6 +81,7 @@ const Page = () => {
     const [isBookmarked, setIsBookmarked] = useState(sessionStorage.getItem(`isBookmarked_${recipeName}`) === "true");
     const {setMessage, setIsOpen} = useAlertStore();
     const [isStreaming, setIsStreaming] = useState<boolean>(false);
+    const [isBookmarkedRequest, setIsBookmarkedRequest] = useState<boolean>(false);
 
     const handleClickBookmark = async () => {
         setIsBookmarked(!isBookmarked);
@@ -83,8 +92,10 @@ const Page = () => {
         }
 
         if (!isBookmarked) {
-            setMessage("북마크에 추가되었습니다.");
-            setIsOpen(true);
+            if (!isBookmarkedRecipe) {
+                setMessage("북마크에 추가되었습니다.");
+                setIsOpen(true);
+            }
 
             if (!oneLineIntroduction || isStreaming) {
                 const payload: AddBookmarkRequestPayload = {
@@ -116,20 +127,50 @@ const Page = () => {
             return;
         }
 
-        setMessage("북마크에서 삭제되었습니다.");
-        setIsOpen(true);
+        if (!isBookmarkedRecipe) {
+            setMessage("북마크에서 삭제되었습니다.");
+            setIsOpen(true);
+        }
         sessionStorage.setItem(`isBookmarked_${recipeName}`, "false");
+
         await deleteBookmark(recipeName!);
     };
 
     const detailedMenuOptions: DetailedMenuOptions = {
         name: [recipeName],
-        availableIngredients: storedIngredients || availableIngredients,
+        availableIngredients: storedIngredients?.length ? storedIngredients :
+            availableIngredients?.length ? availableIngredients :
+                ["all"],
         cookingTime: [`${cookingTime}분`],
         calories: [`${calories}kcal`],
     };
 
+    const fetchAdditionalInfo = async () => {
+        const payload: AiDetailedMenusRequestPayload = {
+            options: detailedMenuOptions,
+        };
+
+        console.log("레시피 추가 정보 요청 전송");
+        console.log("payload: ", payload);
+        const data = await GET(payload);
+
+        setOneLineIntroduction(data.oneLineIntroduction);
+        setUsedIngredients(data.usedIngredients);
+        setNutrition((prev) => ({
+            ...prev,
+            carbohydrate: data.carbohydrate,
+            protein: data.protein,
+            fat: data.fat,
+            sodium: data.sodium,
+            sugar: data.sugar,
+        }));
+    };
+
     useEffect(() => {
+        if (isBookmarkedRecipe) {
+            return;
+        }
+
         if (!recipeName) {
             return;
         }
@@ -142,7 +183,6 @@ const Page = () => {
 
         if (cachedData && !isRefreshed) {
             const parsedData = JSON.parse(cachedData);
-            console.log("지방: " + parsedData.nutrition.fat);
             console.log("사용된 재료: " + parsedData.usedIngredients);
             setOneLineIntroduction(parsedData.oneLineIntroduction);
             setUsedIngredients(parsedData.usedIngredients);
@@ -152,30 +192,11 @@ const Page = () => {
             return;
         }
 
-        const fetchAdditionalInfo = async () => {
-            const payload: AiDetailedMenusRequestPayload = {
-                options: detailedMenuOptions,
-            };
-
-            console.log("레시피 추가 정보 요청 전송");
-            console.log("payload: ", payload);
-            const data = await GET(payload);
-
-            setOneLineIntroduction(data.oneLineIntroduction);
-            setUsedIngredients(data.usedIngredients);
-            setNutrition((prev) => ({
-                ...prev,
-                carbohydrate: data.carbohydrate,
-                protein: data.protein,
-                fat: data.fat,
-                sodium: data.sodium,
-                sugar: data.sugar,
-            }));
-        };
-        console.log("지방: ", nutrition.fat);
-
         fetchAdditionalInfo();
-    }, [selectedRecipe, availableIngredients]);
+        if (isBookmarkedRequest) {
+            handleClickBookmark();
+        }
+    }, [selectedRecipe, availableIngredients, isBookmarkedRecipe]);
 
     useEffect(() => {
         if (recipeIntroduction && usedIngredients.length > 0) {
@@ -203,6 +224,62 @@ const Page = () => {
         };
     }, []);
 
+    useEffect(() => {
+        if (!isBookmarkedRecipe) {
+            return;
+        }
+
+        (async () => {
+            try {
+                const bookmarkedData = await getBookmarkedData(id);
+                console.log("북마크 데이터: ", bookmarkedData);
+                console.log(bookmarkedData.detailed);
+                if (!bookmarkedData.detailed) {
+                    await fetchAdditionalInfo();
+                    setIsBookmarkedRequest(true);
+                    return;
+                }
+
+                setOneLineIntroduction(bookmarkedData.oneLineIntroduction);
+                setUsedIngredients(bookmarkedData.recipeIngredients);
+                setNutrition(bookmarkedData.nutrition);
+                setRecipeIntroduction(bookmarkedData.introduction);
+                console.log("recipeIntroduction: ", bookmarkedData.recipeIntroduction);
+            } catch (error) {
+                console.error("북마크 데이터를 가져오는 중 오류 발생:", error);
+            }
+        })();
+
+    }, []);
+
+    useEffect(() => {
+        const modifyBookmark = async () => {
+            if (isStreaming || !isBookmarkedRequest) {
+                return;
+            }
+
+            const payload: ModifyDetailedBookmarkRequestPayload = {
+                id: id,
+                oneLineIntroduction: oneLineIntroduction,
+                ingredients: usedIngredients,
+                introduction: recipeIntroduction,
+                nutrition: nutrition,
+            };
+
+            console.log("북마크 상세 레시피 추가 요청: ", payload)
+
+            if (isStreaming) {
+                return;
+            }
+
+            await patchBookmark(payload);
+        };
+
+        (async () => {
+            await modifyBookmark();
+        })();
+    }, [isStreaming]);
+
     return (
         <div className="bg-foundation-tertiary ">
             <div className="">
@@ -218,11 +295,13 @@ const Page = () => {
                                     추천 레시피
                                 </h2>
                                 <div className=" absolute right-0 flex gap-10">
-                                    <Bookmark
-                                        className={`w-6 h-6 text-content-tertiary cursor-pointer ${isBookmarked ? "text-foundation-accent" : ""}`}
-                                        onClick={handleClickBookmark}
-                                        ref={bookmarkRef}
-                                    />
+                                    {!isBookmarkedRecipe &&
+                                        <Bookmark
+                                            className={`w-6 h-6 text-content-tertiary cursor-pointer ${isBookmarked ? "text-foundation-accent" : ""}`}
+                                            onClick={handleClickBookmark}
+                                            ref={bookmarkRef}
+                                        />
+                                    }
                                 </div>
                             </div>
                         </header>
@@ -327,6 +406,8 @@ const Page = () => {
                                     setRecipeIntroduction={setRecipeIntroduction}
                                     isStreaming={isStreaming}
                                     setIsStreaming={setIsStreaming}
+                                    isBookmarkedRecipe={isBookmarkedRecipe}
+                                    setIsBookmarkedRequest={setIsBookmarkedRequest}
                                 />
                             </>
                         )}

@@ -1,6 +1,7 @@
 import {
     AddBookmarkRequestPayload,
     AddDetailedBookmarkRequestPayload,
+    ModifyDetailedBookmarkRequestPayload,
     RECIPE_SERVICE_URL,
 } from "@/app/(with-layout)/(no-header)/recipe/ai/_source/config";
 
@@ -18,6 +19,47 @@ export const POST = async (
     try {
         const response = await fetch(requestEndpoint, {
             method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+
+            body: JSON.stringify(payload),
+        });
+
+        if (!response.ok) {
+            throw new Error(`API Error: ${response.statusText}`);
+        }
+    } catch (error) {
+        console.error("Error adding bookmark:", error);
+        throw error;
+    }
+};
+
+export const GET = async (id: string) => {
+    try {
+        console.log(id);
+        const response = await fetch(`${RECIPE_SERVICE_URL}${id}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
+
+        if (!response.ok) {
+            throw new Error(`API Error: ${response.statusText}`);
+        }
+
+        return response.json();
+    } catch (error) {
+        console.error("Error deleting bookmark:", error);
+        throw error;
+    }
+};
+
+export const PATCH = async (payload: ModifyDetailedBookmarkRequestPayload) => {
+    try {
+        const response = await fetch(RECIPE_SERVICE_URL, {
+            method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
             },
