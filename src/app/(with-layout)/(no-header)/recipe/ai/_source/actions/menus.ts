@@ -1,33 +1,36 @@
-import {
-  AI_MENUS_REQUEST_API_BASE_URL,
-  AI_MENUS_REQUEST_ENDPOINT,
-  AiDetailedMenusRequestPayload,
-  AiMenusRequestPayload,
-} from "@/app/(with-layout)/(no-header)/recipe/ai/_source/config";
+import {AI_MENUS_REQUEST_URL, AiMenusRequestPayload,} from "@/app/(with-layout)/(no-header)/recipe/ai/_source/config";
 
-export const POST = async (
-  payload: AiMenusRequestPayload | AiDetailedMenusRequestPayload
+export const GET = async (
+    payload: AiMenusRequestPayload
 ) => {
-  try {
-    const response = await fetch(
-      AI_MENUS_REQUEST_API_BASE_URL + AI_MENUS_REQUEST_ENDPOINT,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+    const {options} = payload;
 
-        body: JSON.stringify(payload),
-      }
-    );
+    const queryParams = new URLSearchParams();
 
-    if (!response.ok) {
-      throw new Error(`API Error: ${response.statusText}`);
+    options.ingredients.forEach((item) => queryParams.append("ingredients", item));
+    if (options.cookingTimeLimit) {
+        options.cookingTimeLimit.forEach((n) => n && queryParams.append("cookingTimeLimit", n));
+    }
+    if (options.cuisineType) {
+        options.cuisineType.forEach((n) => n && queryParams.append("cuisineType", n));
     }
 
-    return await response.json();
-  } catch (error) {
-    console.error("Error fetching menus: ", error);
-    throw error;
-  }
+    try {
+        const response = await fetch(
+            `${AI_MENUS_REQUEST_URL}?${queryParams.toString()}`,
+            {
+                method: "GET",
+                headers: {"Content-Type": "application/json"},
+            }
+        );
+
+        if (!response.ok) {
+            throw new Error(`API Error: ${response.statusText}`);
+        }
+
+        return await response.json();
+    } catch (error) {
+        console.error("Error fetching menus: ", error);
+        throw error;
+    }
 };

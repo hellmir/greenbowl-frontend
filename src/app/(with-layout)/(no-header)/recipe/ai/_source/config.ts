@@ -1,16 +1,18 @@
 import BASE_API_URL from "@/constants/apiUrl";
 
-export const AI_MENUS_REQUEST_API_BASE_URL: string = process.env.NEXT_PUBLIC_LLM_SERVER_URL!;
-export const AI_MENUS_REQUEST_ENDPOINT: string = process.env.NEXT_PUBLIC_AI_MENUS_REQUEST_ENDPOINT!;
-export const AI_RECOMMENDATION_REQUEST_ENDPOINT: string = process.env.NEXT_PUBLIC_AI_RECOMMENDATION_REQUEST_ENDPOINT!;
-// export const RECIPE_SERVICE_URL: string = BASE_API_URL + process.env.NEXT_PUBLIC_AI_RECIPE_REQUEST_ENDPOINT!;
+const AI_RECOMMENDATION_SERVICE_URL = BASE_API_URL + "/api/recommendations";
 export const RECIPE_SERVICE_URL: string = BASE_API_URL + process.env.NEXT_PUBLIC_RECIPE_SERVER_ENDPOINT!
 
+const AI_MENUS_REQUEST_ENDPOINT: string = process.env.NEXT_PUBLIC_AI_MENUS_REQUEST_ENDPOINT!;
+export const AI_MENUS_REQUEST_URL: string = AI_RECOMMENDATION_SERVICE_URL + AI_MENUS_REQUEST_ENDPOINT;
+export const AI_DETAILED_MENU_REQUEST_URL: string = AI_MENUS_REQUEST_URL + "/detailed";
+
+const AI_RECOMMENDATION_REQUEST_ENDPOINT: string = process.env.NEXT_PUBLIC_AI_RECOMMENDATION_REQUEST_ENDPOINT!;
+export const AI_RECOMMENDATION_REQUEST_URL: string = AI_RECOMMENDATION_SERVICE_URL + AI_RECOMMENDATION_REQUEST_ENDPOINT;
+
+
 export interface AiMenusRequestPayload {
-    llm_type: string;
-    template: string;
     options: MenuOptions;
-    secret_key: string;
 }
 
 export interface MenuOptions {
@@ -20,10 +22,7 @@ export interface MenuOptions {
 }
 
 export interface AiDetailedMenusRequestPayload {
-    llm_type: string;
-    template: string;
     options: DetailedMenuOptions;
-    secret_key: string;
 }
 
 export interface DetailedMenuOptions {
@@ -46,10 +45,7 @@ export interface MenuApiResponse {
 }
 
 export interface AiRecipeRequestPayload {
-    llm_type: string;
-    template: string;
     options: RecipeOptions;
-    secret_key: string;
 }
 
 export interface RecipeOptions {
@@ -72,6 +68,14 @@ export interface AddDetailedBookmarkRequestPayload {
     imageUrl: string | undefined;
     cookingTime: number | undefined;
     calories: number | undefined;
+    oneLineIntroduction: string | undefined;
+    ingredients: UsedIngredient[];
+    introduction: string;
+    nutrition: Nutrition;
+}
+
+export interface ModifyDetailedBookmarkRequestPayload {
+    id: string;
     oneLineIntroduction: string | undefined;
     ingredients: UsedIngredient[];
     introduction: string;

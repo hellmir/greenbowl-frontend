@@ -1,4 +1,5 @@
 import MyPageHeader from "./_source/components/Header";
+import Recipe from "./_source/components/TabItem/Recipe";
 import TabsContainer from "./_source/components/Tabs";
 import UserProfile from "./_source/components/UserProfile";
 
@@ -10,11 +11,11 @@ const page = async ({ searchParams }: Props) => {
   const tabName = params.tabName ? (params.tabName as string) : "recipe";
 
   return (
-    <div>
+    <div className=" bg-foundation-tertiary min-h-screen pb-20">
       <MyPageHeader />
-
       <UserProfile />
       <TabsContainer tabName={tabName} />
+      {tabName === "recipe" && <Recipe />}
     </div>
   );
 };

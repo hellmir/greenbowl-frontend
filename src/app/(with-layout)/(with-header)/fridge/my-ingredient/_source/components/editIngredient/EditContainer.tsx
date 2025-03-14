@@ -9,9 +9,9 @@ interface Props {
 
 const EditContainer = ({ handleClose }: Props) => {
   return (
-    <div className=" z-30">
+    <div className=" bg-foundation-tertiary z-30">
       <Header handleClose={handleClose} />
-      <div className="px-4">
+      <div className="px-4 pb-20">
         <EditIngredientList />
       </div>
       <Navigation />

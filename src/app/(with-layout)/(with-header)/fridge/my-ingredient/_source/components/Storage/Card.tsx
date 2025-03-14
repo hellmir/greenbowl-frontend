@@ -34,7 +34,7 @@ const Card = memo(function Card({ ingredient, isSelected, onClick }: Props) {
   const expirationDateClassName = getExpirationDateClassName(expirationDate);
   return (
     <div
-      className={`w-full rounded-lg py-2 px-3 border  ${isSelected ? "bg-yellowgreen-100 border-foundation-primary" : "bg-foundation-secondary border-border-default"}`}
+      className={`w-full rounded-lg py-2 px-3 border  ${isSelected ? "bg-scale-yellowgreen-100 border-foundation-primary" : "bg-foundation-secondary border-border-default"}`}
       onClick={() => onClick(ingredient)}
     >
       <div className={`${expirationDateClassName} mb-1 heading-s`}>

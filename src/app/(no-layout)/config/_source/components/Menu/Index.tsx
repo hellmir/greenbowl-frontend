@@ -78,7 +78,7 @@ const SettingsMenu = () => {
           {
             icon: ExitIcon,
             label: "로그아웃",
-            handleClick: async () => await signOut({ callbackUrl: undefined }),
+            handleClick: async () => await signOut({ callbackUrl: "/recipe" }),
           },
           {
             icon: CircleXIcon,

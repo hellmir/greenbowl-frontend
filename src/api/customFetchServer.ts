@@ -5,12 +5,11 @@ const customFetchServer = async (url: string, options: RequestInit = {}) => {
   const token = await getServerSession(authOptions);
 
   const headers = {
-    Authorization: token?.accessToken ? `Bearer ${token.accessToken}` : "",
+    Authorization: token?.accessToken ? `${token.accessToken}` : "",
+    userId: token?.userId ? `${token.userId}` : "",
     "Content-Type": "application/json",
     ...options.headers,
   };
-
-
 
   const response = await fetch(url, { ...options, headers });
 

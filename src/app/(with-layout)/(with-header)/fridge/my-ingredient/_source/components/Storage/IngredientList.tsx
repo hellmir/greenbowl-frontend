@@ -18,7 +18,7 @@ const IngredientList = ({
   const categorizedMap = useMemo(() => categorized(ingredients), [ingredients]);
 
   return (
-    <div className="pb-28">
+    <div className="mb-20 mt-3">
       {categories.map((category) => {
         const isEmpty = categorizedMap[category.id].ingredients.length <= 0;
         if (isEmpty) return;
@@ -27,13 +27,15 @@ const IngredientList = ({
             key={category.id}
             className="mb-5 bg-foundation-secondary rounded-[12px] p-3"
           >
-            <div className="flex items-center label-m h-10 mb-5">
-              <category.icon />
-              <p className=" label-m">{`${category.name} (${
-                categorizedMap[category.id].ingredients.length
-              })`}</p>
+            <div className="h-12 border-b-[0.5px] border-border-default">
+              <div className="flex items-center label-m h-10 mb-5">
+                <category.icon />
+                <p className=" ml-3 label-m">{`${category.name} (${
+                  categorizedMap[category.id].ingredients.length
+                })`}</p>
+              </div>
             </div>
-            <div className="w-full grid grid-cols-2 gap-4">
+            <div className="w-full grid grid-cols-2 gap-4 mt-3">
               {categorizedMap[category.id].ingredients.map(
                 (ingredient, idx) => (
                   <Card

@@ -1,13 +1,9 @@
-/* eslint-disable @next/next/no-img-element */
-import imagePath from "@/constants/imagePath";
+import OnboardingCharacter from "@/components/character/OnboardingCharacter";
 
 const CharacterImg = () => {
   return (
     <div className="flex justify-center">
-      <img
-        src={imagePath.cookingCharacter.src}
-        alt={imagePath.cookingCharacter.alt}
-      />
+      <OnboardingCharacter />
     </div>
   );
 };

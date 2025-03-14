@@ -7,7 +7,7 @@ const layout = ({
 }>) => {
   return (
     <>
-      <div className="px-4">{children}</div>
+      <div className="">{children}</div>
       <Navigation />
     </>
   );

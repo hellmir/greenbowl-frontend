@@ -5,3 +5,12 @@
 :root {
   --spoqa-han-sans-neo: @apply font-spoqa;
 }
+*::-webkit-scrollbar {
+  width: 1px;
+  background-color: white;
+  color: chartreuse;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #72b76d;
+}

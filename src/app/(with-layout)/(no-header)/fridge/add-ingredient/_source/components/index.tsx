@@ -14,14 +14,15 @@ const AddIngredientContainer = ({ categoryId }: Props) => {
   return (
     <div className=" ">
       <Header />
-      <div className=" ">
-        <CategoriesContainer />
 
+      <CategoriesContainer />
+      <div className="px-4 mb-20">
         <Suspense key={categoryId} fallback={<CategoryIngredientSkeleton />}>
           <IngredientsContainer categoryId={categoryId} />
         </Suspense>
+
+        <Bottom />
       </div>
-      <Bottom />
       <SideEffect />
     </div>
   );

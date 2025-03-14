@@ -1,26 +1,21 @@
-import { create } from "zustand";
 import { FC } from "react";
+import { create } from "zustand";
 
-interface FullscreenModalProps {
-  handleClose: () => void;
-}
-
+/* eslint-disable @typescript-eslint/no-explicit-any */
 interface FullscreenModalState {
   isOpen: boolean;
-  ReactNode: FC<FullscreenModalProps>;
+  Component: FC<any>;
+  props: Record<string, any>;
   setIsOpen: (isOpen: boolean) => void;
-  setReactNode: (reactNode: FC<FullscreenModalProps>) => void;
-  play: (reactNode: FC<FullscreenModalProps>) => void;
+  play: <T>(Component: FC<T>, props?: Record<string, any>) => void;
   close: () => void;
 }
 
 export const useFullscreenModalStore = create<FullscreenModalState>((set) => ({
   isOpen: false,
-  ReactNode: () => {
-    return <></>;
-  },
+  Component: () => <></>,
+  props: {},
   setIsOpen: (isOpen) => set({ isOpen }),
-  setReactNode: (ReactNode) => set({ ReactNode }),
-  play: (ReactNode) => set({ ReactNode, isOpen: true }),
-  close: () => set({ ReactNode: () => <div></div>, isOpen: false }),
+  play: (Component, props = {}) => set({ Component, props, isOpen: true }),
+  close: () => set({ Component: () => <></>, props: {}, isOpen: false }),
 }));

@@ -19,6 +19,10 @@ const imagePath = {
     src: "/image/empty.png",
     alt: "냉장고 빈 화면 이미지",
   },
+  fridgeTipDetail: {
+    src: "/image/FridgeDetail.png",
+    alt: "냉장고 꿀팁 상세 이미지",
+  },
   onboarding: {
     recipe: {
       src: "/image/onboarding/recipe.png",

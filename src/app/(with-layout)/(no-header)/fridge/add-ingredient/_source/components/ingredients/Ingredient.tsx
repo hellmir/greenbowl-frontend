@@ -48,20 +48,22 @@ const Ingredient = ({ ingredient }: Props) => {
       className={`${isSelected ? "bg-scale-yellowgreen-100 border-foundation-primary text-foundation-primary" : "bg-foundation-secondary border border-border-default text-content-secondary"} border relative w-full h-9  label-xs  flex justify-center items-center hover:cursor-pointer rounded-lg `}
     >
       <p className="">{ingredient.categoryDetail}</p>
-      <div className="absolute right-0 top-0 p-1">
-        <Button
-          variant={"ghost"}
-          onClick={(e) => {
-            e.stopPropagation();
-            deleteAction(ingredient);
-          }}
-          className=" p-0 m-0 h-full"
-          loading={isPending}
-          LoaderClassname="bg-white"
-        >
-          <XIcon stroke="content-tertiary" height={12} width={12} />
-        </Button>
-      </div>
+      {ingredient.id >= 160 && (
+        <div className="absolute right-0 top-0 p-1">
+          <Button
+            variant={"ghost"}
+            onClick={(e) => {
+              e.stopPropagation();
+              deleteAction(ingredient);
+            }}
+            className=" p-0 m-0 h-full"
+            loading={isPending}
+            LoaderClassname="bg-white"
+          >
+            <XIcon stroke="content-tertiary" height={12} width={12} />
+          </Button>
+        </div>
+      )}
     </div>
   );
 };

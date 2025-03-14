@@ -42,8 +42,8 @@ const RecommendContents = () => {
     return () => clear();
   }, [clear]);
   return (
-    <>
-      <div className=" flex flex-col gap-5  mb-32">
+    <div className="mb-20">
+      <div className=" flex flex-col gap-5">
         <SelectedIngredients
           selectedIngredients={selectedIngredients}
           setSelectedIngredients={setSelectedIngredients}
@@ -69,7 +69,7 @@ const RecommendContents = () => {
       >
         검색하기
       </Button>
-    </>
+    </div>
   );
 };
 

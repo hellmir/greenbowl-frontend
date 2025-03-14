@@ -30,9 +30,15 @@ const authOptions: NextAuthOptions = {
 
           const accessToken = res.headers.get("Authorization");
 
+          const json = await res.json();
+
+          const userId = json.userId;
+
           if (!accessToken) throw new Error("토큰이 존재하지 않습니다.");
+          if (!userId) throw new Error("userId가 존재하지 않습니다.");
 
           token.accessToken = accessToken;
+          token.userId = userId;
         } catch (error) {
           console.error("액세스 토큰 가져오기 실패:", error);
         }
@@ -42,6 +48,7 @@ const authOptions: NextAuthOptions = {
     },
     async session({ session, token }) {
       session.accessToken = token.accessToken as string;
+      session.userId = token.userId as number;
       return session;
     },
   },

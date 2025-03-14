@@ -11,7 +11,7 @@ interface Props {
 
 export const CookTime = ({ handleClickItem, selectedTime }: Props) => {
   return (
-    <div className="p-3">
+    <div className="p-3 bg-foundation-secondary rounded-xl">
       <div className="label-s text-content-secondary mb-3">요리시간</div>
       <div className="grid grid-cols-2 gap-3">
         {cookTimes.map((time) => (
@@ -19,7 +19,7 @@ export const CookTime = ({ handleClickItem, selectedTime }: Props) => {
             type="button"
             key={time}
             aria-label={time}
-            className={`py-2 w-full flex items-center justify-center border  rounded-lg hover:cursor-pointer ${selectedTime === time ? "border-foundation-primary bg-scale-yellowgreen-100" : "border-border-default"}`}
+            className={`py-2 w-full flex items-center justify-center border  rounded-lg hover:cursor-pointer ${selectedTime === time ? "border-foundation-primary bg-scale-yellowgreen-100 text-foundation-primary" : "border-border-default"}`}
             value={time}
             onClick={() => handleClickItem(time)}
           ></input>

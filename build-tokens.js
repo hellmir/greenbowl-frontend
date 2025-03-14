@@ -11,7 +11,8 @@ register(StyleDictionary);
         if (prop.path[0] === category) {
           const isTypography = category === "typography";
           const newName = prop.name.replace(`${category}-`, "");
-
+          
+        
           if (prop.value.fontFamily) {
             prop.value.fontFamily = "var(--spoqa-han-sans-neo)";
           }

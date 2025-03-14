@@ -5,7 +5,7 @@ import { useState, useTransition } from "react";
 import useAfterMutationEffects from "@/hooks/useAfterMutationEffects";
 import {
   createCategoryIngredients,
-  getCategoryIngredients,
+  getCategoryIngredientsWithClient,
 } from "../../actions/categoryIngredient";
 import { useAlertStore } from "@/store/alertStore";
 import { CategoryIngredient } from "@/app/type/ingredients";
@@ -29,7 +29,7 @@ const Contents = ({ handleClose }: Props) => {
   const play = useAlertStore((state) => state.play);
 
   const addAction = async (categoryDetail: string, sequence: number) => {
-    const ingredients = await getCategoryIngredients(sequence);
+    const ingredients = await getCategoryIngredientsWithClient(sequence);
 
     if (findSameName(categoryDetail, ingredients)) {
       play("기존에 등록된 재료입니다.");
@@ -45,16 +45,18 @@ const Contents = ({ handleClose }: Props) => {
         afterAction();
       } catch (e) {
         console.error(e);
+
         play("등록에 실패했습니다.");
       }
     });
+
     return true;
   };
   return (
     <>
       <div className="w-full">
         <Input
-          className="h-[3.375rem] border-none focus-visible:ring-0 paragraph-s text-content-secondary placeholder:text-content-quarternary"
+          className="h-[3.375rem] focus-visible:ring-0 paragraph-s text-content-secondary border-border-default border bg-scale-gray-100 placeholder:text-content-quarternary"
           placeholder="재료명을 입력해 주세요"
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
