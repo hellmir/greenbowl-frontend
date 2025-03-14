@@ -49,11 +49,13 @@ const RecommendedMenu = ({ index, recipe }: RecommendedProps) => {
   const calories = recipe.calories;
 
   const handleClick = () => {
+    if (isPending) return;
     setSelectedRecipe(recipe);
     router.push(`/recipe/ai/${recipe.id}`);
   };
   const handleClickBookmark = (e: React.MouseEvent) => {
     e.stopPropagation();
+    if (isPending) return;
     startTransition(async () => {
       try {
         setIsBookmarked((prev) => !prev);
@@ -68,7 +70,7 @@ const RecommendedMenu = ({ index, recipe }: RecommendedProps) => {
   return (
     <div
       key={index}
-      className={` relative flex items-start gap-5 p-3  rounded-lg shadow-md h-32 mb-8 ${isPending ? "bg-black opacity-65" : "bg-foundation-secondary"}`}
+      className={` relative flex items-start gap-5 p-3  rounded-lg shadow-md h-32 mb-8 ${isPending ? "bg-foundation-secondary opacity-65" : "bg-foundation-secondary"}`}
       onClick={handleClick}
     >
       <Image
