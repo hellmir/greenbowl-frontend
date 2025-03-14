@@ -5,6 +5,7 @@ const customFetchClient = async (url: string, options: RequestInit = {}) => {
 
   const headers = {
     Authorization: token?.accessToken ? `${token.accessToken}` : "",
+    userId: token?.userId ? `${token.userId}` : "",
     "Content-Type": "application/json",
     ...options.headers,
   };

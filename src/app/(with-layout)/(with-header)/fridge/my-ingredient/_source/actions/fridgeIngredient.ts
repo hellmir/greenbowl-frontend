@@ -30,7 +30,6 @@ export const createFridgeIngredients = async (
   const res = await customFetchClient(
     `${BASE_API_URL}/api/fridges/ingredients`,
     {
-      headers: { "Content-Type": "application/json" },
       method: "POST",
       body: JSON.stringify(fridgeIngredients),
     }
@@ -45,7 +44,6 @@ export const createFridgeIngredientsWithDefault = async (
   const res = await customFetchClient(
     `${BASE_API_URL}/api/fridges/default-ingredients`,
     {
-      headers: { "Content-Type": "application/json" },
       method: "POST",
       body: JSON.stringify(fridgeIngredients),
     }
@@ -59,7 +57,6 @@ export const updateFridgeIngredients = async (
   const res = await customFetchClient(
     `${BASE_API_URL}/api/fridges/ingredients`,
     {
-      headers: { "Content-Type": "application/json" },
       method: "PUT",
       body: JSON.stringify(fridgeIngredients),
     }
@@ -72,7 +69,6 @@ export const deleteFridgeIngredients = async (
   fridgeIngredients: DeleteFidgetIngredients
 ) => {
   await customFetchClient(`${BASE_API_URL}/api/fridges/ingredients`, {
-    headers: { "Content-Type": "application/json" },
     method: "DELETE",
     body: JSON.stringify(fridgeIngredients),
   });
