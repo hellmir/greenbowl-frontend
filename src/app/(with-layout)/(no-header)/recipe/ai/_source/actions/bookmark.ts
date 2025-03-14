@@ -4,6 +4,7 @@ import {
     ModifyDetailedBookmarkRequestPayload,
     RECIPE_SERVICE_URL,
 } from "@/app/(with-layout)/(no-header)/recipe/ai/_source/config";
+import customFetchClient from "@/api/customFetchClient";
 
 const DETAILED_RECIPE_ENDPOINT = "detailed";
 const ONE_LINE_INTRODUCTION = "oneLineIntroduction";
@@ -17,7 +18,7 @@ export const POST = async (
     }
 
     try {
-        const response = await fetch(requestEndpoint, {
+        const response = await customFetchClient(requestEndpoint, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -38,7 +39,7 @@ export const POST = async (
 export const GET = async (id: string) => {
     try {
         console.log(id);
-        const response = await fetch(`${RECIPE_SERVICE_URL}${id}`, {
+        const response = await customFetchClient(`${RECIPE_SERVICE_URL}${id}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -58,7 +59,7 @@ export const GET = async (id: string) => {
 
 export const PATCH = async (payload: ModifyDetailedBookmarkRequestPayload) => {
     try {
-        const response = await fetch(RECIPE_SERVICE_URL, {
+        const response = await customFetchClient(RECIPE_SERVICE_URL, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
@@ -78,7 +79,7 @@ export const PATCH = async (payload: ModifyDetailedBookmarkRequestPayload) => {
 
 export const DELETE = async (recipeName: string) => {
     try {
-        const response = await fetch(`${RECIPE_SERVICE_URL}?name=${recipeName}`, {
+        const response = await customFetchClient(`${RECIPE_SERVICE_URL}?name=${recipeName}`, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",
