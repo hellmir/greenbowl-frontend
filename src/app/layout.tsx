@@ -45,6 +45,9 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "그린볼", url: "https://greenbowl-eta.vercel.app" }],
   icons: { icon: "/favicon.ico" },
+  verification: {
+    google: "EaCYCOaoJiO7veRPXZXGMPl8gEIP3ZJqYAHGwe4W1Nc",
+  },
 };
 
 declare global {
