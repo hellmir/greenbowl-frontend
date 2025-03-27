@@ -30,9 +30,31 @@ const myFont = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "메인",
-  icons: {
-    icon: "/favicon.ico",
+  title: "냉장고 재료로 맞춤 레시피 추천 시작하기 - 그린볼",
+  description:
+    "냉장고 속 재료를 입력하면 맞춤형 레시피를 추천하고, 남은 재료로 요리할 수 있도록 도와줍니다.",
+  keywords: [
+    "레시피 추천",
+    "냉장고 요리",
+    "남은 재료 요리",
+    "맞춤형 레시피",
+    "냉장고 파먹기",
+    "식단 관리",
+    "요리법",
+    "음식 추천",
+  ],
+  authors: [{ name: "그린볼", url: "https://greenbowl-eta.vercel.app" }],
+  icons: { icon: "/favicon.ico" },
+  verification: {
+    google: "SWvaK6NvtjiC8Pt9JyvikOnzhLUfOykBo-f9YAtUVXg",
+  },
+  openGraph: {
+    title: "냉장고 재료로 맞춤 레시피 추천 시작하기 - 그린볼",
+    description:
+      "냉장고 속 재료를 입력하면 맞춤형 레시피를 추천하고, 남은 재료로 요리할 수 있도록 도와줍니다.",
+    url: "https://greenbowl-eta.vercel.app",
+    siteName: "그린볼",
+    type: "website",
   },
 };
 
@@ -45,13 +67,13 @@ declare global {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
-    <html lang="en" className=" stable">
+    <html lang="ko">
       <body
-        className={`${myFont.className} antialiased overflow-x-hidden  relative `}
+        className={`${myFont.className} antialiased overflow-x-hidden relative`}
       >
         <AuthSession>
           <Script
@@ -61,7 +83,7 @@ export default function RootLayout({
           <div className="fixed inset-0 bg-foundation-quarternary z-0"></div>
           <div className="flex justify-center items-center z-30">
             <div className="w-full max-w-[37.5rem] min-h-screen mx-auto relative text-content-secondary z-40 bg-white">
-              <div>{children}</div>
+              {children}
             </div>
           </div>
           <Alert />
