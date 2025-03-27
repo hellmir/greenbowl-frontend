@@ -30,7 +30,7 @@ const myFont = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "그린볼 - 레시피 추천 & 냉장고 재료로 요리하기",
+  title: "냉장고 재료로 맞춤 레시피 추천 시작하기 - 그린볼",
   description:
     "냉장고 속 재료를 입력하면 맞춤형 레시피를 추천하고, 남은 재료로 요리할 수 있도록 도와줍니다.",
   keywords: [

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "레시피 추천 - 내 재료로 만드는 맞춤 요리",
+  title: "내 재료로 만드는 맞춤 요리 - 레시피 추천천",
   description:
     "냉장고 속 재료를 입력하면 AI가 맞춤형 레시피를 추천합니다. 남은 재료를 활용하여 쉽고 맛있는 요리를 만들어보세요!",
   keywords: [
