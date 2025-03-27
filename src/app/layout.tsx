@@ -46,7 +46,7 @@ export const metadata: Metadata = {
   authors: [{ name: "그린볼", url: "https://greenbowl-eta.vercel.app" }],
   icons: { icon: "/favicon.ico" },
   verification: {
-    google: "EaCYCOaoJiO7veRPXZXGMPl8gEIP3ZJqYAHGwe4W1Nc",
+    google: "SWvaK6NvtjiC8Pt9JyvikOnzhLUfOykBo-f9YAtUVXg",
   },
   openGraph: {
     title: "냉장고 재료로 맞춤 레시피 추천 시작하기 - 그린볼",
