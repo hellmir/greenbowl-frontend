@@ -30,7 +30,10 @@ const myFont = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "냉장고 재료로 맞춤 레시피 추천 시작하기 - 그린볼",
+  title: {
+    template: "%s - 그린볼",
+    default: "냉장고 재료로 맞춤 레시피 추천 시작하기 - 그린볼",
+  },
   description:
     "냉장고 속 재료를 입력하면 맞춤형 레시피를 추천하고, 남은 재료로 요리할 수 있도록 도와줍니다.",
   keywords: [
@@ -47,6 +50,9 @@ export const metadata: Metadata = {
   icons: { icon: "/favicon.ico" },
   verification: {
     google: "EaCYCOaoJiO7veRPXZXGMPl8gEIP3ZJqYAHGwe4W1Nc",
+    other: {
+      "naver-site-verification": "2f278cd6f006afb6173eac8ec0d79e01e73898b3",
+    },
   },
   openGraph: {
     title: "냉장고 재료로 맞춤 레시피 추천 시작하기 - 그린볼",
