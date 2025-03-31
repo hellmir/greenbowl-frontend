@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "냉장고 재료로 맞춤 레시피 추천 시작하기 - 그린볼",
+  title: "냉장고 재료로 맞춤 레시피 추천 시작하기",
   description:
     "그린볼에 오신 것을 환영합니다! 냉장고에 있는 재료를 입력하면 AI가 맞춤형 레시피를 추천해 드립니다. 온보딩을 통해 사용법을 익혀보세요.",
   keywords: [
