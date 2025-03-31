@@ -7,13 +7,14 @@ export default function robots(): MetadataRoute.Robots {
     rules: [
       {
         userAgent: "*",
-        allow: ["/", "/fridge/tip/*", "/recipe/*", "/onboarding/*", "/login/*"],
+        allow: ["/", "/fridge/tip/*", "/recipe", "/onboarding/*", "/login/*"],
         disallow: [
           "/api/*",
           "/_next/*",
           "/my-page/*",
           "/fridge/my-ingredient/*",
           "/fridge/add-ingredient",
+          "/recipe/*",
         ],
       },
     ],
