@@ -39,7 +39,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       type: "website",
       images: [
         {
-          url: imagePath.fridgeTipDetail.src,
+          url: data.image,
           width: 600,
           height: 300,
           alt: "사이트 이미지",
