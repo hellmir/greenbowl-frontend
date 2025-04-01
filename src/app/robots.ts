@@ -17,7 +17,6 @@ export default function robots(): MetadataRoute.Robots {
           "/fridge/my-ingredient",
           "/fridge/add-ingredient",
           "/recipe/*",
-          "/onboarding"
         ],
       },
     ],
