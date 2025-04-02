@@ -7,6 +7,7 @@ import Alert from "@/components/alert/Alert";
 import FullscreenModal from "@/components/fullscreenModal/FullscreenModal";
 import Script from "next/script";
 import KakaoScript from "@/script/KakaoScript";
+import imagePath from "@/constants/imagePath";
 
 const myFont = localFont({
   src: [
@@ -59,6 +60,14 @@ export const metadata: Metadata = {
     description:
       "냉장고 속 재료를 입력하면 맞춤형 레시피를 추천하고, 남은 재료로 요리할 수 있도록 도와줍니다.",
     url: "https://greenbowl-eta.vercel.app",
+    images: [
+      {
+        url: imagePath.shareLogo.src,
+        width: 600,
+        height: 300,
+        alt: "사이트 이미지",
+      },
+    ],
     siteName: "그린볼",
     type: "website",
   },

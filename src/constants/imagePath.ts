@@ -41,6 +41,10 @@ const imagePath = {
       alt: "온보딩 식단 설명 페이지",
     },
   },
+  shareLogo: {
+    src: "/image/shareLogo.png",
+    alt: "메인 공유하기 이미지",
+  },
 };
 
 export default imagePath;
