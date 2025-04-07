@@ -8,7 +8,7 @@ const FourthOnboarding = () => {
       <div className="mt-14 flex flex-col gap-3 text-center whitespace-pre justify-center">
         <span className="text-foundation-primary heading-s">식단 코치</span>
         <p className="heading-l text-content-primary">
-          {"나의 몸에 맞는 식단을을\n구성하고 싶으시다면"}
+          {"나의 몸에 맞는 식단을\n구성하고 싶으시다면"}
         </p>
         <p className=" paragraph-xs text-content-secondary">
           {"AI 식단 코치를 통해 나를 위한 영양가 있는\n식단을 제안 받아보세요."}

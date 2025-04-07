@@ -1,6 +1,6 @@
 const Thanks = () => {
   return (
-    <div className=" w-64 flex flex-col gap-3 mt-5">
+    <div className=" w-full flex flex-col gap-3 mt-5">
       <p className=" heading-l text-content-secondary">
         그동안 그린볼과 함께해 주셔서 감사합니다.
       </p>

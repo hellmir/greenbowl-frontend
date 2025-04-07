@@ -11,7 +11,7 @@ const SecondOnboarding = () => {
         </p>
         <p className=" paragraph-xs text-content-secondary">
           {
-            "재료만 간단히 입력하면 AI가 맞춤형 레시피를 추천해줘요.\n집에있는 재료로 건강하고 맛있는 한 끼를 요리해보세요."
+            "재료만 간단히 입력하면 AI가 맞춤형 레시피를 추천해줘요.\n집에 있는 재료로 건강하고 맛있는 한 끼를 요리해보세요."
           }
         </p>
         <div className="flex justify-center mt-11 mb-16">

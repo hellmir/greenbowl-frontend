@@ -5,6 +5,7 @@ import Link from "next/link";
 const Header = ({ isChangeHeader }: { isChangeHeader: boolean }) => {
   return (
     <header className="bg-foundation-secondary top-0 z-30 sticky w-full  mx-auto h-14 ">
+      <h1 className="sr-only">그린볼</h1>
       {isChangeHeader ? (
         <div className=" px-4 flex items-center justify-between h-full">
           <div className="w-28 h-4 logo">

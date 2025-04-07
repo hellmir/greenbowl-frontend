@@ -7,7 +7,9 @@ interface Props {
 }
 
 const IngredientsList = ({ initialIngredients }: Props) => {
-  const sortIngredients = initialIngredients.toSorted((a, b) => b.id - a.id);
+  const sortIngredients = initialIngredients.toSorted((a, b) =>
+    a.categoryDetail.localeCompare(b.categoryDetail, "ko")
+  );
   return (
     <>
       {sortIngredients.map((item) => {
